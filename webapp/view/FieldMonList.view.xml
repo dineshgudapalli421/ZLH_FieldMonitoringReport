@@ -90,7 +90,11 @@
                     <Column width="14rem">
                         <m:Label text="{i18n>label.order}" />
                         <template>
-                            <m:Label text="{FieldMonitorModel>ORDER_NO}" />
+                            <m:Link
+				text="{FieldMonitorModel>ORDER_NO}"
+				subtle="true"
+				press="handleLinkPress" />
+                            <!-- <m:Label text="{FieldMonitorModel>ORDER_NO}"/> -->
                         </template>
                     </Column>
                     <Column width="5rem">

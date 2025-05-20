@@ -314,6 +314,37 @@ sap.ui.define(
         // };
         // navigationService.navigate(target, oController.getOwnerComponent());
       },
+      handleLinkPress:function(oEvent){
+        var oSource = oEvent.getSource();
+        let oOrderNo = oSource.getText();
+        if(oOrderNo)
+        {
+          var navigationService = sap.ushell.Container.getService("CrossApplicationNavigation");
+          var hash = (navigationService && navigationService.hrefForExternal({
+            target: { semanticObject: "MaintenanceOrder", action: "change" },
+              params: {
+                  "AUFNR": oOrderNo,
+                  "sap-app-origin-hint": '',
+                  "sap-ui-tech-hint": "GUI",
+                  "sap-ushell-navmode": "inplace"
+              }
+          })) || "";
+  
+          var url = window.location.href.split('#')[0] + hash;
+          sap.m.URLHelper.redirect(url, true);
+          // var oTarget = {
+          //     target: { semanticObject: "MaintenanceOrder", action: "change" },
+          //     params: {
+          //         "AUFNR": oOrderNo,
+          //         "sap-app-origin-hint": '',
+          //         "sap-ui-tech-hint": "GUI",
+          //         "sap-ushell-navmode": "inplace"
+          //     }
+          // }
+          // oCrossAppNav.navigate(oTarget, oController.getOwnerComponent());
+        }
+        console.log(oData);
+      },
       _closeDialog: function () {
         oController.oDialog.close();
       }
