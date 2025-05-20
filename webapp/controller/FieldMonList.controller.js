@@ -296,7 +296,7 @@ sap.ui.define(
       onPressCaseId: function (oEvent) {
         var oSource = oEvent.getSource();
         debugger;
-        var navigationService = sap.ushell.Container.getService("Navigation");
+        var navigationService = sap.ushell.Container.getService("CrossApplicationNavigation");
         var hash = (navigationService && navigationService.hrefForExternal({
           target: { semanticObject: "UtilitiesClarificationCase", action: "displayClarificationCase" },
           params: {
