@@ -61,24 +61,6 @@
                 </extension>
                 <columns>
                     <Column width="11rem">
-                        <m:Label text="{i18n>label.anlage}" />
-                        <template>
-                            <m:Label text="{FieldMonitorModel>Anlage}" />
-                        </template>
-                    </Column>
-                    <Column width="11rem">
-                        <m:Label text="{i18n>label.opCode}" />
-                        <template>
-                            <m:Label text="{FieldMonitorModel>OpCode}" />
-                        </template>
-                    </Column>
-                     <Column width="11rem">
-                        <m:Label text="{i18n>label.opDescription}" />
-                        <template>
-                            <m:Label text="{FieldMonitorModel>OpDescription}" />
-                        </template>
-                    </Column>
-                    <Column width="11rem">
                         <m:Label text="{i18n>label.status}" />
                         <template>
                             <m:Label text="{FieldMonitorModel>Status}" />
@@ -115,6 +97,18 @@
                             <!-- <m:Label text="{FieldMonitorModel>ORDER_NO}"/> -->
                         </template>
                     </Column>
+                    <Column width="11rem">
+                        <m:Label text="{i18n>label.opCode}" />
+                        <template>
+                            <m:Label text="{FieldMonitorModel>OpCode}" />
+                        </template>
+                    </Column>
+                     <Column width="11rem">
+                        <m:Label text="{i18n>label.opDescription}" />
+                        <template>
+                            <m:Label text="{FieldMonitorModel>OpDescription}" />
+                        </template>
+                    </Column>                    
                     <Column width="5rem">
                         <m:Label text="{i18n>label.esa}" />
                         <template>
@@ -138,11 +132,26 @@
                         <template>
                             <m:Label text="{FieldMonitorModel>OPS_DESC}" />
                         </template>
+                    </Column>                    
+                    <Column width="11rem">
+                        <m:Label text="{i18n>label.anlage}" />
+                        <template>
+                            <m:Label text="{FieldMonitorModel>Anlage}" />
+                        </template>
                     </Column>
                     <Column width="12rem">
                         <m:Label text="{i18n>label.billingClass}" />
                         <template>
                             <m:Label text="{FieldMonitorModel>BILLING_CLASS}" />
+                        </template>
+                    </Column>                    
+                     <Column
+                        width="11rem"
+                        hAlign="Center"
+                    >
+                        <m:Label text="{i18n>label.functionalLocation}" />
+                        <template>
+                            <m:Label text="{FieldMonitorModel>Functional_Loc}" />
                         </template>
                     </Column>
                     <Column width="12rem">
@@ -427,15 +436,6 @@
                         <m:Label text="{i18n>label.workArea}" />
                         <template>
                             <m:Label text="{FieldMonitorModel>WORK_AREA}" />
-                        </template>
-                    </Column>
-                     <Column
-                        width="11rem"
-                        hAlign="Center"
-                    >
-                        <m:Label text="{i18n>label.functionalLocation}" />
-                        <template>
-                            <m:Label text="{FieldMonitorModel>Functional_Loc}" />
                         </template>
                     </Column>
                 </columns>
