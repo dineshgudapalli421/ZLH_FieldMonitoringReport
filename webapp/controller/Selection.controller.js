@@ -172,6 +172,22 @@ sap.ui.define([
         },
         onSubmitOrderNumber: function (oEvent) {
             var oMultiInput = oEvent.getSource();
+            // var oMultiServiceOrder = oEvent.getSource().getTokens();
+            // if(oMultiServiceOrder.length === 0)
+            // {
+            //     return MessageBox.error("enter service order number...")
+            // }
+            // let aFilter = [];
+            // var sOrder = "";
+            // if(oMultiServiceOrder.length>0)
+            // {
+            //     for (let i = 0; i <= oMultiServiceOrder.length - 1; i++) {
+            //         sOrder = oMultiServiceOrder[i].getText();
+            //         sOrder = profileRole.replace("=", "");
+            //         aFilter.push(new Filter("ORDER_NO", FilterOperator.EQ, sOrder));
+            //     }
+            // }           
+
             var oModel = oController.getView().getModel("FieldMonSelModel");
             oModel.setProperty("/bPageBusy", true);
             var sPath = "/Monitoring_FiledWorkSet('" + oMultiInput.getValue() + "')";
