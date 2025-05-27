@@ -8,6 +8,9 @@
     xmlns:c="sap.ui.core"
     xmlns:m="sap.m"
     xmlns:core="sap.ui.core"
+    xmlns:vm="sap.ui.fl.variants"
+    xmlns:columnmenu="sap.m.table.columnmenu"
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
 >
     <m:Page
         busyIndicatorDelay="1"
@@ -37,6 +40,8 @@
                 rows="{FieldMonitorModel>/aFieldMonList}"
                 ariaLabelledBy="title"
                 selectionMode="Single"
+                enableColumnReordering="true"
+                width="auto"
             >
                 <extension>
                     <m:OverflowToolbar style="Clear">
@@ -44,6 +49,8 @@
                             id="title"
                             text="Products"
                         />
+                        <m:ToolbarSeparator/>
+                         <!-- <vm:VariantManagement id="p13nVm" for="persoTable"/> -->
                         <m:ToolbarSpacer />
                         <m:Button
                             editable="{= ${FieldMonitorModel>/aFieldMonList}.length}"
@@ -51,6 +58,9 @@
                             tooltip="Sort"
                             press="handleSortButtonPressed"
                         />
+                        <m:Button icon="sap-icon://action-settings"
+                            tooltip="Settings"
+                            press="handleSettingsButtonPressed"/>
                         <!-- <m:Button
                             editable="{= ${FieldMonitorModel>/aFieldMonList}.length}"
                             icon="sap-icon://filter"
@@ -59,8 +69,16 @@
                         /> -->
                     </m:OverflowToolbar>
                 </extension>
+                <dependents>
+                    <columnmenu:Menu id="menu" 
+                    showTableSettingsButton="true" 
+                    tableSettingsPressed="openPersoDialog">
+                    </columnmenu:Menu>
+                </dependents>
                 <columns>
-                    <Column width="11rem">
+                    <Column app:p13nKey="Status_col" 
+                    sortProperty="{i18n>label.status}" headerMenu="menu" resizable="true" 
+                    autoResizable="true" width="11rem">
                         <m:Label text="{i18n>label.status}" />
                         <template>
                             <m:Label text="{FieldMonitorModel>Status}" />

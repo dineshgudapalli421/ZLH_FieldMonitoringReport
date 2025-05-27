@@ -5,8 +5,9 @@ sap.ui.define([
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator",
     "sap/ui/model/json/JSONModel",
-    "sap/m/Token"
-], function (Controller, MessageToast, MessageBox, Filter, FilterOperator, JSONModel, Token) {
+    "sap/m/Token",
+    "sap/ui/core/format/DateFormat"
+], function (Controller, MessageToast, MessageBox, Filter, FilterOperator, JSONModel, Token, DateFormat) {
     "use strict";
     var oRouter, oController, oSelectionScreenModel, oFieldMonDataModel, oResourceBundle, UIComponent;
     return Controller.extend("com.sap.lh.cs.zlhfieldmonitoring.controller.Selection", {
@@ -24,8 +25,8 @@ sap.ui.define([
                 bIsSelScreenInvalidate: false,
                 oServiceOrderDates: {
                     CompletedOn: {
-                        From: oController._fnCurrentMonthStartDate(true),
-                        To: oController._fnCurrentMonthStartDate(false)
+                        From: "", //oController._fnCurrentMonthStartDate(true),
+                        To: "", //oController._fnCurrentMonthStartDate(false)
                     },
                     CreatedOn: {
                         From: "", //oController._fnCurrentMonthStartDate(true)
@@ -88,7 +89,7 @@ sap.ui.define([
         },
         // _fnCurrentMonthStartDate : function(){
         _fnCurrentMonthStartDate: function (bIsfromDate) {
-            var dateFormat = sap.ui.core.format.DateFormat.getDateInstance();
+            var dateFormat = sap.ui.core.format.DateFormat.getDateInstance("dd.MM.yyyy");
             if (bIsfromDate) {
                 var currentDate = new Date();
                 var currentMonth = currentDate.getMonth();
@@ -137,6 +138,7 @@ sap.ui.define([
         },
 
         onPressNext: function () {
+            debugger;
             var oModel = oController.getView().getModel("FieldMonSelModel");
             var sPath = "/Monitoring_FiledWorkSet";
             oModel.setProperty("/bPageBusy", true);
@@ -266,7 +268,7 @@ sap.ui.define([
             var year = parseInt(parts[2], 10);
             var date = new Date(year, month, day);
             var dateFormat = sap.ui.core.format.DateFormat.getDateInstance({ pattern: "YYYY-MM-dd" });
-            return dateFormat.format(date) + "T00:00:00";
+            return dateFormat.format(date);
         },
         OnChangeCompletedOnDate: function () {
             var oFromDate = oController.getView().byId("idcompletedOnDatePicker");
@@ -319,17 +321,17 @@ sap.ui.define([
             // oView.byId("idbasicStartDatePickerTo")
 
             var sCompletedOn = {
-                From: oView.byId("idcompletedOnDatePicker").getValue() ? oView.byId("idcompletedOnDatePicker").getValue() + "T00:00:00" : undefined,
-                To: oView.byId("idcompletedOnDatePickerTo").getValue() ? oView.byId("idcompletedOnDatePickerTo").getValue() + "T00:00:00" : undefined
+                From: oView.byId("idcompletedOnDatePicker").getValue() ? oView.byId("idcompletedOnDatePicker").getValue() : undefined,
+                To: oView.byId("idcompletedOnDatePickerTo").getValue() ? oView.byId("idcompletedOnDatePickerTo").getValue() : undefined
             };
             var aMainActivity = oView.byId("idmainActivity").getSelectedKeys();
             var sCreatedOn = {
-                From: oView.byId("idcreatedOnDatePicker").getValue() ? oView.byId("idcreatedOnDatePicker").getValue() + "T00:00:00" : undefined,
-                To: oView.byId("idcreatedOnDatePickerTo").getValue() ? oView.byId("idcreatedOnDatePickerTo").getValue() + "T00:00:00" : undefined
+                From: oView.byId("idcreatedOnDatePicker").getValue() ? oView.byId("idcreatedOnDatePicker").getValue() : undefined,
+                To: oView.byId("idcreatedOnDatePickerTo").getValue() ? oView.byId("idcreatedOnDatePickerTo").getValue()  : undefined
             };
             var sBasicStart = {
-                From: oView.byId("idbasicStartDatePicker").getValue() ? oView.byId("idbasicStartDatePicker").getValue() + "T00:00:00" : undefined,
-                To: oView.byId("idbasicStartDatePickerTo").getValue() ? oView.byId("idbasicStartDatePickerTo").getValue() + "T00:00:00" : undefined
+                From: oView.byId("idbasicStartDatePicker").getValue() ? oView.byId("idbasicStartDatePicker").getValue()  : undefined,
+                To: oView.byId("idbasicStartDatePickerTo").getValue() ? oView.byId("idbasicStartDatePickerTo").getValue() : undefined
             };
             var aPlannerGroup = oController._getTokens(oView.byId("idPlannerGroup"));
             var aWorkCenter = oController._getTokens(oView.byId("idWorkCenter"));
@@ -381,9 +383,12 @@ sap.ui.define([
                 createOrFilter(aOperationStatus, "OP_STATUS")
             ].filter(f => f !== null);
             var Validatefunction = function (From, To) {
-                debugger;
+                debugger;                
+                From = oController._fngetDateFormat(From);
+                To =  oController._fngetDateFormat(To);
                 var isValidateDates = true;
-                var dateRegex = /^\d{4}\-\d{2}\-\d{2}T\d{2}:\d{2}:\d{2}$/;
+                // var dateRegex = /^\d{4}\-\d{2}\-\d{2}T\d{2}:\d{2}:\d{2}$/;
+                var dateRegex = /^\d{4}\-\d{2}\-\d{2}$/;
                 var isValidFrom = dateRegex.test(From);
                 var isValidTo = dateRegex.test(To);
                 if (!isValidFrom || !isValidTo) {
@@ -470,6 +475,15 @@ sap.ui.define([
             } else {
                 // Proceed with the logic
             }
-        }
+        },
+        _fngetDateFormat: function (strDate) {
+
+            var oDateFormat = DateFormat.getInstance({
+                UTC: false,
+                pattern: "YYYY-MM-dd" 
+            });
+            var formatDate = oDateFormat.format(new Date(strDate));
+            return formatDate.toString();            
+        },
     });
 });

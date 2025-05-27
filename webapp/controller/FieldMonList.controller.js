@@ -8,9 +8,10 @@ sap.ui.define(
     "sap/ui/model/json/JSONModel",
     "sap/m/Token",
     'sap/ui/core/Fragment',
-    'sap/ui/model/Sorter'
+    'sap/ui/model/Sorter',
+    'sap/m/p13n/Engine',
   ],
-  function (Controller, MessageToast, MessageBox, Filter, FilterOperator, JSONModel, Token, Fragment, Sorter) {
+  function (Controller, MessageToast, MessageBox, Filter, FilterOperator, JSONModel, Token, Fragment, Sorter, Engine) {
     "use strict";
     var oRouter, oController, oSelectionScreenModel, oOEBoDataModel, oResourceBundle, UIComponent;
     return Controller.extend("com.sap.lh.cs.zlhfieldmonitoring.controller.FieldMonList", {
@@ -22,6 +23,12 @@ sap.ui.define(
         oResourceBundle = oController.getOwnerComponent().getModel("i18n").getResourceBundle();
         oRouter.getRoute("FieldMonList").attachPatternMatched(oController._onRouteMatch, oController);
         oController._mViewSettingsDialogs = {};
+        // var oTable = oController.byId("idFieldMonTable");
+        // oController._oTablePersoController = new sap.ui.table.TablePersoController({
+        //   table : oTable,
+        //   persoService: SettingsService,
+        //   hasGrouping: false
+        // }).activate();
       },
       _onRouteMatch: function () {
         var oGlobalModel = oController.getOwnerComponent().getModel("GlobalFieldMonModel");
@@ -314,22 +321,21 @@ sap.ui.define(
         // };
         // navigationService.navigate(target, oController.getOwnerComponent());
       },
-      handleLinkPress:function(oEvent){
+      handleLinkPress: function (oEvent) {
         var oSource = oEvent.getSource();
         let oOrderNo = oSource.getText();
-        if(oOrderNo)
-        {
+        if (oOrderNo) {
           var navigationService = sap.ushell.Container.getService("CrossApplicationNavigation");
           var hash = (navigationService && navigationService.hrefForExternal({
             target: { semanticObject: "MaintenanceOrder", action: "change" },
-              params: {
-                  "AUFNR": oOrderNo,
-                  "sap-app-origin-hint": '',
-                  "sap-ui-tech-hint": "GUI",
-                  "sap-ushell-navmode": "inplace"
-              }
+            params: {
+              "AUFNR": oOrderNo,
+              "sap-app-origin-hint": '',
+              "sap-ui-tech-hint": "GUI",
+              "sap-ushell-navmode": "inplace"
+            }
           })) || "";
-  
+
           var url = window.location.href.split('#')[0] + hash;
           sap.m.URLHelper.redirect(url, true);
           // var oTarget = {
@@ -347,7 +353,16 @@ sap.ui.define(
       },
       _closeDialog: function () {
         oController.oDialog.close();
-      }
+      },
+      handleSettingsButtonPressed: function (oEvent) {
+        const oTable = this.byId("idFieldMonTable");
+
+        Engine.getInstance().show(oTable, ["Columns", "Sorter"], {
+          contentHeight: "35rem",
+          contentWidth: "32rem",
+          source: oEvent.getSource()
+        });
+      },
 
     });
   }
