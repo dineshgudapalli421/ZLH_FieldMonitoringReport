@@ -222,6 +222,7 @@ sap.ui.define([
             });
         },
         onSelectFuncLoc: function (oEvent) {
+            debugger;
             var oSelectedItem = oEvent.getParameter("selectedRow");
             var oMultiInput = oController.getView().byId("idFuncLoc");
             oController.onSuggestionItemSelected(oSelectedItem, oMultiInput);
@@ -247,6 +248,7 @@ sap.ui.define([
             oController.onSuggestionItemSelected(oSelectedItem, oMultiInput);
         },
         onSuggestionItemSelected: function (oSelectedItem, oMultiInput) {
+            debugger;
             var oSelectedCells = oSelectedItem.getCells();
             var oToken = new Token({
                 key: oSelectedCells[1].getText(),
@@ -327,15 +329,16 @@ sap.ui.define([
             var aMainActivity = oView.byId("idmainActivity").getSelectedKeys();
             var sCreatedOn = {
                 From: oView.byId("idcreatedOnDatePicker").getValue() ? oView.byId("idcreatedOnDatePicker").getValue() : undefined,
-                To: oView.byId("idcreatedOnDatePickerTo").getValue() ? oView.byId("idcreatedOnDatePickerTo").getValue()  : undefined
+                To: oView.byId("idcreatedOnDatePickerTo").getValue() ? oView.byId("idcreatedOnDatePickerTo").getValue() : undefined
             };
             var sBasicStart = {
-                From: oView.byId("idbasicStartDatePicker").getValue() ? oView.byId("idbasicStartDatePicker").getValue()  : undefined,
+                From: oView.byId("idbasicStartDatePicker").getValue() ? oView.byId("idbasicStartDatePicker").getValue() : undefined,
                 To: oView.byId("idbasicStartDatePickerTo").getValue() ? oView.byId("idbasicStartDatePickerTo").getValue() : undefined
             };
             var aPlannerGroup = oController._getTokens(oView.byId("idPlannerGroup"));
             var aWorkCenter = oController._getTokens(oView.byId("idWorkCenter"));
-            var aFuncLoc = oController._getTokens(oView.byId("idFuncLoc"));
+            var aFuncLoc = oController.getView().byId("idFuncLoc").getValue() ? [oController.getView().byId("idFuncLoc").getValue()] : oController._getTokens(oView.byId("idFuncLoc"));
+            //oController._getTokens(oView.byId("idFuncLoc"));
             var aSerOrder = oController._getTokens(oView.byId("idServiceOrder"));
             var aOrderType = oController._getTokens(oView.byId("idOrderType"));
             var bMobileWorkforce = oModel.getProperty("/oSelected/oFilter/bMobileWorkForce");
@@ -374,7 +377,7 @@ sap.ui.define([
                 createOrFilter(aMainActivity, "MAIN_ACTIVITY"),
                 createOrFilter(aPlannerGroup, "Planner_Group"),
                 createOrFilter(aWorkCenter, "WRKCNTR_ID"),
-                createOrFilter(aFuncLoc, "Functional_Loc"),
+                createOrFilter(aFuncLoc, "Functional_Loc"),                
                 createOrFilter(aSerOrder, "ORDER_NO"),
                 createOrFilter(aOrderType, "ORDER_TYPE"),
                 createOrFilter([bMobileWorkforce], "MOB_WFORCE"),
@@ -383,9 +386,9 @@ sap.ui.define([
                 createOrFilter(aOperationStatus, "OP_STATUS")
             ].filter(f => f !== null);
             var Validatefunction = function (From, To) {
-                debugger;                
+                debugger;
                 From = oController._fngetDateFormat(From);
-                To =  oController._fngetDateFormat(To);
+                To = oController._fngetDateFormat(To);
                 var isValidateDates = true;
                 // var dateRegex = /^\d{4}\-\d{2}\-\d{2}T\d{2}:\d{2}:\d{2}$/;
                 var dateRegex = /^\d{4}\-\d{2}\-\d{2}$/;
@@ -480,10 +483,10 @@ sap.ui.define([
 
             var oDateFormat = DateFormat.getInstance({
                 UTC: false,
-                pattern: "YYYY-MM-dd" 
+                pattern: "YYYY-MM-dd"
             });
             var formatDate = oDateFormat.format(new Date(strDate));
-            return formatDate.toString();            
+            return formatDate.toString();
         },
     });
 });

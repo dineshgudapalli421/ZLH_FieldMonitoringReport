@@ -31,21 +31,17 @@
                 showClearIcon="true"
                 suggestionItemSelected=".onSelectFuncLoc"
                 suggestionRows="{
-				path: 'ORDOPRService>/PlannerGroupSet'
+				path: 'mainService>/'
                 }"
             >
                 <suggestionColumns>
                     <Column>
-                        <Label text="Group ID" />
-                    </Column>
-                    <Column>
-                        <Label text="Description" />
+                        <Label text="Functional Location" />
                     </Column>
                 </suggestionColumns>
                 <suggestionRows>
                     <ColumnListItem>
-                        <Label text="{ORDOPRService>PlannerGroupID}" />
-                        <Label text="{ORDOPRService>Description}" />
+                        <Label text="{Functional_LocationSet}" />
                     </ColumnListItem>
                 </suggestionRows>
             </MultiInput>
