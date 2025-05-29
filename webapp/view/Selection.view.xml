@@ -45,6 +45,10 @@
                 fragmentName="com.sap.lh.cs.zlhfieldmonitoring.fragment.operationStatus"
                 type="XML"
             />
+            <core:Fragment
+                fragmentName="com.sap.lh.cs.zlhfieldmonitoring.fragment.orderOperationStatus"
+                type="XML"
+            />
         </content>
         <footer>
             <Toolbar>

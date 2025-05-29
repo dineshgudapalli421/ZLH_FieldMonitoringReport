@@ -61,11 +61,9 @@ sap.ui.define([
                     OPerationStatus: []
                 },
                 OrderStatus: [
-                    { Key: 'OUTS', description: 'Outstanding' },
-                    { Key: 'INPR', description: 'In Process' },
-                    { Key: 'COMP', description: 'Completed' },
-                    { Key: 'Hist', description: 'Historical' },
-                    { Key: 'OEBE', description: 'OEB Exception' }
+                    { Key: 'DISP', description: 'Dispatched' },
+                    { Key: 'ASSN', description: 'Assigned' },                    
+                    { Key: 'TECO', description: 'Technically Completed' }
                 ],
                 OperationStatus: [
                     { Key: "HOLD", description: "Hold" },
@@ -377,7 +375,7 @@ sap.ui.define([
                 createOrFilter(aMainActivity, "MAIN_ACTIVITY"),
                 createOrFilter(aPlannerGroup, "Planner_Group"),
                 createOrFilter(aWorkCenter, "WRKCNTR_ID"),
-                createOrFilter(aFuncLoc, "Functional_Loc"),                
+                createOrFilter(aFuncLoc, "Functional_Loc"),
                 createOrFilter(aSerOrder, "ORDER_NO"),
                 createOrFilter(aOrderType, "ORDER_TYPE"),
                 createOrFilter([bMobileWorkforce], "MOB_WFORCE"),
