@@ -19,19 +19,19 @@
         columnsXL="1"
         columnsL="1"
         columnsM="1"
-        title="Operation status(Status profile - ZOPER similar to ZBUILDER)"
+        title="Order Status(Applicable only for MS01 Multi Operation Orders)"
         singleContainerFullSize="false"
     >
         <f:content>            
-             <Label text="Operation Status" />
+             <Label text="Order Status" />
             <MultiComboBox
                 id="idordOpeStatus"
                 selectionChange="handleSelectionChange"
                 selectionFinish="handleSelectionFinish"
-                selectedKeys="{FieldMonSelModel>/OperationStatusSelected}"
+                selectedKeys="{FieldMonSelModel>/OrderOperationStatusSelected}"
                 width="350px"
                 items="{
-				path: 'FieldMonSelModel>/OperationStatus',
+				path: 'FieldMonSelModel>/OrderOperationStatus',
 				sorter: { path: 'Name' }
 			          }"
             >

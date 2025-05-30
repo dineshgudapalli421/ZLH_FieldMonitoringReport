@@ -42,7 +42,7 @@
                 change="OnChangeCompletedOnDate"
             />
             <!-- YYYYddMM -->
-            <Label text="Main Activity" />
+            <!-- <Label text="Main Activity" />
             <MultiComboBox
                 id="idmainActivity"
                 width="350px"
@@ -55,7 +55,7 @@
                     key="{ActivityType}"
                     text="{Description}"
                 />
-            </MultiComboBox>
+            </MultiComboBox> -->
 
             <Label text="Created On" />
             <DatePicker

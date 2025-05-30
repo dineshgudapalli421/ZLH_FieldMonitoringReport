@@ -13,9 +13,10 @@ sap.ui.define(
   ],
   function (Controller, MessageToast, MessageBox, Filter, FilterOperator, JSONModel, Token, Fragment, Sorter, Engine) {
     "use strict";
-    var oRouter, oController, oSelectionScreenModel, oOEBoDataModel, oResourceBundle, UIComponent;
+    var oRouter, oController, oSelectionScreenModel, oOEBoDataModel, oResourceBundle, UIComponent, oSelectionFilter;
     return Controller.extend("com.sap.lh.cs.zlhfieldmonitoring.controller.FieldMonList", {
       onInit: function () {
+        debugger;
         oController = this;
         UIComponent = oController.getOwnerComponent();
         oOEBoDataModel = oController.getOwnerComponent().getModel();
@@ -23,12 +24,17 @@ sap.ui.define(
         oResourceBundle = oController.getOwnerComponent().getModel("i18n").getResourceBundle();
         oRouter.getRoute("FieldMonList").attachPatternMatched(oController._onRouteMatch, oController);
         oController._mViewSettingsDialogs = {};
+        // var oBus = sap.ui.getCore().getEventBus();
+        // oBus.subscribe("filterChannel", "passFilters", oController._onReceiveFilters, oController);
         // var oTable = oController.byId("idFieldMonTable");
         // oController._oTablePersoController = new sap.ui.table.TablePersoController({
         //   table : oTable,
         //   persoService: SettingsService,
         //   hasGrouping: false
         // }).activate();
+      },
+      _onReceiveFilters: function (sChannel, sEvent, oData) {
+        oSelectionFilter = oData.filters;
       },
       _onRouteMatch: function () {
         var oGlobalModel = oController.getOwnerComponent().getModel("GlobalFieldMonModel");
@@ -58,6 +64,37 @@ sap.ui.define(
         });
         oController.getView().setModel(oModel, "FieldMonitorModel");
         oController.getView().getModel("FieldMonitorModel").setProperty("/aFieldMonList", oList);
+      },
+      onRefreshSoResults: function () {
+        debugger;
+        var oGlobalModel = oController.getOwnerComponent().getModel("GlobalFieldMonModel");
+        var oList = oGlobalModel ? oGlobalModel.getProperty("/FiledMonList") : [];
+        var oModel = new JSONModel({
+          OEBReportList: [],
+          bPageBusy: false,
+          bDialogBusy: false,
+          sSourceSOFORM: "",
+          BPEMList: [],
+          oUpdateCustomerConfirm: {
+            sSiteReadiness: 'Y',
+          },
+          oMeterLoc: {
+            sSelectedLoc: "S",
+            sDesc: ""
+          },
+          SiteReadiness: {
+            sSiteReadinessDate: new Date(),
+            SiteRedinessDateError: 'None'
+          },
+          oSelectedOEB: {},
+          Filterparameters: {
+            Status: [],
+            ORDER_NO: []
+          }
+        });
+        oController.getView().setModel(oModel, "FieldMonitorModel");
+        oController.getView().getModel("FieldMonitorModel").setProperty("/aFieldMonList", oList);
+        oController.getView().byId("idFieldMonTable").getModel().refresh(true);
       },
       onPressSoResults: function () {
         var oTable = oController.getView().byId("idFieldMonTable");

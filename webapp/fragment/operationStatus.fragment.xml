@@ -19,11 +19,11 @@
         columnsXL="1"
         columnsL="1"
         columnsM="1"
-        title="Order Status(Applicable only for MS01 Multi Operation Orders)"
+        title="Operation Status"
         singleContainerFullSize="false"
     >
         <f:content>
-            <Label text="Order Status" />
+            <Label text="Operation Status" />
             <MultiComboBox
                 id="idOpeStatus"
                 selectionChange="handleSelectionChange"

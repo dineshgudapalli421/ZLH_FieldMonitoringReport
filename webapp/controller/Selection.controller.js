@@ -62,10 +62,10 @@ sap.ui.define([
                 },
                 OrderStatus: [
                     { Key: 'DISP', description: 'Dispatched' },
-                    { Key: 'ASSN', description: 'Assigned' },                    
+                    { Key: 'ASSN', description: 'Assigned' },
                     { Key: 'TECO', description: 'Technically Completed' }
                 ],
-                OperationStatus: [
+                OrderOperationStatus: [
                     { Key: "HOLD", description: "Hold" },
                     { Key: "SRDE", description: "Site Readiness Date entered" },
                     { Key: "RCC", description: "Ready for Customer Confirm" },
@@ -80,6 +80,20 @@ sap.ui.define([
                     { Key: "MCOM", description: "Meter Install Complete" },
                     { Key: "RVWP", description: "Review Pending" },
                     { Key: "RVWC", description: "Review Complete" }
+                ],
+                 OperationStatus: [
+                    { Key: "CNCL", description: "Cancel/Closed" },
+                    { Key: "ESAR", description: "ESA Required" },
+                    { Key: "ASGD", description: "Assigned" },
+                    { Key: "SCHD", description: "Scheduled" },
+                    { Key: "RDFD", description: "Ready for Dispatch" },
+                    { Key: "DISP", description: "Dispatched" },
+                    { Key: "CNDI", description: "Cancel Dispatch" },
+                    { Key: "TRKA", description: "Truck Assigned" },
+                    { Key: "ONST", description: "On Site" },
+                    { Key: "WKCO", description: "Work Completed" },
+                    { Key: "FINC", description: "Field Incomplete" },
+                    { Key: "ERRD", description: "Error In Dispatch" }
                 ]
             });
             oController.getView().setModel(oSelectionModel, "FieldMonSelModel");
@@ -141,6 +155,8 @@ sap.ui.define([
             var sPath = "/Monitoring_FiledWorkSet";
             oModel.setProperty("/bPageBusy", true);
             var aFilter = oController._fnReturnFilterparameter();
+            // var oBus = sap.ui.getCore().getEventBus();
+            // oBus.publish("filterChannel", "passFilters", { filters: aFilter });
             oFieldMonDataModel.read(sPath, {
                 filters: aFilter,
                 success: function (oData) {
@@ -324,7 +340,7 @@ sap.ui.define([
                 From: oView.byId("idcompletedOnDatePicker").getValue() ? oView.byId("idcompletedOnDatePicker").getValue() : undefined,
                 To: oView.byId("idcompletedOnDatePickerTo").getValue() ? oView.byId("idcompletedOnDatePickerTo").getValue() : undefined
             };
-            var aMainActivity = oView.byId("idmainActivity").getSelectedKeys();
+            //var aMainActivity = oView.byId("idmainActivity").getSelectedKeys();
             var sCreatedOn = {
                 From: oView.byId("idcreatedOnDatePicker").getValue() ? oView.byId("idcreatedOnDatePicker").getValue() : undefined,
                 To: oView.byId("idcreatedOnDatePickerTo").getValue() ? oView.byId("idcreatedOnDatePickerTo").getValue() : undefined
@@ -343,6 +359,7 @@ sap.ui.define([
             var bOnlyOPconf = oModel.getProperty("/oSelected/oFilter/bOnlyOpConfield");
             var bShowOnlyMTank = oModel.getProperty("/oSelected/oFilter/bShowOnlyMeterTank");
             var sLayout = oModel.getProperty("/sLayout");
+            var aOrderOperationStatus = oModel.getProperty("/OrderOperationStatusSelected");
             var aOperationStatus = oModel.getProperty("/OperationStatusSelected");
 
             function createOrFilter(arr, field) {
@@ -372,7 +389,6 @@ sap.ui.define([
 
             var allFilters = [
                 createOrFilter(aOrderStatus, "Status"),
-                createOrFilter(aMainActivity, "MAIN_ACTIVITY"),
                 createOrFilter(aPlannerGroup, "Planner_Group"),
                 createOrFilter(aWorkCenter, "WRKCNTR_ID"),
                 createOrFilter(aFuncLoc, "Functional_Loc"),
@@ -381,7 +397,8 @@ sap.ui.define([
                 createOrFilter([bMobileWorkforce], "MOB_WFORCE"),
                 createOrFilter([bOnlyOPconf], "OPR_CONF"),
                 createOrFilter([bShowOnlyMTank], "CTPT_M_TANK"),
-                createOrFilter(aOperationStatus, "OP_STATUS")
+                createOrFilter(aOrderOperationStatus, "OP_STATUS"), 
+                createOrFilter(aOperationStatus, "OdStatus")
             ].filter(f => f !== null);
             var Validatefunction = function (From, To) {
                 debugger;

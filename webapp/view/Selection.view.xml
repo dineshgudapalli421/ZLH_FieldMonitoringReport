@@ -42,11 +42,11 @@
                 type="XML"
             />
             <core:Fragment
-                fragmentName="com.sap.lh.cs.zlhfieldmonitoring.fragment.operationStatus"
+                fragmentName="com.sap.lh.cs.zlhfieldmonitoring.fragment.orderOperationStatus"
                 type="XML"
             />
             <core:Fragment
-                fragmentName="com.sap.lh.cs.zlhfieldmonitoring.fragment.orderOperationStatus"
+                fragmentName="com.sap.lh.cs.zlhfieldmonitoring.fragment.operationStatus"
                 type="XML"
             />
         </content>

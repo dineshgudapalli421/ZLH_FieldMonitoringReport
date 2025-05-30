@@ -19,6 +19,11 @@
         <m:subHeader>
             <m:OverflowToolbar>
                 <m:ToolbarSpacer />
+                 <m:Button
+                    icon="sap-icon://synchronize"
+                    tooltip="Refresh"
+                    press="onRefreshSoResults"
+                />
                 <m:Button
                     icon="sap-icon://list"
                     text="{i18n>label.soResults}"
@@ -454,6 +459,15 @@
                         <m:Label text="{i18n>label.workArea}" />
                         <template>
                             <m:Label text="{FieldMonitorModel>WORK_AREA}" />
+                        </template>
+                    </Column>
+                    <Column
+                        width="11rem"
+                        hAlign="Center"
+                    >
+                        <m:Label text="{i18n>label.opStatus}" />
+                        <template>
+                            <m:Label text="{FieldMonitorModel>OP_STATUS}" />
                         </template>
                     </Column>
                 </columns>
