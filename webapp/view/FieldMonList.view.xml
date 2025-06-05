@@ -8,6 +8,8 @@
     xmlns:c="sap.ui.core"
     xmlns:m="sap.m"
     xmlns:core="sap.ui.core"
+    xmlns:sap.ui.fl="sap.ui.fl"
+    xmlns:sap.ui.dt="sap.ui.dt"
     xmlns:vm="sap.ui.fl.variants"
     xmlns:columnmenu="sap.m.table.columnmenu"
     xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
@@ -42,6 +44,9 @@
         <m:content>
             <Table
                 id="idFieldMonTable"
+                rowMode="Auto" 
+                sort="onSort" columnResize="onColumnResize" columnMove="onColumnMove"
+                sap.ui.fl:flexibility="sap/m/flexibility/EngineFlex"
                 rows="{FieldMonitorModel>/aFieldMonList}"
                 ariaLabelledBy="title"
                 selectionMode="Single"
@@ -80,6 +85,9 @@
                     tableSettingsPressed="handleSettingsButtonPressed">
                     </columnmenu:Menu>
                 </dependents>
+                <noData>
+                    <m:IllustratedMessage enableVerticalResponsiveness="true"/>
+                </noData>
                 <columns>
                     <Column app:p13nKey="Status_col" 
                     sortProperty="{i18n>label.status}" headerMenu="menu" resizable="true" 

@@ -41,8 +41,8 @@ sap.ui.define(
       },
       _registerForP13n: function () {
         debugger;
-        const oTable = this.byId("idFieldMonTable");
-        this.oMetadataHelper = new MetadataHelper([{
+        const oTable = oController.byId("idFieldMonTable");
+        oController.oMetadataHelper = new MetadataHelper([{
           key: "Status_col",
           label: "Status",
           path: "Status"
@@ -264,7 +264,7 @@ sap.ui.define(
         }
         ]);
 
-        this._mIntialWidth = {
+        oController._mIntialWidth = {
           "Status_col": "11rem",
           "Text_col": "11rem",
           "Log_col": "11rem",
@@ -312,7 +312,7 @@ sap.ui.define(
         };
 
         Engine.getInstance().register(oTable, {
-          helper: this.oMetadataHelper,
+          helper: oController.oMetadataHelper,
           controller: {
             Columns: new SelectionController({
               targetAggregation: "columns",
@@ -330,12 +330,12 @@ sap.ui.define(
           }
         });
 
-        Engine.getInstance().attachStateChange(this.handleStateChange.bind(this));
+        Engine.getInstance().attachStateChange(oController.handleStateChange.bind(oController));
       },
-      handleStateChange: function (oEvt) {
+      handleStateChange: function (oEvent) {
         debugger;
-        const oTable = this.byId("idFieldMonTable");
-        const oState = oEvt.getParameter("state");
+        const oTable = oController.byId("idFieldMonTable");
+        const oState = oEvent.getParameter("state");
 
         if (!oState) {
           return;
@@ -343,40 +343,40 @@ sap.ui.define(
 
         oTable.getColumns().forEach(function (oColumn) {
 
-          const sKey = this._getKey(oColumn);
+          const sKey = oController._getKey(oColumn);
           const sColumnWidth = oState.ColumnWidth[sKey];
 
-          oColumn.setWidth(sColumnWidth || this._mIntialWidth[sKey]);
+          oColumn.setWidth(sColumnWidth || oController._mIntialWidth[sKey]);
 
           oColumn.setVisible(false);
           oColumn.setSortOrder(CoreLibrary.SortOrder.None);
-        }.bind(this));
+        }.bind(oController));
 
         oState.Columns.forEach(function (oProp, iIndex) {
-          let oCol = this.byId("idFieldMonTable").getColumns().find((oColumn) => oColumn.data("p13nKey") === oProp.key);
+          const oCol = oController.byId("idFieldMonTable").getColumns().find((oColumn) => oColumn.data("p13nKey") === oProp.key);
           oCol.setVisible(true);
 
           oTable.removeColumn(oCol);
           oTable.insertColumn(oCol, iIndex);
-        }.bind(this));
+        }.bind(oController));
 
         const aSorter = [];
         oState.Sorter.forEach(function (oSorter) {
-          const oColumn = this.byId("idFieldMonTable").getColumns().find((oColumn) => oColumn.data("p13nKey") === oSorter.key);
+          const oColumn = oController.byId("idFieldMonTable").getColumns().find((oColumn) => oColumn.data("p13nKey") === oSorter.key);
           /** @deprecated As of version 1.120 */
           oColumn.setSorted(true);
           oColumn.setSortOrder(oSorter.descending ? CoreLibrary.SortOrder.Descending : CoreLibrary.SortOrder.Ascending);
-          aSorter.push(new Sorter(this.oMetadataHelper.getProperty(oSorter.key).path, oSorter.descending));
-        }.bind(this));
+          aSorter.push(new Sorter(oController.oMetadataHelper.getProperty(oSorter.key).path, oSorter.descending));
+        }.bind(oController));
         oTable.getBinding("rows").sort(aSorter);
       },
       _getKey: function (oControl) {
         return oControl.data("p13nKey");
       },
-      onSort: function (oEvt) {
-        const oTable = this.byId("idFieldMonTable");
-        const sAffectedProperty = this._getKey(oEvt.getParameter("column"));
-        const sSortOrder = oEvt.getParameter("sortOrder");
+      onSort: function (oEvent) {
+        const oTable = oController.byId("idFieldMonTable");
+        const sAffectedProperty = oController._getKey(oEvent.getParameter("column"));
+        const sSortOrder = oEvent.getParameter("sortOrder");
 
         //Apply the state programatically on sorting through the column menu
         //1) Retrieve the current personalization state
@@ -395,9 +395,9 @@ sap.ui.define(
           Engine.getInstance().applyState(oTable, oState);
         });
       },
-      onColumnHeaderItemPress: function (oEvt) {
-        const oTable = this.byId("idFieldMonTable");
-        const sPanel = oEvt.getSource().getIcon().indexOf("sort") >= 0 ? "Sorter" : "Columns";
+      onColumnHeaderItemPress: function (oEvent) {
+        const oTable = oController.byId("idFieldMonTable");
+        const sPanel = oEvent.getSource().getIcon().indexOf("sort") >= 0 ? "Sorter" : "Columns";
 
         Engine.getInstance().show(oTable, [sPanel], {
           contentHeight: "35rem",
@@ -405,12 +405,12 @@ sap.ui.define(
           source: oTable
         });
       },
-      onColumnMove: function (oEvt) {
-        const oTable = this.byId("idFieldMonTable");
-        const oAffectedColumn = oEvt.getParameter("column");
-        const iNewPos = oEvt.getParameter("newPos");
-        const sKey = this._getKey(oAffectedColumn);
-        oEvt.preventDefault();
+      onColumnMove: function (oEvent) {
+        const oTable = oController.byId("idFieldMonTable");
+        const oAffectedColumn = oEvent.getParameter("column");
+        const iNewPos = oEvent.getParameter("newPos");
+        const sKey = oController._getKey(oAffectedColumn);
+        oEvent.preventDefault();
 
         Engine.getInstance().retrieveState(oTable).then(function (oState) {
 
@@ -426,13 +426,13 @@ sap.ui.define(
           });
         });
       },
-      onColumnResize: function (oEvt) {
-        const oColumn = oEvt.getParameter("column");
-        const sWidth = oEvt.getParameter("width");
-        const oTable = this.byId("idFieldMonTable");
+      onColumnResize: function (oEvent) {
+        const oColumn = oEvent.getParameter("column");
+        const sWidth = oEvent.getParameter("width");
+        const oTable = oController.byId("idFieldMonTable");
 
         const oColumnState = {};
-        oColumnState[this._getKey(oColumn)] = sWidth;
+        oColumnState[oController._getKey(oColumn)] = sWidth;
 
         Engine.getInstance().applyState(oTable, {
           ColumnWidth: oColumnState
@@ -797,9 +797,9 @@ sap.ui.define(
         oController.oDialog.close();
       },
       handleSettingsButtonPressed: function (oEvent) {
-        const oTable = this.byId("idFieldMonTable");
+        const oTable = oController.byId("idFieldMonTable");
 
-        Engine.getInstance().show(oTable, ["Columns", "Sorter"], {
+        Engine.getInstance().show(oTable, ["Columns"], {
           contentHeight: "35rem",
           contentWidth: "32rem",
           source: oEvent.getSource()
