@@ -10,13 +10,18 @@ sap.ui.define(
     'sap/ui/core/Fragment',
     'sap/ui/model/Sorter',
     'sap/m/p13n/Engine',
+    'sap/m/p13n/SelectionController',
+    'sap/m/p13n/SortController',
+    'sap/m/p13n/GroupController',
+    'sap/m/p13n/MetadataHelper',
+    'sap/m/table/ColumnWidthController',
+    'sap/ui/core/library'
   ],
-  function (Controller, MessageToast, MessageBox, Filter, FilterOperator, JSONModel, Token, Fragment, Sorter, Engine) {
+  function (Controller, MessageToast, MessageBox, Filter, FilterOperator, JSONModel, Token, Fragment, Sorter, Engine, SelectionController, SortController, GroupController, MetadataHelper, ColumnWidthController, CoreLibrary) {
     "use strict";
     var oRouter, oController, oSelectionScreenModel, oOEBoDataModel, oResourceBundle, UIComponent, oSelectionFilter;
     return Controller.extend("com.sap.lh.cs.zlhfieldmonitoring.controller.FieldMonList", {
       onInit: function () {
-        debugger;
         oController = this;
         UIComponent = oController.getOwnerComponent();
         oOEBoDataModel = oController.getOwnerComponent().getModel();
@@ -32,6 +37,406 @@ sap.ui.define(
         //   persoService: SettingsService,
         //   hasGrouping: false
         // }).activate();
+        oController._registerForP13n();
+      },
+      _registerForP13n: function () {
+        debugger;
+        const oTable = this.byId("idFieldMonTable");
+        this.oMetadataHelper = new MetadataHelper([{
+          key: "Status_col",
+          label: "Status",
+          path: "Status"
+        },
+        {
+          key: "Text_col",
+          label: "Text",
+          path: "TEXT"
+        },
+        {
+          key: "Log_col",
+          label: "Log",
+          path: "Notification"
+        },
+        {
+          key: "ActivityType_col",
+          label: "Activity Type",
+          path: "ACTIVITY_TYPE"
+        },
+        {
+          key: "Order_col",
+          label: "Order",
+          path: "ORDER_NO"
+        },
+        {
+          key: "Opcode_col",
+          label: "Operation Code",
+          path: "OpCode"
+        },
+        {
+          key: "opDescription_col",
+          label: "Operation Text",
+          path: "OpDescription"
+        },
+        {
+          key: "esa_col",
+          label: "ESA",
+          path: "ESA"
+        },
+        {
+          key: "billable_col",
+          label: "Billable",
+          path: "BILLABLE"
+        },
+        {
+          key: "opsNo_col",
+          label: "Ops no",
+          path: "OPS_NO"
+        },
+        {
+          key: "opsDesc_col",
+          label: "Ops Desc",
+          path: "OPS_DESC"
+        },
+        {
+          key: "anlage_col",
+          label: "Installation",
+          path: "Anlage"
+        },
+        {
+          key: "billingClass_col",
+          label: "Billing class",
+          path: "BILLING_CLASS"
+        },
+        {
+          key: "functionalLocation_col",
+          label: "Functional Location",
+          path: "Functional_Loc"
+        },
+        {
+          key: "fieldCompletionDt_col",
+          label: "Field Completion dt",
+          path: "FIELD_COMP_DT"
+        },
+        {
+          key: "address_col",
+          label: "Address",
+          path: "ADDRESS"
+        },
+        {
+          key: "keyNo_col",
+          label: "Key no",
+          path: "KEY_NO"
+        },
+        {
+          key: "meterNo_col",
+          label: "Meter No",
+          path: "METER_NO"
+        },
+        {
+          key: "ctpt_col",
+          label: "CT PT",
+          path: "CTPT"
+        },
+        {
+          key: "orderType_col",
+          label: "OT",
+          path: "OT"
+        },
+        {
+          key: "activity_col",
+          label: "Activity",
+          path: "activity"
+        },
+        {
+          key: "workCenterId_col",
+          label: "WorkCenter Id",
+          path: "WRKCNTR_ID"
+        },
+        {
+          key: "wrkCntrDesc_col",
+          label: "WrkCntr desc",
+          path: "WRKCNTR_DESC"
+        },
+        {
+          key: "descrepancy_col",
+          label: "Descrepancy",
+          path: "Descrepancy"
+        },
+        {
+          key: "mainActivity_col",
+          label: "Main Activity",
+          path: "MAIN_ACTIVITY"
+        },
+        {
+          key: "inLogStatus_col",
+          label: "InLog Status",
+          path: "InLog"
+        },
+        {
+          key: "outLogException_col",
+          label: "OutLog Exception",
+          path: "OutLog"
+        },
+        {
+          key: "newMeterLocation_col",
+          label: "New Meter Location",
+          path: "NEW_METER_LOC"
+        },
+        {
+          key: "review_col",
+          label: "Review",
+          path: "REVIEW"
+        },
+        {
+          key: "by_col",
+          label: "By",
+          path: "by"
+        },
+        {
+          key: "on_col",
+          label: "On",
+          path: "on"
+        },
+        {
+          key: "at_col",
+          label: "At",
+          path: "ON_TIME"
+        },
+        {
+          key: "basicStartDt_col",
+          label: "Basic start dt",
+          path: "BASIC_START_DT_FROM"
+        },
+        {
+          key: "finishDt_col",
+          label: "Finish dt",
+          path: "FINISH_DT_FROM"
+        },
+        {
+          key: "mobileCompletionDt_col",
+          label: "Mobile Completion dt",
+          path: "MOBILE_COMPLETION_DT"
+        },
+        {
+          key: "mobileCompletionTm_col",
+          label: "Mobile Completion tm",
+          path: "MOBILE_COMPLETION_TIME"
+        },
+        {
+          key: "createdBy_col",
+          label: "Created By",
+          path: "CREATED_BY"
+        },
+        {
+          key: "createdOn_col",
+          label: "Created On",
+          path: "CREATED_ON_FROM"
+        },
+        {
+          key: "completedBy_col",
+          label: "Completed By",
+          path: "COMPLETED_BY"
+        },
+        {
+          key: "plantSection_col",
+          label: "Plant Section",
+          path: "PLANT_SECTION"
+        },
+        {
+          key: "fieldsNotes_col",
+          label: "Fields Notes",
+          path: "FIELDS_NOTES"
+        },
+        {
+          key: "activityPerformed_col",
+          label: "Activity Performed",
+          path: "ACTIVITY_PERFORMED"
+        },
+        {
+          key: "workArea_col",
+          label: "Work Area",
+          path: "WORK_AREA"
+        },
+        {
+          key: "opStatus_col",
+          label: "Operation Status",
+          path: "OP_STATUS"
+        }
+        ]);
+
+        this._mIntialWidth = {
+          "Status_col": "11rem",
+          "Text_col": "11rem",
+          "Log_col": "11rem",
+          "ActivityType_col": "11rem",
+          "Order_col": "11rem",
+          "Opcode_col": "11rem",
+          "opDescription_col": "11rem",
+          "esa_col": "11rem",
+          "billable_col": "11rem",
+          "opsNo_col": "11rem",
+          "opsDesc_col": "11rem",
+          "anlage_col": "11rem",
+          "billingClass_col": "11rem",
+          "functionalLocation_col": "11rem",
+          "fieldCompletionDt_col": "11rem",
+          "address_col": "11rem",
+          "keyNo_col": "11rem",
+          "meterNo_col": "11rem",
+          "ctpt_col": "11rem",
+          "orderType_col": "11rem",
+          "activity_col": "11rem",
+          "workCenterId_col": "11rem",
+          "wrkCntrDesc_col": "11rem",
+          "descrepancy_col": "11rem",
+          "mainActivity_col": "11rem",
+          "inLogStatus_col": "11rem",
+          "outLogException_col": "11rem",
+          "newMeterLocation_col": "11rem",
+          "review_col": "11rem",
+          "by_col": "11rem",
+          "on_col": "11rem",
+          "at_col": "11rem",
+          "basicStartDt_col": "11rem",
+          "finishDt_col": "11rem",
+          "mobileCompletionDt_col": "11rem",
+          "mobileCompletionTm_col": "11rem",
+          "createdBy_col": "11rem",
+          "createdOn_col": "11rem",
+          "completedBy_col": "11rem",
+          "plantSection_col": "11rem",
+          "fieldsNotes_col": "11rem",
+          "activityPerformed_col": "11rem",
+          "workArea_col": "11rem",
+          "opStatus_col": "11rem"
+        };
+
+        Engine.getInstance().register(oTable, {
+          helper: this.oMetadataHelper,
+          controller: {
+            Columns: new SelectionController({
+              targetAggregation: "columns",
+              control: oTable
+            }),
+            Sorter: new SortController({
+              control: oTable
+            }),
+            Groups: new GroupController({
+              control: oTable
+            }),
+            ColumnWidth: new ColumnWidthController({
+              control: oTable
+            })
+          }
+        });
+
+        Engine.getInstance().attachStateChange(this.handleStateChange.bind(this));
+      },
+      handleStateChange: function (oEvt) {
+        debugger;
+        const oTable = this.byId("idFieldMonTable");
+        const oState = oEvt.getParameter("state");
+
+        if (!oState) {
+          return;
+        }
+
+        oTable.getColumns().forEach(function (oColumn) {
+
+          const sKey = this._getKey(oColumn);
+          const sColumnWidth = oState.ColumnWidth[sKey];
+
+          oColumn.setWidth(sColumnWidth || this._mIntialWidth[sKey]);
+
+          oColumn.setVisible(false);
+          oColumn.setSortOrder(CoreLibrary.SortOrder.None);
+        }.bind(this));
+
+        oState.Columns.forEach(function (oProp, iIndex) {
+          let oCol = this.byId("idFieldMonTable").getColumns().find((oColumn) => oColumn.data("p13nKey") === oProp.key);
+          oCol.setVisible(true);
+
+          oTable.removeColumn(oCol);
+          oTable.insertColumn(oCol, iIndex);
+        }.bind(this));
+
+        const aSorter = [];
+        oState.Sorter.forEach(function (oSorter) {
+          const oColumn = this.byId("idFieldMonTable").getColumns().find((oColumn) => oColumn.data("p13nKey") === oSorter.key);
+          /** @deprecated As of version 1.120 */
+          oColumn.setSorted(true);
+          oColumn.setSortOrder(oSorter.descending ? CoreLibrary.SortOrder.Descending : CoreLibrary.SortOrder.Ascending);
+          aSorter.push(new Sorter(this.oMetadataHelper.getProperty(oSorter.key).path, oSorter.descending));
+        }.bind(this));
+        oTable.getBinding("rows").sort(aSorter);
+      },
+      _getKey: function (oControl) {
+        return oControl.data("p13nKey");
+      },
+      onSort: function (oEvt) {
+        const oTable = this.byId("idFieldMonTable");
+        const sAffectedProperty = this._getKey(oEvt.getParameter("column"));
+        const sSortOrder = oEvt.getParameter("sortOrder");
+
+        //Apply the state programatically on sorting through the column menu
+        //1) Retrieve the current personalization state
+        Engine.getInstance().retrieveState(oTable).then(function (oState) {
+
+          //2) Modify the existing personalization state --> clear all sorters before
+          oState.Sorter.forEach(function (oSorter) {
+            oSorter.sorted = false;
+          });
+          oState.Sorter.push({
+            key: sAffectedProperty,
+            descending: sSortOrder === CoreLibrary.SortOrder.Descending
+          });
+
+          //3) Apply the modified personalization state to persist it in the VariantManagement
+          Engine.getInstance().applyState(oTable, oState);
+        });
+      },
+      onColumnHeaderItemPress: function (oEvt) {
+        const oTable = this.byId("idFieldMonTable");
+        const sPanel = oEvt.getSource().getIcon().indexOf("sort") >= 0 ? "Sorter" : "Columns";
+
+        Engine.getInstance().show(oTable, [sPanel], {
+          contentHeight: "35rem",
+          contentWidth: "32rem",
+          source: oTable
+        });
+      },
+      onColumnMove: function (oEvt) {
+        const oTable = this.byId("idFieldMonTable");
+        const oAffectedColumn = oEvt.getParameter("column");
+        const iNewPos = oEvt.getParameter("newPos");
+        const sKey = this._getKey(oAffectedColumn);
+        oEvt.preventDefault();
+
+        Engine.getInstance().retrieveState(oTable).then(function (oState) {
+
+          const oCol = oState.Columns.find(function (oColumn) {
+            return oColumn.key === sKey;
+          }) || {
+            key: sKey
+          };
+          oCol.position = iNewPos;
+
+          Engine.getInstance().applyState(oTable, {
+            Columns: [oCol]
+          });
+        });
+      },
+      onColumnResize: function (oEvt) {
+        const oColumn = oEvt.getParameter("column");
+        const sWidth = oEvt.getParameter("width");
+        const oTable = this.byId("idFieldMonTable");
+
+        const oColumnState = {};
+        oColumnState[this._getKey(oColumn)] = sWidth;
+
+        Engine.getInstance().applyState(oTable, {
+          ColumnWidth: oColumnState
+        });
       },
       _onReceiveFilters: function (sChannel, sEvent, oData) {
         oSelectionFilter = oData.filters;
