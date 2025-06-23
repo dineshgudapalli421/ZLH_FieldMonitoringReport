@@ -6,10 +6,12 @@ sap.ui.define([
     "sap/ui/model/FilterOperator",
     "sap/ui/model/json/JSONModel",
     "sap/m/Token",
-    "sap/ui/core/format/DateFormat"
-], function (Controller, MessageToast, MessageBox, Filter, FilterOperator, JSONModel, Token, DateFormat) {
+    "sap/ui/core/format/DateFormat",
+    "sap/ushell/services/PersonalizationV2"
+], function (Controller, MessageToast, MessageBox, Filter, FilterOperator, JSONModel, Token, DateFormat, PersonalizationV2) {
     "use strict";
     var oRouter, oController, oSelectionScreenModel, oFieldMonDataModel, oResourceBundle, UIComponent;
+
     return Controller.extend("com.sap.lh.cs.zlhfieldmonitoring.controller.Selection", {
         onInit: function () {
             oController = this;
@@ -81,7 +83,7 @@ sap.ui.define([
                     { Key: "RVWP", description: "Review Pending" },
                     { Key: "RVWC", description: "Review Complete" }
                 ],
-                 OperationStatus: [
+                OperationStatus: [
                     { Key: "CNCL", description: "Cancel/Closed" },
                     { Key: "ESAR", description: "ESA Required" },
                     { Key: "ASGD", description: "Assigned" },
@@ -96,8 +98,198 @@ sap.ui.define([
                     { Key: "ERRD", description: "Error In Dispatch" }
                 ]
             });
+            //oController.oSmartVariantManagement = this.getView().byId("svm");
+            //this._oVM = this.getView().byId("vm");
+            // this.oVariantManagement = this.getView().byId("idVariantManagement");
+            // var oVariantModel = new JSONModel({
+            //     variants: []
+            // });
+            // this.getView().setModel(oVariantModel, "VariantModel");
+            oSelectionScreenModel = oSelectionModel;
+            var user = sap.ushell.Container.getUser();
+            oController.userId = user.getId();
             oController.getView().setModel(oSelectionModel, "FieldMonSelModel");
             oController.getOwnerComponent().setModel(new JSONModel({}), "GlobalFieldMonModel");
+
+            this._initPersonalizationService();
+        },
+        _initPersonalizationService: function () {
+            debugger;
+            var oView = this.getView();
+            var oVariantManagement = oView.byId("idVariantManagement");
+            sap.ushell.Container.getServiceAsync("Personalization").then(function (oPersonalizationService) {
+                var oPersId = {
+                    container: "InputFieldVariants",
+                    item: "InputFields"
+                };
+                oPersonalizationService.getContainer(oPersId.container).then(function (oContainer) {
+                    this._oContainer = oContainer;
+                    var oVariantSet = oContainer.getItemValue(oPersId.item) || { variants: [], defaultVariant: "" };
+                    this._loadVariants(oVariantSet);
+
+                    oVariantManagement.setModel(new JSONModel(oVariantSet.variants), "variantItems");
+                    oVariantManagement.setDefaultVariantKey(oVariantSet.defaultVariant);
+
+                    this._applyVariant(oVariantSet.defaultVariant, '');
+                }.bind(this)).catch(function (oError) {
+                    MessageToast.show("Error Loading Personalization Container:" + oError.message);
+                });
+            }.bind(this)).catch(function (oError) {
+                MessageToast.show("Error accessing personalization service: " + oError.message);
+            });
+        },
+
+        _loadVariants: function (oVariantSet) {
+            debugger;
+            var oVM = oController.getView().byId("idVariantManagement");
+            oVariantSet.variants.forEach(function (oVariant) {
+                oVM.addVariantItem({
+                    key: oVariant.key,
+                    text: oVariant.text,
+                    readOnly: false,
+                    executeOnSelection: true
+                });
+            });
+            //oController.getView().getModel("FieldMonSelModel").setProperty("/Variants", aVariants);
+        },
+        _applyVariant: function (sVariantKey, sName) {
+            debugger;
+            var oVariantModel = oController.getView().getModel("FieldMonSelModel");
+            var oVariantSet = this._oContainer.getItemValue("variantSet") || { "variants": [] };
+            var oVariant = oVariantSet.variants.find(function (v) {
+                if (sName === '') {
+                    return v.key === sVariantKey;
+                }
+                else {
+                    return v.text === sName;
+                }
+            });
+
+            if (oVariant) {
+                // oVarinatModel.setProperty("/Variants", oVariant);
+                var oData = oVariant.data;
+                oVariantModel.setData(oData, true);
+                //var oData = oVariant[sName].variantData["InputFields"];
+
+            }
+        },
+
+        onSaveVariant: function (oEvent) {
+            debugger;
+            var oParameters = oEvent.getParameters();
+            var sVariantKey = oParameters.key || Date.now().toString();
+            var sVariantText = oParameters.name;
+            var bOverwrite = oParameters.overwrite;
+            var bDefault = oParameters.def;
+            var oVariantData = oController.getView().getModel("FieldMonSelModel").getData();
+
+            var oVariantSet = this._oContainer.getItemValue("variantSet") || { "variants": [], defaultVariant: "" }
+            var oVM = oController.getView().byId("idVariantManagement");
+            if (bOverwrite) {
+                var oExistingVariant = oVariantSet.variants.find(function (v) {
+                    return v.key === sVariantKey;
+                });
+                if (oExistingVariant) {
+                    oExistingVariant.text = sVariantText;
+                    oExistingVariant.data = oVariantData;
+                }
+            } else {
+                oVariantSet.variants.push({
+                    key: sVariantKey,
+                    text: sVariantText,
+                    data: oVariantData
+                });
+                // oVM.addVariantItem({
+                //     key: sVariantKey,
+                //     text: sVariantText,
+                //     readOnly: false,
+                //     executeOnSelection: true
+                // });
+            }
+            if (bDefault) {
+                oVariantSet.defaultVariant = sVariantKey;
+                oVariantManagement.setDefaultVariantKey(sVariantKey);
+            }
+            this._oContainer.setItemValue("variantSet", oVariantSet);
+            this._oContainer.save().then(function () {
+                MessageToast.show("Variant saved successfully!");
+            }).catch(function (oError) {
+                MessageToast.show("Error saving variant:" + oError.message);
+            })
+
+        },
+        onSelectVariant: function (oEvent) {
+            debugger;
+            var sVariantKey = oEvent.getParameter("key");
+            var objVariant = {}, objVariantItems = [], oName = '';
+            objVariant = oEvent.getSource().oContext.getModel().getData();
+            objVariantItems = objVariant["Selection--idVariantManagement"].variants;
+
+            for (var i = 0; i < objVariantItems.length; i++) {
+                if (sVariantKey === objVariantItems[i].key) {
+                    oName = objVariantItems[i].title;
+                }
+            }
+            if (sVariantKey === 'Selection--idVariantManagement') {
+                window.location.reload();
+            }
+            else {
+                var oVariantModel = oController.getView().getModel("FieldMonSelModel");
+                oVariantModel.setData({});
+            }
+
+            this._applyVariant(sVariantKey, oName);
+        },
+        onManageVariant: function (oEvent) {
+            debugger;
+            var objVariant = {}, objVariantItems = [], oName = '';
+            objVariant = oEvent.getSource().oContext.getModel().getData();
+            objVariantItems = objVariant["Selection--idVariantManagement"].variants;
+
+            var oParameters = oEvent.getParameters();
+            var aRenamed = oEvent.getParameter("renamed");
+            var aDeleted = oEvent.getParameter("deleted");
+            var oVariantSet = this._oContainer.getItemValue("variantSet") || { variants: [] };
+            if (aDeleted !== undefined) {
+                oParameters.deleted.forEach(function (sKey) {
+                    debugger;
+                    for (var i = 0; i < objVariantItems.length; i++) {
+                        if (sKey !== objVariantItems[i].key) {
+                            oName = objVariantItems[i].title;
+                            oVariantSet.variants = oVariantSet.variants.filter(function (v) {
+                                return v.text === oName;
+                            });
+                        }
+                    }
+                });
+            }
+            if (aRenamed !== undefined) {
+                oParameters.renamed.forEach(function (oRenamed) {
+                    for (var i = 0; i < objVariantItems.length; i++) {
+                        if (oRenamed.key === objVariantItems[i].key) {
+                            oName = objVariantItems[i].title;
+                            var oVariant = oVariantSet.variants.find(function (v) {
+                                return v.text === oName;
+                            });
+                            if (oVariant) {
+                                oVariant.text = oRenamed.name;
+                            }
+                        }
+                    }
+                });
+            }
+
+            if (oParameters.def) {
+                oVariantSet.defaultVariant = oParameters.def;
+                oController.getView().byId("idVariantManagement").setDefaultVariantKey(oParameters.def);
+            }
+            this._oContainer.setItemValue("variantSet", oVariantSet);
+            this._oContainer.save().then(function () {
+                MessageToast.show("Variants managed successfully!");
+            }).catch(function (oError) {
+                MessageToast.show("Error managing variants:" + oError.message);
+            });
+
         },
         // _fnCurrentMonthStartDate : function(){
         _fnCurrentMonthStartDate: function (bIsfromDate) {
@@ -397,7 +589,7 @@ sap.ui.define([
                 createOrFilter([bMobileWorkforce], "MOB_WFORCE"),
                 createOrFilter([bOnlyOPconf], "OPR_CONF"),
                 createOrFilter([bShowOnlyMTank], "CTPT_M_TANK"),
-                createOrFilter(aOrderOperationStatus, "OP_STATUS"), 
+                createOrFilter(aOrderOperationStatus, "OP_STATUS"),
                 createOrFilter(aOperationStatus, "OdStatus")
             ].filter(f => f !== null);
             var Validatefunction = function (From, To) {

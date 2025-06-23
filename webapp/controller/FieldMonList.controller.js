@@ -358,7 +358,7 @@ sap.ui.define(
 
           oTable.removeColumn(oCol);
           oTable.insertColumn(oCol, iIndex);
-        }.bind(oController));
+        }.bind(oController));       
 
         const aSorter = [];
         oState.Sorter.forEach(function (oSorter) {
@@ -372,6 +372,7 @@ sap.ui.define(
       },
       _getKey: function (oControl) {
         return oControl.data("p13nKey");
+        // this.getView().getLocalId(oControl.getId());
       },
       onSort: function (oEvent) {
         const oTable = oController.byId("idFieldMonTable");

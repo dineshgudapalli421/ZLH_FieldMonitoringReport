@@ -1,4 +1,5 @@
-<mvc:View
+<mvc:View xmlns:vm="sap.ui.fl.variants"
+    xmlns:f2="sap.f"
     controllerName="com.sap.lh.cs.zlhfieldmonitoring.controller.Selection"
     xmlns:mvc="sap.ui.core.mvc"
     displayBlock="true"
@@ -8,15 +9,46 @@
     xmlns:smartField="sap.ui.comp.smartfield"
     xmlns:smartMultiInput="sap.ui.comp.smartmultiinput"
     xmlns:smartForm="sap.ui.comp.smartform"
-    xmlns:core="sap.ui.core"
+    xmlns:core="sap.ui.core"  
 >
+<!-- xmlns:vm="sap.ui.fl.variants" -->
     <Page
         id="page"
         busy="{FieldMonSelModel>/bPageBusy}"
         busyIndicatorDelay="1"
         showHeader="false"
     >
+       
         <content>
+            
+            <f2:DynamicPageTitle >
+                <f2:heading>
+                <!-- <svm:SmartVariantManagement id="svm" showExecuteOnSelection="true" /> -->
+                <!-- <VariantManagement id="idVariantManagement"
+                            select="onVariantSelect"
+							save="onVariantSave"
+							manage="onVariantManage"
+							selectedKey="Standard"
+							defaultKey="Standard"
+							showFooter="true"                            
+							popoverTitle="my Favorites">
+                            <items>
+								<VariantItem key="Standard" title="Standard"
+									author="B"
+									favorite="true"
+									visible="true"
+									executeOnSelect="false"
+									rename="false"
+									changeable="false"
+									remove="false"
+									sharing="Public" />								
+							</items>
+                </VariantManagement>   -->
+                <vm:VariantManagement id="idVariantManagement" for="persoTable"
+                save="onSaveVariant" select="onSelectVariant" manage="onManageVariant"
+                 />
+                </f2:heading>
+            </f2:DynamicPageTitle>
             <core:Fragment
                 fragmentName="com.sap.lh.cs.zlhfieldmonitoring.fragment.orderStatus"
                 type="XML"
