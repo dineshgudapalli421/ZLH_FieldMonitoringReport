@@ -44,7 +44,7 @@
         <m:content>
             <Table
                 id="idFieldMonTable"
-                rowMode="Auto" 
+                rowMode="Auto"                 
                 sort="onSort" columnResize="onColumnResize" columnMove="onColumnMove"
                 sap.ui.fl:flexibility="sap/m/flexibility/EngineFlex"
                 rows="{FieldMonitorModel>/aFieldMonList}"
@@ -80,16 +80,15 @@
                     </m:OverflowToolbar>
                 </extension>
                 <dependents>
-                    <columnmenu:Menu id="menu" 
-                    showTableSettingsButton="true" 
-                    tableSettingsPressed="handleSettingsButtonPressed">
-                    </columnmenu:Menu>
-                </dependents>
-                <noData>
-                    <m:IllustratedMessage enableVerticalResponsiveness="true"/>
-                </noData>
+                <columnmenu:Menu id="menu">
+                    <columnmenu:items>
+                        <columnmenu:ActionItem icon="sap-icon://sort" label="Sort" press="onColumnHeaderItemPress"/>
+                        <columnmenu:ActionItem icon="sap-icon://table-column" label="Columns" press="onColumnHeaderItemPress"/>
+                    </columnmenu:items>
+                </columnmenu:Menu>
+                </dependents>               
                 <columns>
-                    <Column app:p13nKey="Status_col" 
+                    <Column id="Status_col" 
                     sortProperty="{i18n>label.status}" headerMenu="menu" resizable="true" 
                     autoResizable="true" width="7rem">
                         <m:Label text="{i18n>label.status}" />
@@ -97,7 +96,7 @@
                             <m:Label text="{FieldMonitorModel>Status}" />
                         </template>
                     </Column>
-                    <Column app:p13nKey="Text_col" 
+                    <Column id="Text_col" 
                     sortProperty="{i18n>label.text}" headerMenu="menu" resizable="true" 
                     autoResizable="true" width="11rem">
                         <m:Label text="{i18n>label.text}" />
@@ -105,7 +104,7 @@
                             <m:Label text="{FieldMonitorModel>TEXT}" />
                         </template>
                     </Column>
-                    <Column app:p13nKey="Log_col" 
+                    <Column id="Log_col" 
                     sortProperty="{i18n>label.log}" headerMenu="menu" resizable="true" 
                     autoResizable="true" 
                         width="6rem"
@@ -116,7 +115,7 @@
                             <m:Label text="{FieldMonitorModel>Notification}" />
                         </template>
                     </Column>
-                    <Column app:p13nKey="ActivityType_col" 
+                    <Column id="ActivityType_col" 
                     sortProperty="{i18n>label.activityType}" headerMenu="menu" resizable="true" 
                     autoResizable="true" width="5rem">
                         <m:Label text="{i18n>label.activityType}" />
@@ -124,7 +123,7 @@
                             <m:Label text="{FieldMonitorModel>ACTIVITY_TYPE}" />
                         </template>
                     </Column>
-                    <Column app:p13nKey="Order_col" 
+                    <Column id="Order_col" 
                     sortProperty="{i18n>label.order}" headerMenu="menu" resizable="true" 
                     autoResizable="true" width="14rem">
                         <m:Label text="{i18n>label.order}" />
@@ -136,7 +135,7 @@
                             <!-- <m:Label text="{FieldMonitorModel>ORDER_NO}"/> -->
                         </template>
                     </Column>
-                    <Column app:p13nKey="Opcode_col" 
+                    <Column id="Opcode_col" 
                     sortProperty="{i18n>label.opCode}" headerMenu="menu" resizable="true" 
                     autoResizable="true" width="11rem">
                         <m:Label text="{i18n>label.opCode}" />
@@ -144,7 +143,7 @@
                             <m:Label text="{FieldMonitorModel>OpCode}" />
                         </template>
                     </Column>
-                     <Column app:p13nKey="opDescription_col" 
+                     <Column id="opDescription_col" 
                     sortProperty="{i18n>label.opDescription}" headerMenu="menu" resizable="true" 
                     autoResizable="true" width="11rem">
                         <m:Label text="{i18n>label.opDescription}" />
@@ -152,7 +151,7 @@
                             <m:Label text="{FieldMonitorModel>OpDescription}" />
                         </template>
                     </Column>                    
-                    <Column app:p13nKey="esa_col" 
+                    <Column id="esa_col" 
                     sortProperty="{i18n>label.esa}" headerMenu="menu" resizable="true" 
                     autoResizable="true" width="5rem">
                         <m:Label text="{i18n>label.esa}" />
@@ -160,7 +159,7 @@
                             <m:Label text="{FieldMonitorModel>ESA}" />
                         </template>
                     </Column>
-                    <Column app:p13nKey="billable_col" 
+                    <Column id="billable_col" 
                     sortProperty="{i18n>label.billable}" headerMenu="menu" resizable="true" 
                     autoResizable="true" width="7rem">
                         <m:Label text="{i18n>label.billable}" />
@@ -168,7 +167,7 @@
                             <m:Label text="{FieldMonitorModel>BILLABLE}" />
                         </template>
                     </Column>
-                    <Column app:p13nKey="opsNo_col" 
+                    <Column id="opsNo_col" 
                     sortProperty="{i18n>label.opsNo}" headerMenu="menu" resizable="true" 
                     autoResizable="true" width="14rem">
                         <m:Label text="{i18n>label.opsNo}" />
@@ -176,7 +175,7 @@
                             <m:Label text="{FieldMonitorModel>OPS_NO}" />
                         </template>
                     </Column>
-                    <Column app:p13nKey="opsDesc_col" 
+                    <Column id="opsDesc_col" 
                     sortProperty="{i18n>label.opsDesc}" headerMenu="menu" resizable="true" 
                     autoResizable="true" width="14rem">
                         <m:Label text="{i18n>label.opsDesc}" />
@@ -184,7 +183,7 @@
                             <m:Label text="{FieldMonitorModel>OPS_DESC}" />
                         </template>
                     </Column>                    
-                    <Column app:p13nKey="anlage_col" 
+                    <Column id="anlage_col" 
                     sortProperty="{i18n>label.anlage}" headerMenu="menu" resizable="true" 
                     autoResizable="true" width="11rem">
                         <m:Label text="{i18n>label.anlage}" />
@@ -192,7 +191,7 @@
                             <m:Label text="{FieldMonitorModel>Anlage}" />
                         </template>
                     </Column>
-                    <Column app:p13nKey="billingClass_col" 
+                    <Column id="billingClass_col" 
                     sortProperty="{i18n>label.billingClass}" headerMenu="menu" resizable="true" 
                     autoResizable="true" width="12rem">
                         <m:Label text="{i18n>label.billingClass}" />
@@ -201,7 +200,7 @@
                         </template>
                     </Column>                    
                      <Column
-                        app:p13nKey="functionalLocation_col" 
+                        id="functionalLocation_col" 
                     sortProperty="{i18n>label.functionalLocation}" headerMenu="menu" resizable="true" 
                     autoResizable="true" width="11rem"
                         hAlign="Center"
@@ -211,7 +210,7 @@
                             <m:Label text="{FieldMonitorModel>Functional_Loc}" />
                         </template>
                     </Column>
-                    <Column app:p13nKey="fieldCompletionDt_col" 
+                    <Column id="fieldCompletionDt_col" 
                     sortProperty="{i18n>label.fieldCompletionDt}" headerMenu="menu" resizable="true" 
                     autoResizable="true" width="12rem">
                         <m:Label text="{i18n>label.fieldCompletionDt}" />
@@ -220,7 +219,7 @@
                         </template>
                     </Column>
                     <Column
-                        app:p13nKey="address_col" 
+                        id="address_col" 
                     sortProperty="{i18n>label.address}" headerMenu="menu" resizable="true" 
                     autoResizable="true" width="18rem"
                         hAlign="Center"
@@ -231,7 +230,7 @@
                         </template>
                     </Column>
                     <Column
-                        app:p13nKey="keyNo_col" 
+                        id="keyNo_col" 
                     sortProperty="{i18n>label.keyNo}" headerMenu="menu" resizable="true" 
                     autoResizable="true" width="8rem"
                         hAlign="Center"
@@ -242,7 +241,7 @@
                         </template>
                     </Column>
                     <Column
-                        app:p13nKey="meterNo_col" 
+                        id="meterNo_col" 
                     sortProperty="{i18n>label.meterNo}" headerMenu="menu" resizable="true" 
                     autoResizable="true" width="11rem"
                         hAlign="Center"
@@ -253,7 +252,7 @@
                         </template>
                     </Column>
                     <Column
-                        app:p13nKey="ctpt_col" 
+                        id="ctpt_col" 
                     sortProperty="{i18n>label.ctpt}" headerMenu="menu" resizable="true" 
                     autoResizable="true" width="11rem"
                         hAlign="Center"
@@ -264,7 +263,7 @@
                         </template>
                     </Column>
                     <Column
-                        app:p13nKey="orderType_col" 
+                        id="orderType_col" 
                     sortProperty="{i18n>label.orderType}" headerMenu="menu" resizable="true" 
                     autoResizable="true" width="11rem"
                         hAlign="Center"
@@ -275,7 +274,7 @@
                         </template>
                     </Column>
                     <Column
-                        app:p13nKey="activity_col" 
+                        id="activity_col" 
                     sortProperty="{i18n>label.activity}" headerMenu="menu" resizable="true" 
                     autoResizable="true" width="11rem"
                         hAlign="Center"
@@ -286,7 +285,7 @@
                         </template>
                     </Column>
                     <Column
-                        app:p13nKey="workCenterId_col" 
+                        id="workCenterId_col" 
                     sortProperty="{i18n>label.workCenterId}" headerMenu="menu" resizable="true" 
                     autoResizable="true" width="11rem"
                         hAlign="Center"
@@ -297,7 +296,7 @@
                         </template>
                     </Column>
                     <Column
-                        app:p13nKey="wrkCntrDesc_col" 
+                        id="wrkCntrDesc_col" 
                     sortProperty="{i18n>label.wrkCntrDesc}" headerMenu="menu" resizable="true" 
                     autoResizable="true" width="11rem"
                         hAlign="Center"
@@ -308,7 +307,7 @@
                         </template>
                     </Column>
                     <Column
-                        app:p13nKey="descrepancy_col" 
+                        id="descrepancy_col" 
                     sortProperty="{i18n>label.descrepancy}" headerMenu="menu" resizable="true" 
                     autoResizable="true" width="11rem"
                         hAlign="Center"
@@ -319,7 +318,7 @@
                         </template>
                     </Column>
                     <Column
-                       app:p13nKey="mainActivity_col" 
+                       id="mainActivity_col" 
                     sortProperty="{i18n>label.mainActivity}" headerMenu="menu" resizable="true" 
                     autoResizable="true" width="11rem"
                         hAlign="Center"
@@ -330,7 +329,7 @@
                         </template>
                     </Column>
                     <Column
-                        app:p13nKey="inLogStatus_col" 
+                        id="inLogStatus_col" 
                     sortProperty="{i18n>label.inLogStatus}" headerMenu="menu" resizable="true" 
                     autoResizable="true" width="11rem"
                         hAlign="Center"
@@ -341,7 +340,7 @@
                         </template>
                     </Column>
                     <Column
-                        app:p13nKey="outLogException_col" 
+                        id="outLogException_col" 
                     sortProperty="{i18n>label.outLogException}" headerMenu="menu" resizable="true" 
                     autoResizable="true" width="11rem"
                         hAlign="Center"
@@ -352,7 +351,7 @@
                         </template>
                     </Column>
                     <Column
-                        app:p13nKey="newMeterLocation_col" 
+                        id="newMeterLocation_col" 
                     sortProperty="{i18n>label.newMeterLocation}" headerMenu="menu" resizable="true" 
                     autoResizable="true" width="11rem"
                         hAlign="Center"
@@ -363,7 +362,7 @@
                         </template>
                     </Column>
                     <Column
-                        app:p13nKey="review_col" 
+                        id="review_col" 
                     sortProperty="{i18n>label.review}" headerMenu="menu" resizable="true" 
                     autoResizable="true" width="11rem"
                         hAlign="Center"
@@ -379,7 +378,7 @@
                         </template>
                     </Column>
                     <Column
-                        app:p13nKey="by_col" 
+                        id="by_col" 
                     sortProperty="{i18n>label.by}" headerMenu="menu" resizable="true" 
                     autoResizable="true" width="11rem"
                         hAlign="Center"
@@ -392,7 +391,7 @@
                         </template>
                     </Column>
                     <Column
-                        app:p13nKey="on_col" 
+                        id="on_col" 
                     sortProperty="{i18n>label.on}" headerMenu="menu" resizable="true" 
                     autoResizable="true" width="11rem"
                         hAlign="Center"
@@ -406,7 +405,7 @@
                         </template>
                     </Column>
                     <Column
-                       app:p13nKey="at_col" 
+                       id="at_col" 
                     sortProperty="{i18n>label.at}" headerMenu="menu" resizable="true" 
                     autoResizable="true" width="11rem"
                         hAlign="Center"
@@ -419,7 +418,7 @@
                         </template>
                     </Column>
                     <Column
-                        app:p13nKey="basicStartDt_col" 
+                        id="basicStartDt_col" 
                     sortProperty="{i18n>label.basicStartDt}" headerMenu="menu" resizable="true" 
                     autoResizable="true" width="11rem"
                         hAlign="Center"
@@ -432,7 +431,7 @@
                         </template>
                     </Column>
                     <Column
-                        app:p13nKey="finishDt_col" 
+                        id="finishDt_col" 
                     sortProperty="{i18n>label.finishDt}" headerMenu="menu" resizable="true" 
                     autoResizable="true" width="11rem"
                         hAlign="Center"
@@ -445,7 +444,7 @@
                         </template>
                     </Column>
                     <Column
-                        app:p13nKey="mobileCompletionDt_col" 
+                        id="mobileCompletionDt_col" 
                     sortProperty="{i18n>label.mobileCompletionDt}" headerMenu="menu" resizable="true" 
                     autoResizable="true" width="11rem"
                         hAlign="Center"
@@ -458,7 +457,7 @@
                         </template>
                     </Column>
                     <Column
-                        app:p13nKey="mobileCompletionTm_col" 
+                        id="mobileCompletionTm_col" 
                     sortProperty="{i18n>label.mobileCompletionTm}" headerMenu="menu" resizable="true" 
                     autoResizable="true" width="11rem"
                         hAlign="Center"
@@ -471,7 +470,7 @@
                         </template>
                     </Column>
                     <Column
-                        app:p13nKey="createdBy_col" 
+                        id="createdBy_col" 
                     sortProperty="{i18n>label.createdBy}" headerMenu="menu" resizable="true" 
                     autoResizable="true" width="11rem"
                         hAlign="Center"
@@ -482,7 +481,7 @@
                         </template>
                     </Column>
                     <Column
-                        app:p13nKey="createdOn_col" 
+                        id="createdOn_col" 
                     sortProperty="{i18n>label.createdOn}" headerMenu="menu" resizable="true" 
                     autoResizable="true" width="11rem"
                         hAlign="Center"
@@ -495,7 +494,7 @@
                         </template>
                     </Column>
                     <Column
-                        app:p13nKey="completedBy_col" 
+                        id="completedBy_col" 
                     sortProperty="{i18n>label.completedBy}" headerMenu="menu" resizable="true" 
                     autoResizable="true" width="11rem"
                         hAlign="Center"
@@ -508,7 +507,7 @@
                         </template>
                     </Column>
                     <Column
-                        app:p13nKey="plantSection_col" 
+                        id="plantSection_col" 
                     sortProperty="{i18n>label.plantSection}" headerMenu="menu" resizable="true" 
                     autoResizable="true" width="11rem"
                         hAlign="Center"
@@ -519,7 +518,7 @@
                         </template>
                     </Column>
                     <Column
-                        app:p13nKey="fieldsNotes_col" 
+                        id="fieldsNotes_col" 
                     sortProperty="{i18n>label.fieldsNotes}" headerMenu="menu" resizable="true" 
                     autoResizable="true" width="11rem"
                         hAlign="Center"
@@ -530,7 +529,7 @@
                         </template>
                     </Column>
                     <Column
-                        app:p13nKey="activityPerformed_col" 
+                        id="activityPerformed_col" 
                     sortProperty="{i18n>label.activityPerformed}" headerMenu="menu" resizable="true" 
                     autoResizable="true" width="11rem"
                         hAlign="Center"
@@ -543,7 +542,7 @@
                         </template>
                     </Column>
                     <Column
-                        app:p13nKey="workArea_col" 
+                        id="workArea_col" 
                     sortProperty="{i18n>label.workArea}" headerMenu="menu" resizable="true" 
                     autoResizable="true" width="11rem"
                         hAlign="Center"
@@ -554,7 +553,7 @@
                         </template>
                     </Column>
                     <Column
-                        app:p13nKey="opStatus_col" 
+                        id="opStatus_col" 
                     sortProperty="{i18n>label.opStatus}" headerMenu="menu" resizable="true" 
                     autoResizable="true" width="11rem"
                         hAlign="Center"
@@ -564,7 +563,7 @@
                             <m:Label text="{FieldMonitorModel>OP_STATUS}" />
                         </template>
                     </Column>
-                </columns>
+                </columns>                              
             </Table>
         </m:content>
         <m:footer>

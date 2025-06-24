@@ -79,7 +79,7 @@
         "sap.ui.table": {},
         "sap.ushell": {},
         "sap.ui.fl": {},
-				"sap.ui.layout": {}
+        "sap.ui.layout": {}
       }
     },
     "contentDensities": {

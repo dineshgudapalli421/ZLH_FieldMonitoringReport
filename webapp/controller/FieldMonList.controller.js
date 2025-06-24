@@ -29,19 +29,14 @@ sap.ui.define(
         oResourceBundle = oController.getOwnerComponent().getModel("i18n").getResourceBundle();
         oRouter.getRoute("FieldMonList").attachPatternMatched(oController._onRouteMatch, oController);
         oController._mViewSettingsDialogs = {};
-        // var oBus = sap.ui.getCore().getEventBus();
-        // oBus.subscribe("filterChannel", "passFilters", oController._onReceiveFilters, oController);
-        // var oTable = oController.byId("idFieldMonTable");
-        // oController._oTablePersoController = new sap.ui.table.TablePersoController({
-        //   table : oTable,
-        //   persoService: SettingsService,
-        //   hasGrouping: false
-        // }).activate();
+
+
         oController._registerForP13n();
       },
+
       _registerForP13n: function () {
         debugger;
-        const oTable = oController.byId("idFieldMonTable");
+        const oTable = oController.getView().byId("idFieldMonTable");
         oController.oMetadataHelper = new MetadataHelper([{
           key: "Status_col",
           label: "Status",
@@ -334,8 +329,8 @@ sap.ui.define(
       },
       handleStateChange: function (oEvent) {
         debugger;
-        const oTable = oController.byId("idFieldMonTable");
-        const oState = oEvent.getParameter("state");
+        var oTable = oController.getView().byId("idFieldMonTable");
+        var oState = oEvent.getParameter("state");
 
         if (!oState) {
           return;
@@ -343,8 +338,8 @@ sap.ui.define(
 
         oTable.getColumns().forEach(function (oColumn) {
 
-          const sKey = oController._getKey(oColumn);
-          const sColumnWidth = oState.ColumnWidth[sKey];
+          var sKey = oController._getKey(oColumn);
+          var sColumnWidth = oState.ColumnWidth[sKey];
 
           oColumn.setWidth(sColumnWidth || oController._mIntialWidth[sKey]);
 
@@ -353,31 +348,31 @@ sap.ui.define(
         }.bind(oController));
 
         oState.Columns.forEach(function (oProp, iIndex) {
-          const oCol = oController.byId("idFieldMonTable").getColumns().find((oColumn) => oColumn.data("p13nKey") === oProp.key);
+          var oCol = this.byId(oProp.key);
           oCol.setVisible(true);
 
           oTable.removeColumn(oCol);
           oTable.insertColumn(oCol, iIndex);
-        }.bind(oController));       
+        }.bind(oController));
 
-        const aSorter = [];
+        var aSorter = [];
+        var aSorter = [];
         oState.Sorter.forEach(function (oSorter) {
-          const oColumn = oController.byId("idFieldMonTable").getColumns().find((oColumn) => oColumn.data("p13nKey") === oSorter.key);
+          var oColumn = this.byId(oSorter.key);
           /** @deprecated As of version 1.120 */
           oColumn.setSorted(true);
           oColumn.setSortOrder(oSorter.descending ? CoreLibrary.SortOrder.Descending : CoreLibrary.SortOrder.Ascending);
-          aSorter.push(new Sorter(oController.oMetadataHelper.getProperty(oSorter.key).path, oSorter.descending));
-        }.bind(oController));
+          aSorter.push(new Sorter(this.oMetadataHelper.getProperty(oSorter.key).path, oSorter.descending));
+        }.bind(this));
         oTable.getBinding("rows").sort(aSorter);
       },
       _getKey: function (oControl) {
-        return oControl.data("p13nKey");
-        // this.getView().getLocalId(oControl.getId());
+        return this.getView().getLocalId(oControl.getId());
       },
       onSort: function (oEvent) {
-        const oTable = oController.byId("idFieldMonTable");
-        const sAffectedProperty = oController._getKey(oEvent.getParameter("column"));
-        const sSortOrder = oEvent.getParameter("sortOrder");
+        var oTable = oController.getView().byId("idFieldMonTable");
+        var sAffectedProperty = oController._getKey(oEvent.getParameter("column"));
+        var sSortOrder = oEvent.getParameter("sortOrder");
 
         //Apply the state programatically on sorting through the column menu
         //1) Retrieve the current personalization state
@@ -397,8 +392,8 @@ sap.ui.define(
         });
       },
       onColumnHeaderItemPress: function (oEvent) {
-        const oTable = oController.byId("idFieldMonTable");
-        const sPanel = oEvent.getSource().getIcon().indexOf("sort") >= 0 ? "Sorter" : "Columns";
+        var oTable = oController.getView().byId("idFieldMonTable");
+        var sPanel = oEvent.getSource().getIcon().indexOf("sort") >= 0 ? "Sorter" : "Columns";
 
         Engine.getInstance().show(oTable, [sPanel], {
           contentHeight: "35rem",
@@ -407,15 +402,15 @@ sap.ui.define(
         });
       },
       onColumnMove: function (oEvent) {
-        const oTable = oController.byId("idFieldMonTable");
-        const oAffectedColumn = oEvent.getParameter("column");
-        const iNewPos = oEvent.getParameter("newPos");
-        const sKey = oController._getKey(oAffectedColumn);
+        var oTable = oController.getView().byId("idFieldMonTable");
+        var oAffectedColumn = oEvent.getParameter("column");
+        var iNewPos = oEvent.getParameter("newPos");
+        var sKey = oController._getKey(oAffectedColumn);
         oEvent.preventDefault();
 
         Engine.getInstance().retrieveState(oTable).then(function (oState) {
 
-          const oCol = oState.Columns.find(function (oColumn) {
+          var oCol = oState.Columns.find(function (oColumn) {
             return oColumn.key === sKey;
           }) || {
             key: sKey
@@ -428,11 +423,11 @@ sap.ui.define(
         });
       },
       onColumnResize: function (oEvent) {
-        const oColumn = oEvent.getParameter("column");
-        const sWidth = oEvent.getParameter("width");
-        const oTable = oController.byId("idFieldMonTable");
+        var oColumn = oEvent.getParameter("column");
+        var sWidth = oEvent.getParameter("width");
+        var oTable = oController.getView().byId("idFieldMonTable");
 
-        const oColumnState = {};
+        var oColumnState = {};
         oColumnState[oController._getKey(oColumn)] = sWidth;
 
         Engine.getInstance().applyState(oTable, {
@@ -798,15 +793,14 @@ sap.ui.define(
         oController.oDialog.close();
       },
       handleSettingsButtonPressed: function (oEvent) {
-        const oTable = oController.byId("idFieldMonTable");
+        const oTable = oController.getView().byId("idFieldMonTable");
 
-        Engine.getInstance().show(oTable, ["Columns"], {
+        Engine.getInstance().show(oTable, ["Columns", "Sorter"], {
           contentHeight: "35rem",
           contentWidth: "32rem",
           source: oEvent.getSource()
         });
-      },
-
+      }
     });
   }
 );
