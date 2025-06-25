@@ -356,6 +356,115 @@
                     <m:Text text="{CTPTModel>FIELD_RETURN_REASON}" />
                 </template>
             </Column>
+            <!-- added fields on 25-o6-2025 -->
+            <Column width="170px">
+                <m:Label text="OLD_METERNUM_CORECTD" />
+                <template>
+                    <m:Text text="{CTPTModel>OLD_METERNUM_CORECTD}" />
+                </template>
+            </Column>
+            <Column width="170px">
+                <m:Label text="NEW_METERNUM_CORECTD" />
+                <template>
+                    <m:Text text="{CTPTModel>NEW_METERNUM_CORECTD}" />
+                </template>
+            </Column>
+            <Column width="170px">
+                <m:Label text="NEW_DELIVERED_READ_KWH_CORECTD" />
+                <template>
+                    <m:Text text="{CTPTModel>NEW_DELIVERED_READ_KWH_CORECTD}" />
+                </template>
+            </Column>
+            <Column width="170px">
+                <m:Label text="NEW_DELIVERED_READ_KW_CORECTD" />
+                <template>
+                    <m:Text text="{CTPTModel>NEW_DELIVERED_READ_KW_CORECTD}" />
+                </template>
+            </Column>
+            <Column width="170px">
+                <m:Label text="NEW_DELIVERED_READ_KVA_CORECTD" />
+                <template>
+                    <m:Text text="{CTPTModel>NEW_DELIVERED_READ_KVA_CORECTD}" />
+                </template>
+            </Column>
+            <Column width="170px">
+                <m:Label text="NEW_RECEIVED_READ_KWH_CORECTD" />
+                <template>
+                    <m:Text text="{CTPTModel>NEW_RECEIVED_READ_KWH_CORECTD}" />
+                </template>
+            </Column>
+            <Column width="170px">
+                <m:Label text="NEW_RECEIVED_READ_KW_CORECTD" />
+                <template>
+                    <m:Text text="{CTPTModel>NEW_RECEIVED_READ_KW_CORECTD}" />
+                </template>
+            </Column>
+            <Column width="170px">
+                <m:Label text="NEW_RECEIVED_READ_KVA_CORECTD" />
+                <template>
+                    <m:Text text="{CTPTModel>NEW_RECEIVED_READ_KVA_CORECTD}" />
+                </template>
+            </Column>
+            <Column width="170px">
+                <m:Label text="NEW_COMM_EQUIP_CORECTD" />
+                <template>
+                    <m:Text text="{CTPTModel>NEW_COMM_EQUIP_CORECTD}" />
+                </template>
+            </Column>
+            <Column width="170px">
+                <m:Label text="NEW_COMM_ADDR_CORECTD" />
+                <template>
+                    <m:Text text="{CTPTModel>NEW_COMM_ADDR_CORECTD}" />
+                </template>
+            </Column>
+            <Column width="170px">
+                <m:Label text="OLD_DELIVERED_READ_KWH_CORECTD" />
+                <template>
+                    <m:Text text="{CTPTModel>OLD_DELIVERED_READ_KWH_CORECTD}" />
+                </template>
+            </Column>
+            <Column width="170px">
+                <m:Label text="OLD_DELIVERED_READ_KW_CORECTD" />
+                <template>
+                    <m:Text text="{CTPTModel>OLD_DELIVERED_READ_KW_CORECTD}" />
+                </template>
+            </Column>
+            <Column width="170px">
+                <m:Label text="OLD_DELIVERED_READ_KVA_CORECTD" />
+                <template>
+                    <m:Text text="{CTPTModel>OLD_DELIVERED_READ_KVA_CORECTD}" />
+                </template>
+            </Column>
+            <Column width="170px">
+                <m:Label text="OLD_RECEIVED_READ_KWH_CORECTD" />
+                <template>
+                    <m:Text text="{CTPTModel>OLD_RECEIVED_READ_KWH_CORECTD}" />
+                </template>
+            </Column>
+            <Column width="170px">
+                <m:Label text="OLD_RECEIVED_READ_KW_CORECTD" />
+                <template>
+                    <m:Text text="{CTPTModel>OLD_RECEIVED_READ_KW_CORECTD}" />
+                </template>
+            </Column>
+            <Column width="170px">
+                <m:Label text="OLD_RECEIVED_READ_KVA_CORECTD" />
+                <template>
+                    <m:Text text="{CTPTModel>OLD_RECEIVED_READ_KVA_CORECTD}" />
+                </template>
+            </Column>
+            <Column width="170px">
+                <m:Label text="OLD_COMM_EQUIP_CORECTD" />
+                <template>
+                    <m:Text text="{CTPTModel>OLD_COMM_EQUIP_CORECTD}" />
+                </template>
+            </Column>
+            <Column width="170px">
+                <m:Label text="OLD_COMM_ADDR_CORECTD" />
+                <template>
+                    <m:Text text="{CTPTModel>OLD_COMM_ADDR_CORECTD}" />
+                </template>
+            </Column>
         </columns>
     </Table>
 </core:FragmentDefinition>

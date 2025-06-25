@@ -124,6 +124,43 @@
                     <m:Text text="{CTPTModel>Newtxwindnumber}" />
                 </template>
             </Column>
+            <!-- added columns @25-06-2025 -->
+            <Column
+                width="9rem"
+                hAlign="Center"
+            >
+                <m:Label text="NEWSERIALNUMBER_CORECTD" />
+                <template>
+                    <m:Text text="{CTPTModel>NEWSERIALNUMBER_CORECTD}" />
+                </template>
+            </Column>
+            <Column
+                width="9rem"
+                hAlign="Center"
+            >
+                <m:Label text="OLDSERIALNUMBER_CORECTD" />
+                <template>
+                    <m:Text text="{CTPTModel>OLDSERIALNUMBER_CORECTD}" />
+                </template>
+            </Column>
+            <Column
+                width="9rem"
+                hAlign="Center"
+            >
+                <m:Label text="DENOMINATOR_CORECTD" />
+                <template>
+                    <m:Text text="{CTPTModel>DENOMINATOR_CORECTD}" />
+                </template>
+            </Column>
+            <Column
+                width="9rem"
+                hAlign="Center"
+            >
+                <m:Label text="NUMERATOR_CORECTD" />
+                <template>
+                    <m:Text text="{CTPTModel>NUMERATOR_CORECTD}" />
+                </template>
+            </Column>
         </columns>
     </Table>
 </core:FragmentDefinition>

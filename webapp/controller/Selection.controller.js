@@ -537,6 +537,7 @@ sap.ui.define([
             }
         },
         _fnReturnFilterparameter: function () {
+            debugger;
             var oView = oController.getView();
             var oModel = oView.getModel("FieldMonSelModel");
             var aOrderStatus = oModel.getProperty("/OrderStatusSelected");
@@ -564,7 +565,7 @@ sap.ui.define([
             };
             var aPlannerGroup = oController._getTokens(oView.byId("idPlannerGroup"));
             var aWorkCenter = oController._getTokens(oView.byId("idWorkCenter"));
-            var aFuncLoc = oController.getView().byId("idFuncLoc").getValue() ? [oController.getView().byId("idFuncLoc").getValue()] : oController._getTokens(oView.byId("idFuncLoc"));
+            var aFuncLoc = oModel.getProperty("/FunctionalLocation"); //oController.getView().byId("idFuncLoc").getValue() ? [oController.getView().byId("idFuncLoc").getValue()] : oController._getTokens(oView.byId("idFuncLoc"));
             //oController._getTokens(oView.byId("idFuncLoc"));
             var aSerOrder = oController._getTokens(oView.byId("idServiceOrder"));
             var aOrderType = oController._getTokens(oView.byId("idOrderType"));
