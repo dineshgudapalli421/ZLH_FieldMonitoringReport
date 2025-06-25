@@ -29,7 +29,8 @@
                 width="70%"
                 showValueHelp="false"
                 showClearIcon="true"
-                suggestionItemSelected=".onPressPlannerGroup"
+                suggestionItemSelected=".onPlannerGroupSuggestionItems"
+                tokenUpdate=".onPlannerGroupTokenUpdate"
                 suggestionRows="{
 				path: 'ORDOPRService>/PlannerGroupSet'
                 }"
@@ -55,7 +56,8 @@
                 width="60%"
                 showValueHelp="false"
                 valueHelpRequest=".onValueHelpRequested"
-                suggestionItemSelected=".onWorkCenterSuggestionItemPress"
+                suggestionItemSelected=".onWorkCenterSuggestionItemPress" 
+                tokenUpdate=".onWorkCenterTokenUpdate"               
                 suggestionRows="{
 				path: 'OEBmainService>/Main_Work_CenterSet'
 			}"
@@ -74,6 +76,9 @@
                         <Label text="{OEBmainService>Description}" />
                     </ColumnListItem>
                 </suggestionRows>
+                <!-- <tokens>
+                    <Token key="{key}"></Token>
+                </tokens> -->
             </MultiInput>
         </f:content>
     </f:SimpleForm>

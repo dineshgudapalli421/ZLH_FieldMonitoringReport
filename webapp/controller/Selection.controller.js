@@ -25,6 +25,7 @@ sap.ui.define([
                 minDate: new Date(),
                 OrderStatusSelected: [],
                 bIsSelScreenInvalidate: false,
+                FunctionalLocation: "",
                 oServiceOrderDates: {
                     CompletedOn: {
                         From: "", //oController._fnCurrentMonthStartDate(true),
@@ -52,7 +53,7 @@ sap.ui.define([
                     WorkCenter: [],
                     MainActType: [],
                     FuncLoc: [],
-                    ServOrder: [],
+                    ServiceOrder: [],
                     OrderType: [],
                     oFilter: {
                         bMobileWorkForce: false,
@@ -98,13 +99,7 @@ sap.ui.define([
                     { Key: "ERRD", description: "Error In Dispatch" }
                 ]
             });
-            //oController.oSmartVariantManagement = this.getView().byId("svm");
-            //this._oVM = this.getView().byId("vm");
-            // this.oVariantManagement = this.getView().byId("idVariantManagement");
-            // var oVariantModel = new JSONModel({
-            //     variants: []
-            // });
-            // this.getView().setModel(oVariantModel, "VariantModel");
+
             oSelectionScreenModel = oSelectionModel;
             var user = sap.ushell.Container.getUser();
             oController.userId = user.getId();
@@ -166,11 +161,32 @@ sap.ui.define([
             });
 
             if (oVariant) {
-                // oVarinatModel.setProperty("/Variants", oVariant);
+                var objWorkCenter = [], objPlannerGroup = [], objServiceOrder = [], objOrderType = [];
                 var oData = oVariant.data;
                 oVariantModel.setData(oData, true);
-                //var oData = oVariant[sName].variantData["InputFields"];
+                objWorkCenter = oVariantModel.getProperty("/oSelected/WorkCenter");
+                objPlannerGroup = oVariantModel.getProperty("/oSelected/PlannerGroup");
+                objServiceOrder = oVariantModel.getProperty("/oSelected/ServiceOrder");
+                objOrderType = oVariantModel.getProperty("/oSelected/OrderType");
+                //
 
+                if (objWorkCenter.length > 0) oController._fnBindVariantSelectionFields(objWorkCenter, 'idWorkCenter');
+                if (objPlannerGroup.length > 0) oController._fnBindVariantSelectionFields(objPlannerGroup, 'idPlannerGroup');
+                if (objServiceOrder.length > 0) oController._fnBindVariantSelectionFields(objServiceOrder, 'idServiceOrder');
+                if (objOrderType.length > 0) oController._fnBindVariantSelectionFields(objOrderType, 'idOrderType');
+
+            }
+        },
+        _fnBindVariantSelectionFields: function (objSelection, objId) {
+            for (var i = 0; i < objSelection.length; i++) {
+                var oMultiInput = oController.getView().byId(objId);
+                var aToken = new Token({
+                    key: objSelection[i].key,
+                    text: objSelection[i].text,
+                });
+
+                oMultiInput.addToken(aToken);
+                oMultiInput.setValue("");
             }
         },
 
@@ -199,12 +215,6 @@ sap.ui.define([
                     text: sVariantText,
                     data: oVariantData
                 });
-                // oVM.addVariantItem({
-                //     key: sVariantKey,
-                //     text: sVariantText,
-                //     readOnly: false,
-                //     executeOnSelection: true
-                // });
             }
             if (bDefault) {
                 oVariantSet.defaultVariant = sVariantKey;
@@ -234,11 +244,22 @@ sap.ui.define([
                 window.location.reload();
             }
             else {
+                var objVariant = [];
                 var oVariantModel = oController.getView().getModel("FieldMonSelModel");
                 oVariantModel.setData({});
+                oController._fnSetEmptySelectedFields('idWorkCenter');
+                oController._fnSetEmptySelectedFields('idPlannerGroup');
+                oController._fnSetEmptySelectedFields('idServiceOrder');
+                oController._fnSetEmptySelectedFields('idOrderType');
             }
 
             this._applyVariant(sVariantKey, oName);
+        },
+        _fnSetEmptySelectedFields: function (objId) {
+            debugger;
+            var oMultiInput = oController.getView().byId(objId);
+            oMultiInput.removeAllTokens();
+            oMultiInput.setValue("");
         },
         onManageVariant: function (oEvent) {
             debugger;
@@ -427,32 +448,32 @@ sap.ui.define([
                 }
             });
         },
-        onSelectFuncLoc: function (oEvent) {
-            debugger;
-            var oSelectedItem = oEvent.getParameter("selectedRow");
-            var oMultiInput = oController.getView().byId("idFuncLoc");
-            oController.onSuggestionItemSelected(oSelectedItem, oMultiInput);
-        },
-        onPressPlannerGroup: function (oEvent) {
-            var oSelectedItem = oEvent.getParameter("selectedRow");
-            var oMultiInput = oController.getView().byId("idPlannerGroup");
-            oController.onSuggestionItemSelected(oSelectedItem, oMultiInput);
-        },
-        onWorkCenterSuggestionItemPress: function (oEvent) {
-            var oSelectedItem = oEvent.getParameter("selectedRow");
-            var oMultiInput = oController.getView().byId("idWorkCenter");
-            oController.onSuggestionItemSelected(oSelectedItem, oMultiInput);
-        },
-        onOrderSuggestionItemPress: function (oEvent) {
-            var oSelectedItem = oEvent.getParameter("selectedRow");
-            var oMultiInput = oController.getView().byId("idServiceOrder");
-            oController.onSuggestionItemSelected(oSelectedItem, oMultiInput);
-        },
-        onOrderTypeSuggestionItemPress: function (oEvent) {
-            var oSelectedItem = oEvent.getParameter("selectedRow");
-            var oMultiInput = oController.getView().byId("idOrderType");
-            oController.onSuggestionItemSelected(oSelectedItem, oMultiInput);
-        },
+        // onSelectFuncLoc: function (oEvent) {
+        //     debugger;
+        //     var oSelectedItem = oEvent.getParameter("selectedRow");
+        //     var oMultiInput = oController.getView().byId("idFuncLoc");
+        //     oController.onSuggestionItemSelected(oSelectedItem, oMultiInput);
+        // },
+        // onPressPlannerGroup: function (oEvent) {
+        //     var oSelectedItem = oEvent.getParameter("selectedRow");
+        //     var oMultiInput = oController.getView().byId("idPlannerGroup");
+        //     oController.onSuggestionItemSelected(oSelectedItem, oMultiInput);
+        // },
+        // onWorkCenterSuggestionItemPress: function (oEvent) {
+        //     var oSelectedItem = oEvent.getParameter("selectedRow");
+        //     var oMultiInput = oController.getView().byId("idWorkCenter");
+        //     oController.onSuggestionItemSelected(oSelectedItem, oMultiInput);
+        // },
+        // onOrderSuggestionItemPress: function (oEvent) {
+        //     var oSelectedItem = oEvent.getParameter("selectedRow");
+        //     var oMultiInput = oController.getView().byId("idServiceOrder");
+        //     oController.onSuggestionItemSelected(oSelectedItem, oMultiInput);
+        // },
+        // onOrderTypeSuggestionItemPress: function (oEvent) {
+        //     var oSelectedItem = oEvent.getParameter("selectedRow");
+        //     var oMultiInput = oController.getView().byId("idOrderType");
+        //     oController.onSuggestionItemSelected(oSelectedItem, oMultiInput);
+        // },
         onSuggestionItemSelected: function (oSelectedItem, oMultiInput) {
             debugger;
             var oSelectedCells = oSelectedItem.getCells();
@@ -695,5 +716,195 @@ sap.ui.define([
             var formatDate = oDateFormat.format(new Date(strDate));
             return formatDate.toString();
         },
+        onWorkCenterSuggestionItemPress: function (oEvent) {
+            debugger;
+            var oModel = oController.getView().getModel("FieldMonSelModel");
+            var oMultiInput = oController.getView().byId("idWorkCenter");
+            var oSelectedItem = oEvent.getParameter("selectedRow");
+
+            var oSelectedCells = oSelectedItem.getCells();
+            var aToken = new Token({
+                key: oSelectedCells[1].getText(),
+                text: oSelectedCells[0].getText()
+            });
+
+            oMultiInput.addToken(aToken);
+            oMultiInput.setValue("");
+
+            var aTokens = oMultiInput.getTokens();
+            oModel.setProperty("/oSelected/WorkCenter", []);
+            var aSelectedKeys = oModel.getProperty("/oSelected/WorkCenter");
+            aTokens.forEach(function (oToken) {
+                var sKey = oToken.getKey();
+                var sText = oToken.getText();
+                if (!aSelectedKeys.includes(sKey)) {
+                    aSelectedKeys.push({ "key": sKey, "text": sText });
+                    //aSelectedKeys.push(sKey);
+                }
+            });
+            oModel.setProperty("/oSelected/WorkCenter", aSelectedKeys);
+
+        },
+        onPlannerGroupSuggestionItems: function (oEvent) {
+            debugger;
+            var oModel = oController.getView().getModel("FieldMonSelModel");
+            var oMultiInput = oController.getView().byId("idPlannerGroup");
+            var oSelectedItem = oEvent.getParameter("selectedRow");
+            var oSelectedCells = oSelectedItem.getCells();
+            var aToken = new Token({
+                key: oSelectedCells[1].getText(),
+                text: oSelectedCells[0].getText()
+            });
+
+            oMultiInput.addToken(aToken);
+            oMultiInput.setValue("");
+
+            var aTokens = oMultiInput.getTokens();
+            oModel.setProperty("/oSelected/PlannerGroup", []);
+            var aSelectedKeys = oModel.getProperty("/oSelected/PlannerGroup");
+            aTokens.forEach(function (oToken) {
+                var sKey = oToken.getKey();
+                var sText = oToken.getText();
+                if (!aSelectedKeys.includes(sKey)) {
+                    aSelectedKeys.push({ "key": sKey, "text": sText });
+                    //aSelectedKeys.push(sKey);
+                }
+            });
+            oModel.setProperty("/oSelected/PlannerGroup", aSelectedKeys);
+
+        },
+        onOrderSuggestionItemPress: function (oEvent) {
+            debugger;
+            var oModel = oController.getView().getModel("FieldMonSelModel");
+            var oSelectedItem = oEvent.getParameter("selectedRow");
+            var oMultiInput = oController.getView().byId("idServiceOrder");
+            var oSelectedCells = oSelectedItem.getCells();
+            var aToken = new Token({
+                key: oSelectedCells[1].getText(),
+                text: oSelectedCells[0].getText()
+            });
+
+            oMultiInput.addToken(aToken);
+            oMultiInput.setValue("");
+
+            var aTokens = oMultiInput.getTokens();
+            oModel.setProperty("/oSelected/ServiceOrder", []);
+            var aSelectedKeys = oModel.getProperty("/oSelected/ServiceOrder");
+            aTokens.forEach(function (oToken) {
+                var sKey = oToken.getKey();
+                var sText = oToken.getText();
+                if (!aSelectedKeys.includes(sKey)) {
+                    aSelectedKeys.push({ "key": sKey, "text": sText });
+                    //aSelectedKeys.push(sKey);
+                }
+            });
+            oModel.setProperty("/oSelected/ServiceOrder", aSelectedKeys);
+        },
+        onOrderTypeSuggestionItemPress: function (oEvent) {
+            debugger;
+            var oModel = oController.getView().getModel("FieldMonSelModel");
+            var oSelectedItem = oEvent.getParameter("selectedRow");
+            var oMultiInput = oController.getView().byId("idOrderType");
+            var oSelectedCells = oSelectedItem.getCells();
+            var aToken = new Token({
+                key: oSelectedCells[1].getText(),
+                text: oSelectedCells[0].getText()
+            });
+
+            oMultiInput.addToken(aToken);
+            oMultiInput.setValue("");
+
+            var aTokens = oMultiInput.getTokens();
+            oModel.setProperty("/oSelected/OrderType", []);
+            var aSelectedKeys = oModel.getProperty("/oSelected/OrderType");
+            aTokens.forEach(function (oToken) {
+                var sKey = oToken.getKey();
+                var sText = oToken.getText();
+                if (!aSelectedKeys.includes(sKey)) {
+                    aSelectedKeys.push({ "key": sKey, "text": sText });
+                    //aSelectedKeys.push(sKey);
+                }
+            });
+            oModel.setProperty("/oSelected/OrderType", aSelectedKeys);
+        },
+        
+        //************************** Token Update functions **********************
+        onWorkCenterTokenUpdate: function (oEvent) {
+            debugger;
+            var oModel = oController.getView().getModel("FieldMonSelModel");
+            var oMultiInput = oController.getView().byId("idWorkCenter");
+            var sAction = oEvent.getParameter("type");
+            var oToken = oEvent.getParameters().removedTokens[0].getKey();
+            var aTokens = oMultiInput.getTokens();
+
+            var aTokenData = [], aSelectedData = [];
+            if (sAction === "removed") {
+                aTokenData = aTokens.filter(function (token) {
+                    return token.getKey() !== oToken;
+                });
+            }
+            for (var i = 0; i < aTokenData.length; i++) {
+                aSelectedData.push({ "key": aTokenData[i].getKey(), "text": aTokenData[i].getText() });
+            }
+
+            oModel.setProperty("/oSelected/WorkCenter", aSelectedData);
+        },
+        onPlannerGroupTokenUpdate: function (oEvent) {
+            var oModel = oController.getView().getModel("FieldMonSelModel");
+            var oMultiInput = oController.getView().byId("idPlannerGroup");
+            var sAction = oEvent.getParameter("type");
+            var oToken = oEvent.getParameters().removedTokens[0].getKey();
+            var aTokens = oMultiInput.getTokens();
+
+            var aTokenData = [], aSelectedData = [];
+            if (sAction === "removed") {
+                aTokenData = aTokens.filter(function (token) {
+                    return token.getKey() !== oToken;
+                });
+            }
+            for (var i = 0; i < aTokenData.length; i++) {
+                aSelectedData.push({ "key": aTokenData[i].getKey(), "text": aTokenData[i].getText() });
+            }
+
+            oModel.setProperty("/oSelected/PlannerGroup", aSelectedData);
+        },
+        onOrderNoTokenUpdate: function (oEvent) {
+            var oModel = oController.getView().getModel("FieldMonSelModel");
+            var oMultiInput = oController.getView().byId("idServiceOrder");
+            var sAction = oEvent.getParameter("type");
+            var oToken = oEvent.getParameters().removedTokens[0].getKey();
+            var aTokens = oMultiInput.getTokens();
+
+            var aTokenData = [], aSelectedData = [];
+            if (sAction === "removed") {
+                aTokenData = aTokens.filter(function (token) {
+                    return token.getKey() !== oToken;
+                });
+            }
+            for (var i = 0; i < aTokenData.length; i++) {
+                aSelectedData.push({ "key": aTokenData[i].getKey(), "text": aTokenData[i].getText() });
+            }
+
+            oModel.setProperty("/oSelected/ServiceOrder", aSelectedData);
+        },
+        onOrderTypeTokenUpdate: function (oEvent) {
+            var oModel = oController.getView().getModel("FieldMonSelModel");
+            var oMultiInput = oController.getView().byId("idOrderType");
+            var sAction = oEvent.getParameter("type");
+            var oToken = oEvent.getParameters().removedTokens[0].getKey();
+            var aTokens = oMultiInput.getTokens();
+
+            var aTokenData = [], aSelectedData = [];
+            if (sAction === "removed") {
+                aTokenData = aTokens.filter(function (token) {
+                    return token.getKey() !== oToken;
+                });
+            }
+            for (var i = 0; i < aTokenData.length; i++) {
+                aSelectedData.push({ "key": aTokenData[i].getKey(), "text": aTokenData[i].getText() });
+            }
+
+            oModel.setProperty("/oSelected/OrderType", aSelectedData);
+        }
     });
 });

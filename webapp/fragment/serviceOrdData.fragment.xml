@@ -28,10 +28,10 @@
                 id="idServiceOrder"
                 width="60%"
                 showValueHelp="false"
-                tokenUpdate="onOrderNoTokenUpdate"
+                tokenUpdate=".onOrderNoTokenUpdate"
                 submit="onSubmitOrderNumber"
                 valueHelpRequest=".onValueHelp"
-                suggestionItemSelected=".onOrderSuggestionItemPress"
+                suggestionItemSelected=".onOrderSuggestionItemPress"                
                 suggestionRows="{
 				path: 'OEBmainService>/Service_OrderSet'
 			}"
@@ -63,6 +63,7 @@
                 showValueHelp="false"
                 valueHelpRequest=".onValueHelpRequested"
                 suggestionItemSelected=".onOrderTypeSuggestionItemPress"
+                tokenUpdate=".onOrderTypeTokenUpdate"
                 suggestionRows="{
 				path: 'OEBmainService>/Order_TYpeSet'
 			}"
@@ -80,7 +81,7 @@
                         <Label text="{OEBmainService>OrderType}" />
                         <Label text="{OEBmainService>Description}" />
                     </ColumnListItem>
-                </suggestionRows>
+                </suggestionRows>                
             </MultiInput>
         </f:content>
     </f:SimpleForm>

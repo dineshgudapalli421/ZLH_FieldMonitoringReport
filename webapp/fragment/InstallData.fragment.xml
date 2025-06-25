@@ -23,13 +23,14 @@
         singleContainerFullSize="false"
     >
         <f:content>
-            <Label text="Funcational Location" />
-            <MultiInput
+            <Label text="Functional Location" />
+            <Input id="idFuncLoc" width="70%" value="{FieldMonSelModel>/FunctionalLocation}"></Input>
+            <!-- <MultiInput
                 id="idFuncLoc"
                 width="70%"
                 showValueHelp="false"
                 showClearIcon="true"
-                suggestionItemSelected=".onSelectFuncLoc"
+                suggestionItemSelected=".onFuncLocSuggestionItemPress"
                 suggestionRows="{
 				path: 'mainService>/'
                 }"
@@ -44,7 +45,7 @@
                         <Label text="{Functional_LocationSet}" />
                     </ColumnListItem>
                 </suggestionRows>
-            </MultiInput>
+            </MultiInput> -->
         </f:content>
     </f:SimpleForm>
 </core:FragmentDefinition>
