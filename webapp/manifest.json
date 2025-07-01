@@ -143,7 +143,7 @@
         },
         {
           "name": "SOForm",
-          "pattern": "SOForm/{OrderID}",
+          "pattern": "SOForm/{OrderID},{:OpCode:}",
           "target": [
             "SOForm"
           ]

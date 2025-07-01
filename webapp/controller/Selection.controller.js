@@ -1,5 +1,6 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
+    "sap/ui/model/odata/v2/oDataModel",
     "sap/m/MessageToast",
     "sap/m/MessageBox",
     "sap/ui/model/Filter",
@@ -8,7 +9,7 @@ sap.ui.define([
     "sap/m/Token",
     "sap/ui/core/format/DateFormat",
     "sap/ushell/services/PersonalizationV2"
-], function (Controller, MessageToast, MessageBox, Filter, FilterOperator, JSONModel, Token, DateFormat, PersonalizationV2) {
+], function (Controller, oDataModel, MessageToast, MessageBox, Filter, FilterOperator, JSONModel, Token, DateFormat, PersonalizationV2) {
     "use strict";
     var oRouter, oController, oSelectionScreenModel, oFieldMonDataModel, oResourceBundle, UIComponent;
 
@@ -19,6 +20,23 @@ sap.ui.define([
             oFieldMonDataModel = oController.getOwnerComponent().getModel();
             oRouter = UIComponent.getRouter();
             oResourceBundle = oController.getOwnerComponent().getModel("i18n").getResourceBundle();
+
+            // var oServiceOrderModel = new oDataModel("/sap/opu/odata/sap/ZWM_SS_ORDER_OEB_SRV/", {
+            //     json: true,
+            //     useBatch: false
+            // });
+            // var oServiceOrderJsonModel = new JSONModel();
+            // oServiceOrderModel.read("/Service_OrderSet", {
+            //     success: function (oData) {
+            //         var oResults = oData.results;
+            //         if (oResults.length) {
+            //             oServiceOrderJsonModel.setData(oResults);
+            //         } else {
+            //            oServiceOrderJsonModel.setData(oResults);
+            //         }
+            //     }                
+            // });
+            // oController.getView().setModel(oServiceOrderJsonModel, "ServiceOrderModel");
 
             var oSelectionModel = new JSONModel({
                 bPageBusy: false,
@@ -125,7 +143,7 @@ sap.ui.define([
                     oVariantManagement.setModel(new JSONModel(oVariantSet.variants), "variantItems");
                     oVariantManagement.setDefaultVariantKey(oVariantSet.defaultVariant);
 
-                    this._applyVariant(oVariantSet.defaultVariant, '');
+                    this._applyVariant(oVariantSet.defaultVariant, oController._defaultVariantName);
                 }.bind(this)).catch(function (oError) {
                     MessageToast.show("Error Loading Personalization Container:" + oError.message);
                 });
@@ -137,6 +155,8 @@ sap.ui.define([
         _loadVariants: function (oVariantSet) {
             debugger;
             var oVM = oController.getView().byId("idVariantManagement");
+            var defaultVariant = oController._fngetDefaultVariant(oVM);
+            oController._defaultVariantKey = defaultVariant;
             oVariantSet.variants.forEach(function (oVariant) {
                 oVM.addVariantItem({
                     key: oVariant.key,
@@ -147,13 +167,30 @@ sap.ui.define([
             });
             //oController.getView().getModel("FieldMonSelModel").setProperty("/Variants", aVariants);
         },
+        _fngetDefaultVariant: function (VM) {
+            var objVariant = {}, objVariantItems = [], defaultVariant = '';
+            objVariant = VM.oContext.getModel().getData();
+            defaultVariant = objVariant["Selection--idVariantManagement"].defaultVariant;
+            objVariantItems = objVariant["Selection--idVariantManagement"].variants;
+            for (var i = 0; i < objVariantItems.length; i++) {
+                if (defaultVariant === objVariantItems[i].key) {
+                    oController._defaultVariantName = objVariantItems[i].title;
+                }
+            }
+            return defaultVariant;
+        },
         _applyVariant: function (sVariantKey, sName) {
             debugger;
             var oVariantModel = oController.getView().getModel("FieldMonSelModel");
             var oVariantSet = this._oContainer.getItemValue("variantSet") || { "variants": [] };
+            var oDefaultVariant = oVariantSet.defaultVariant;
+
             var oVariant = oVariantSet.variants.find(function (v) {
-                if (sName === '') {
+                if (sName === '' && sVariantKey !== '') {
                     return v.key === sVariantKey;
+                }
+                else if (sName === '' && sVariantKey === '') {
+                    return v.key === oDefaultVariant;
                 }
                 else {
                     return v.text === sName;
@@ -200,7 +237,7 @@ sap.ui.define([
             var oVariantData = oController.getView().getModel("FieldMonSelModel").getData();
 
             var oVariantSet = this._oContainer.getItemValue("variantSet") || { "variants": [], defaultVariant: "" }
-            var oVM = oController.getView().byId("idVariantManagement");
+            var oVariantManagement = oController.getView().byId("idVariantManagement");
             if (bOverwrite) {
                 var oExistingVariant = oVariantSet.variants.find(function (v) {
                     return v.key === sVariantKey;
@@ -244,7 +281,7 @@ sap.ui.define([
                 window.location.reload();
             }
             else {
-                var objVariant = [];
+                //var objVariant = [];
                 var oVariantModel = oController.getView().getModel("FieldMonSelModel");
                 oVariantModel.setData({});
                 oController._fnSetEmptySelectedFields('idWorkCenter');
@@ -363,7 +400,6 @@ sap.ui.define([
         },
 
         onPressNext: function () {
-            debugger;
             var oModel = oController.getView().getModel("FieldMonSelModel");
             var sPath = "/Monitoring_FiledWorkSet";
             oModel.setProperty("/bPageBusy", true);
@@ -537,7 +573,6 @@ sap.ui.define([
             }
         },
         _fnReturnFilterparameter: function () {
-            debugger;
             var oView = oController.getView();
             var oModel = oView.getModel("FieldMonSelModel");
             var aOrderStatus = oModel.getProperty("/OrderStatusSelected");
@@ -565,7 +600,7 @@ sap.ui.define([
             };
             var aPlannerGroup = oController._getTokens(oView.byId("idPlannerGroup"));
             var aWorkCenter = oController._getTokens(oView.byId("idWorkCenter"));
-            var aFuncLoc = oModel.getProperty("/FunctionalLocation"); //oController.getView().byId("idFuncLoc").getValue() ? [oController.getView().byId("idFuncLoc").getValue()] : oController._getTokens(oView.byId("idFuncLoc"));
+            var aFuncLoc = oModel.getProperty("/FunctionalLocation") ? [oModel.getProperty("/FunctionalLocation")] : ''; //oController.getView().byId("idFuncLoc").getValue() ? [oController.getView().byId("idFuncLoc").getValue()] : oController._getTokens(oView.byId("idFuncLoc"));
             //oController._getTokens(oView.byId("idFuncLoc"));
             var aSerOrder = oController._getTokens(oView.byId("idServiceOrder"));
             var aOrderType = oController._getTokens(oView.byId("idOrderType"));
@@ -615,7 +650,6 @@ sap.ui.define([
                 createOrFilter(aOperationStatus, "OdStatus")
             ].filter(f => f !== null);
             var Validatefunction = function (From, To) {
-                debugger;
                 From = oController._fngetDateFormat(From);
                 To = oController._fngetDateFormat(To);
                 var isValidateDates = true;
@@ -828,7 +862,7 @@ sap.ui.define([
             });
             oModel.setProperty("/oSelected/OrderType", aSelectedKeys);
         },
-        
+
         //************************** Token Update functions **********************
         onWorkCenterTokenUpdate: function (oEvent) {
             debugger;

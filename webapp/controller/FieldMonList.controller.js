@@ -15,13 +15,15 @@ sap.ui.define(
     'sap/m/p13n/GroupController',
     'sap/m/p13n/MetadataHelper',
     'sap/m/table/ColumnWidthController',
-    'sap/ui/core/library'
+    'sap/ui/core/library',
+    "sap/ushell/services/Personalization"
   ],
-  function (Controller, MessageToast, MessageBox, Filter, FilterOperator, JSONModel, Token, Fragment, Sorter, Engine, SelectionController, SortController, GroupController, MetadataHelper, ColumnWidthController, CoreLibrary) {
+  function (Controller, MessageToast, MessageBox, Filter, FilterOperator, JSONModel, Token, Fragment, Sorter, Engine, SelectionController, SortController, GroupController, MetadataHelper, ColumnWidthController, CoreLibrary, Personalization) {
     "use strict";
     var oRouter, oController, oSelectionScreenModel, oOEBoDataModel, oResourceBundle, UIComponent, oSelectionFilter;
     return Controller.extend("com.sap.lh.cs.zlhfieldmonitoring.controller.FieldMonList", {
       onInit: function () {
+        debugger;
         oController = this;
         UIComponent = oController.getOwnerComponent();
         oOEBoDataModel = oController.getOwnerComponent().getModel();
@@ -29,11 +31,227 @@ sap.ui.define(
         oResourceBundle = oController.getOwnerComponent().getModel("i18n").getResourceBundle();
         oRouter.getRoute("FieldMonList").attachPatternMatched(oController._onRouteMatch, oController);
         oController._mViewSettingsDialogs = {};
-
-
+        oController._initializeVariantManagement();
         oController._registerForP13n();
       },
+      _initializeVariantManagement: function () {
+        debugger;
+        var oView = this.getView();
+        var oVariantManagement = oView.byId("idVManagement");
+        sap.ushell.Container.getServiceAsync("Personalization").then(function (oPersonalizationService) {
+          var oPersId = {
+            container: "MyGridTableVariants",
+            item: "tableVariants"
+          };
+          oPersonalizationService.getContainer(oPersId.container).then(function (oContainer) {
+            this._oContainer = oContainer;
+            var oVariantSet = oContainer.getItemValue(oPersId.item) || { variants: [], defaultVariant: "" };
+            this._loadVariants(oVariantSet);
 
+            oVariantManagement.setModel(new JSONModel(oVariantSet.variants), "variantItems");
+            oVariantManagement.setDefaultVariantKey(oVariantSet.defaultVariant, '');
+
+            this._applyVariant(oVariantSet.defaultVariant, '');
+          }.bind(this)).catch(function (oError) {
+            MessageToast.show("Error Loading Personalization Container:" + oError.message);
+          });
+        }.bind(this)).catch(function (oError) {
+          MessageToast.show("Error accessing personalization service: " + oError.message);
+        });
+      },
+
+      _loadVariants: function (oVariantSet) {
+        debugger;
+        var oVM = oController.getView().byId("idVManagement");
+        oVariantSet.variants.forEach(function (oVariant) {
+          oVM.addVariantItem({
+            key: oVariant.key,
+            text: oVariant.text,
+            readOnly: false,
+            executeOnSelection: true
+          });
+        });
+        //oController.getView().getModel("FieldMonSelModel").setProperty("/Variants", aVariants);
+      },
+      _applyVariant: function (sVariantKey, sName) {
+        debugger;
+        var oTable = oController.getView().byId("idFieldMonTable");
+        var oVariantSet = this._oContainer.getItemValue("variantSet") || { "variants": [] };
+        var oDefaultVariant = oVariantSet.defaultVariant;
+        var oVariant = oVariantSet.variants.find(function (v) {
+          if (sName === '' && sVariantKey !== '') {
+            return v.key === sVariantKey;
+          }
+          else if (sName === '' && sVariantKey === '') {
+            return v.key === oDefaultVariant;
+          }
+          else {
+            return v.text === sName;
+          }
+        });
+        var oVariantData = {};
+        if (oVariant) {
+          oVariantData = oVariant.data;
+        }
+        var aColumns = oTable.getColumns();
+        aColumns.forEach(function (oColumn) {
+          var oColumnData = oVariantData.columns ? oVariantData.columns.find(function (col) {
+            return col.id === oColumn.getId();
+          }) : null;
+          if (oColumnData) {
+            oColumn.setVisible(oColumnData.visible);
+            oColumn.setWidth(oColumnData.width || "");
+            if (oColumnData.sorted) {
+              oColumn.getSorted(true);
+              oColumn.setSortOrder(oColumnData.sortOrder);
+            } else {
+              oColumn.setSorted(false);
+            }
+          } else {
+            oColumn.setVisible(true);
+            oColumn.setSorted(false);
+          }
+        });
+      },
+      onSelectVariant: function (oEvent) {
+        debugger;
+        var oTable = oController.getView().byId("idFieldMonTable");
+        var sVariantKey = oEvent.getParameter("key");
+        var objVariant = {}, objVariantItems = [], oName = '';
+        objVariant = oEvent.getSource().oContext.getModel().getData();
+        objVariantItems = objVariant["FieldMonList--idVManagement"].variants;
+
+        for (var i = 0; i < objVariantItems.length; i++) {
+          if (sVariantKey === objVariantItems[i].key) {
+            oName = objVariantItems[i].title;
+          }
+        }
+        if (sVariantKey === 'FieldMonList--idVManagement') {
+          oController._registerForP13n();
+          oController.onRefreshSoResults();
+          var aColumns = oTable.getColumns();
+          aColumns.forEach(function (oColumn) {
+            oColumn.setVisible(true);
+          });
+        }
+        else {
+          oController.onRefreshSoResults();
+          this._applyVariant(sVariantKey, oName);
+        }
+
+
+      },
+      onSaveVariant: function (oEvent) {
+        debugger;
+        var oParameters = oEvent.getParameters();
+        var sVariantKey = oParameters.key || Date.now().toString();
+        var sVariantText = oParameters.name;
+        var bOverwrite = oParameters.overwrite;
+        var bDefault = oParameters.def;
+        //var oVariantData = oController.getView().getModel("FieldMonSelModel").getData();
+
+        var oVariantData = oController._getTablePersonalizationData();
+        var oVariantSet = this._oContainer.getItemValue("variantSet") || { "variants": [], defaultVariant: "" }
+        var oVariantManagement = oController.getView().byId("idVManagement");
+        if (bOverwrite) {
+          var oExistingVariant = oVariantSet.variants.find(function (v) {
+            return v.key === sVariantKey;
+          });
+          if (oExistingVariant) {
+            oExistingVariant.text = sVariantText;
+            oExistingVariant.data = oVariantData;
+          }
+        } else {
+          oVariantSet.variants.push({
+            key: sVariantKey,
+            text: sVariantText,
+            data: oVariantData
+          });
+        }
+        if (bDefault) {
+          oVariantSet.defaultVariant = sVariantKey;
+          oVariantManagement.setDefaultVariantKey(sVariantKey);
+        }
+        this._oContainer.setItemValue("variantSet", oVariantSet);
+        this._oContainer.save().then(function () {
+          MessageToast.show("Variant saved successfully!");
+        }).catch(function (oError) {
+          MessageToast.show("Error saving variant:" + oError.message);
+        })
+
+      },
+      onManageVariant: function (oEvent) {
+        debugger;
+        var objVariant = {}, objVariantItems = [], oName = '';
+        objVariant = oEvent.getSource().oContext.getModel().getData();
+        objVariantItems = objVariant["FieldMonList--idVManagement"].variants;
+
+        var oParameters = oEvent.getParameters();
+        var aRenamed = oEvent.getParameter("renamed");
+        var aDeleted = oEvent.getParameter("deleted");
+        var oVariantSet = this._oContainer.getItemValue("variantSet") || { variants: [] };
+        if (aDeleted !== undefined) {
+          oParameters.deleted.forEach(function (sKey) {
+            debugger;
+            for (var i = 0; i < objVariantItems.length; i++) {
+              if (sKey !== objVariantItems[i].key) {
+                oName = objVariantItems[i].title;
+                oVariantSet.variants = oVariantSet.variants.filter(function (v) {
+                  return v.text === oName;
+                });
+              }
+            }
+          });
+          //oController._registerForP13n();
+          oController.onRefreshSoResults();
+        }
+        if (aRenamed !== undefined) {
+          oParameters.renamed.forEach(function (oRenamed) {
+            for (var i = 0; i < objVariantItems.length; i++) {
+              if (oRenamed.key === objVariantItems[i].key) {
+                oName = objVariantItems[i].title;
+                var oVariant = oVariantSet.variants.find(function (v) {
+                  return v.text === oName;
+                });
+                if (oVariant) {
+                  oVariant.text = oRenamed.name;
+                }
+              }
+            }
+          });
+        }
+
+        if (oParameters.def) {
+          oVariantSet.defaultVariant = oParameters.def;
+          oController.getView().byId("idVManagement").setDefaultVariantKey(oParameters.def);
+        }
+        this._oContainer.setItemValue("variantSet", oVariantSet);
+        this._oContainer.save().then(function () {
+          MessageToast.show("Variants managed successfully!");
+        }).catch(function (oError) {
+          MessageToast.show("Error managing variants:" + oError.message);
+        });
+
+      },
+      _getTablePersonalizationData: function () {
+        var oTable = oController.getView().byId("idFieldMonTable");
+        var aColumns = oTable.getColumns();
+        var aVisibleColumns = [];
+
+        aColumns.forEach(function (oColumn) {
+          aVisibleColumns.push({
+            id: oColumn.getId(),
+            visible: oColumn.getVisible(),
+            width: oColumn.getWidth(),
+            sortProperty: oColumn.getSortProperty(),
+            sorted: oColumn.getSorted(),
+            sortOrder: oColumn.getSortOrder()
+          });
+        });
+        return {
+          columns: aVisibleColumns
+        }
+      },
       _registerForP13n: function () {
         debugger;
         const oTable = oController.getView().byId("idFieldMonTable");
@@ -154,7 +372,7 @@ sap.ui.define(
         },
         {
           key: "descrepancy_col",
-          label: "Descrepancy",
+          label: "Discrepancy",
           path: "Descrepancy"
         },
         {
@@ -498,12 +716,17 @@ sap.ui.define(
         oController.getView().byId("idFieldMonTable").getModel().refresh(true);
       },
       onPressSoResults: function () {
+        debugger;
         var oTable = oController.getView().byId("idFieldMonTable");
         var aSelectedIndices = oTable.getSelectedIndices();
         var aSelectedRows = aSelectedIndices.map(iIndex => oTable.getContextByIndex(iIndex).getObject());
         if (aSelectedRows.length) {
           oRouter.navTo("SOForm", {
-            OrderID: aSelectedRows[0].ORDER_NO
+            OrderID: aSelectedRows[0].ORDER_NO,
+            OpCode: aSelectedRows[0].OpCode
+            // "?query": {
+            //   OpCode: aSelectedRows[0].OpCode
+            // }
           });
         } else {
           MessageToast.show(oResourceBundle.getText("selectLineItemMessage"));

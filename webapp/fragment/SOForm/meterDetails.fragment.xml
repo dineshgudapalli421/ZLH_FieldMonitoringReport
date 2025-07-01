@@ -12,14 +12,14 @@
         rows="{path: 'CTPTModel>/SoForm'}"
     >
         <columns>
-            <Column width="170px">
-                <m:Label text="Order Number" />
+            <Column width="170px">                
+                <m:Label text="Order Number"/>                
                 <template>
                     <m:Text text="{CTPTModel>OrderID}" />
                 </template>
             </Column>
             <Column width="170px">
-                <m:Label text="Operation" />
+                <m:Label text="Operation" />                 
                 <template>
                     <m:Text text="{CTPTModel>Operation}" />
                 </template>
@@ -357,112 +357,139 @@
                 </template>
             </Column>
             <!-- added fields on 25-o6-2025 -->
-            <Column width="170px">
-                <m:Label text="OLD_METERNUM_CORECTD" />
+            <Column
+                width="170px"
+            >
+                <m:Label text="Rev_Num" />
                 <template>
-                    <m:Text text="{CTPTModel>OLD_METERNUM_CORECTD}" />
+                    <m:Text text="{CTPTModel>Rev_Num}" />
                 </template>
             </Column>
             <Column width="170px">
-                <m:Label text="NEW_METERNUM_CORECTD" />
+                <m:Label text="OLD_METERNUM_CORECTD" class="statusColumn"/>
                 <template>
-                    <m:Text text="{CTPTModel>NEW_METERNUM_CORECTD}" />
+                    <!-- <m:Text text="{CTPTModel>OLD_METERNUM_CORECTD}" /> -->
+                    <m:Input id="idOLD_METERNUM_CORECTD" value="{CTPTModel>OLD_METERNUM_CORECTD}" maxLength="18"></m:Input>
                 </template>
             </Column>
             <Column width="170px">
-                <m:Label text="NEW_DELIVERED_READ_KWH_CORECTD" />
+                <m:Label text="NEW_METERNUM_CORECTD" class="statusColumn"/>
                 <template>
-                    <m:Text text="{CTPTModel>NEW_DELIVERED_READ_KWH_CORECTD}" />
+                    <!-- <m:Text text="{CTPTModel>NEW_METERNUM_CORECTD}" /> -->
+                    <m:Input id="idNEW_METERNUM_CORECTD" value="{CTPTModel>NEW_METERNUM_CORECTD}" maxLength="18"></m:Input>
                 </template>
             </Column>
             <Column width="170px">
-                <m:Label text="NEW_DELIVERED_READ_KW_CORECTD" />
+                <m:Label text="NEW_DELIVERED_READ_KWH_CORECTD" class="statusColumn"/>
                 <template>
-                    <m:Text text="{CTPTModel>NEW_DELIVERED_READ_KW_CORECTD}" />
+                    <!-- <m:Text text="{CTPTModel>NEW_DELIVERED_READ_KWH_CORECTD}" /> -->
+                    <m:Input id="idNEW_DELIVERED_READ_KWH_CORECTD" value="{CTPTModel>NEW_DELIVERED_READ_KWH_CORECTD}" maxLength="20">
+                    </m:Input>
                 </template>
             </Column>
             <Column width="170px">
-                <m:Label text="NEW_DELIVERED_READ_KVA_CORECTD" />
+                <m:Label text="NEW_DELIVERED_READ_KW_CORECTD" class="statusColumn"/>
                 <template>
-                    <m:Text text="{CTPTModel>NEW_DELIVERED_READ_KVA_CORECTD}" />
+                    <!-- <m:Text text="{CTPTModel>NEW_DELIVERED_READ_KW_CORECTD}" /> -->
+                    <m:Input id="idNEW_DELIVERED_READ_KW_CORECTD" value="{CTPTModel>NEW_DELIVERED_READ_KW_CORECTD}" maxLength="20"></m:Input>
                 </template>
             </Column>
             <Column width="170px">
-                <m:Label text="NEW_RECEIVED_READ_KWH_CORECTD" />
+                <m:Label text="NEW_DELIVERED_READ_KVA_CORECTD" class="statusColumn" />
                 <template>
-                    <m:Text text="{CTPTModel>NEW_RECEIVED_READ_KWH_CORECTD}" />
+                    <!-- <m:Text text="{CTPTModel>NEW_DELIVERED_READ_KVA_CORECTD}" /> -->
+                    <m:Input id="idNEW_DELIVERED_READ_KVA_CORECTD" value="{CTPTModel>NEW_DELIVERED_READ_KVA_CORECTD}" maxLength="20"></m:Input>
                 </template>
             </Column>
             <Column width="170px">
-                <m:Label text="NEW_RECEIVED_READ_KW_CORECTD" />
+                <m:Label text="NEW_RECEIVED_READ_KWH_CORECTD" class="statusColumn"/>
                 <template>
-                    <m:Text text="{CTPTModel>NEW_RECEIVED_READ_KW_CORECTD}" />
+                    <!-- <m:Text text="{CTPTModel>NEW_RECEIVED_READ_KWH_CORECTD}" /> -->
+                    <m:Input id="idNEW_RECEIVED_READ_KWH_CORECTD" value="{CTPTModel>NEW_RECEIVED_READ_KWH_CORECTD}" maxLength="20"></m:Input>
                 </template>
             </Column>
             <Column width="170px">
-                <m:Label text="NEW_RECEIVED_READ_KVA_CORECTD" />
+                <m:Label text="NEW_RECEIVED_READ_KW_CORECTD" class="statusColumn"/>
                 <template>
-                    <m:Text text="{CTPTModel>NEW_RECEIVED_READ_KVA_CORECTD}" />
+                    <!-- <m:Text text="{CTPTModel>NEW_RECEIVED_READ_KW_CORECTD}" /> -->
+                    <m:Input id="idNEW_RECEIVED_READ_KW_CORECTD" value="{CTPTModel>NEW_RECEIVED_READ_KW_CORECTD}" maxLength="20"></m:Input>
                 </template>
             </Column>
             <Column width="170px">
-                <m:Label text="NEW_COMM_EQUIP_CORECTD" />
+                <m:Label text="NEW_RECEIVED_READ_KVA_CORECTD" class="statusColumn"/>
                 <template>
-                    <m:Text text="{CTPTModel>NEW_COMM_EQUIP_CORECTD}" />
+                    <!-- <m:Text text="{CTPTModel>NEW_RECEIVED_READ_KVA_CORECTD}" /> -->
+                    <m:Input id="idNEW_RECEIVED_READ_KVA_CORECTD" value="{CTPTModel>NEW_RECEIVED_READ_KVA_CORECTD}" maxLength="20"></m:Input>
                 </template>
             </Column>
             <Column width="170px">
-                <m:Label text="NEW_COMM_ADDR_CORECTD" />
+                <m:Label text="NEW_COMM_EQUIP_CORECTD" class="statusColumn"/>
                 <template>
-                    <m:Text text="{CTPTModel>NEW_COMM_ADDR_CORECTD}" />
+                    <!-- <m:Text text="{CTPTModel>NEW_COMM_EQUIP_CORECTD}" /> -->
+                    <m:Input id="idNEW_COMM_EQUIP_CORECTD" value="{CTPTModel>NEW_COMM_EQUIP_CORECTD}" maxLength="8"></m:Input>
                 </template>
             </Column>
             <Column width="170px">
-                <m:Label text="OLD_DELIVERED_READ_KWH_CORECTD" />
+                <m:Label text="NEW_COMM_ADDR_CORECTD" class="statusColumn"/>
                 <template>
-                    <m:Text text="{CTPTModel>OLD_DELIVERED_READ_KWH_CORECTD}" />
+                    <!-- <m:Text text="{CTPTModel>NEW_COMM_ADDR_CORECTD}" /> -->
+                    <m:Input id="idNEW_COMM_ADDR_CORECTD" value="{CTPTModel>NEW_COMM_ADDR_CORECTD}" maxLength="100"></m:Input>
                 </template>
             </Column>
             <Column width="170px">
-                <m:Label text="OLD_DELIVERED_READ_KW_CORECTD" />
+                <m:Label text="OLD_DELIVERED_READ_KWH_CORECTD" class="statusColumn"/>
                 <template>
-                    <m:Text text="{CTPTModel>OLD_DELIVERED_READ_KW_CORECTD}" />
+                    <!-- <m:Text text="{CTPTModel>OLD_DELIVERED_READ_KWH_CORECTD}" /> -->
+                    <m:Input id="idOLD_DELIVERED_READ_KWH_CORECTD" value="{CTPTModel>OLD_DELIVERED_READ_KWH_CORECTD}" maxLength="20"></m:Input>
                 </template>
             </Column>
             <Column width="170px">
-                <m:Label text="OLD_DELIVERED_READ_KVA_CORECTD" />
+                <m:Label text="OLD_DELIVERED_READ_KW_CORECTD" class="statusColumn"/>
                 <template>
-                    <m:Text text="{CTPTModel>OLD_DELIVERED_READ_KVA_CORECTD}" />
+                    <!-- <m:Text text="{CTPTModel>OLD_DELIVERED_READ_KW_CORECTD}" /> -->
+                    <m:Input id="idOLD_DELIVERED_READ_KW_CORECTD" value="{CTPTModel>OLD_DELIVERED_READ_KW_CORECTD}" maxLength="20"></m:Input>
                 </template>
             </Column>
             <Column width="170px">
-                <m:Label text="OLD_RECEIVED_READ_KWH_CORECTD" />
+                <m:Label text="OLD_DELIVERED_READ_KVA_CORECTD" class="statusColumn"/>
                 <template>
-                    <m:Text text="{CTPTModel>OLD_RECEIVED_READ_KWH_CORECTD}" />
+                    <!-- <m:Text text="{CTPTModel>OLD_DELIVERED_READ_KVA_CORECTD}" /> -->
+                    <m:Input id="idOLD_DELIVERED_READ_KVA_CORECTD" value="{CTPTModel>OLD_DELIVERED_READ_KVA_CORECTD}" maxLength="20"></m:Input>
                 </template>
             </Column>
             <Column width="170px">
-                <m:Label text="OLD_RECEIVED_READ_KW_CORECTD" />
+                <m:Label text="OLD_RECEIVED_READ_KWH_CORECTD" class="statusColumn"/>
                 <template>
-                    <m:Text text="{CTPTModel>OLD_RECEIVED_READ_KW_CORECTD}" />
+                    <!-- <m:Text text="{CTPTModel>OLD_RECEIVED_READ_KWH_CORECTD}" /> -->
+                    <m:Input id="idOLD_RECEIVED_READ_KWH_CORECTD" value="{CTPTModel>OLD_RECEIVED_READ_KWH_CORECTD}" maxLength="20"></m:Input>
                 </template>
             </Column>
             <Column width="170px">
-                <m:Label text="OLD_RECEIVED_READ_KVA_CORECTD" />
+                <m:Label text="OLD_RECEIVED_READ_KW_CORECTD" class="statusColumn"/>
                 <template>
-                    <m:Text text="{CTPTModel>OLD_RECEIVED_READ_KVA_CORECTD}" />
+                    <!-- <m:Text text="{CTPTModel>OLD_RECEIVED_READ_KW_CORECTD}" /> -->
+                    <m:Input id="idOLD_RECEIVED_READ_KW_CORECTD" value="{CTPTModel>OLD_RECEIVED_READ_KW_CORECTD}" maxLength="20"></m:Input>
                 </template>
             </Column>
             <Column width="170px">
-                <m:Label text="OLD_COMM_EQUIP_CORECTD" />
+                <m:Label text="OLD_RECEIVED_READ_KVA_CORECTD" class="statusColumn" />
                 <template>
-                    <m:Text text="{CTPTModel>OLD_COMM_EQUIP_CORECTD}" />
+                    <!-- <m:Text text="{CTPTModel>OLD_RECEIVED_READ_KVA_CORECTD}" /> -->
+                    <m:Input id="idOLD_RECEIVED_READ_KVA_CORECTD" value="{CTPTModel>OLD_RECEIVED_READ_KVA_CORECTD}" maxLength="20"></m:Input>
                 </template>
             </Column>
             <Column width="170px">
-                <m:Label text="OLD_COMM_ADDR_CORECTD" />
+                <m:Label text="OLD_COMM_EQUIP_CORECTD" class="statusColumn"/>
                 <template>
-                    <m:Text text="{CTPTModel>OLD_COMM_ADDR_CORECTD}" />
+                    <!-- <m:Text text="{CTPTModel>OLD_COMM_EQUIP_CORECTD}" /> -->
+                    <m:Input id="idOLD_COMM_EQUIP_CORECTD" value="{CTPTModel>OLD_COMM_EQUIP_CORECTD}" maxLength="8"></m:Input>
+                </template>
+            </Column>
+            <Column width="170px">
+                <m:Label text="OLD_COMM_ADDR_CORECTD" class="statusColumn"/>
+                <template>
+                    <!-- <m:Text text="{CTPTModel>OLD_COMM_ADDR_CORECTD}" /> -->
+                    <m:Input id="idOLD_COMM_ADDR_CORECTD" value="{CTPTModel>OLD_COMM_ADDR_CORECTD}" maxLength="100"></m:Input>
                 </template>
             </Column>
         </columns>

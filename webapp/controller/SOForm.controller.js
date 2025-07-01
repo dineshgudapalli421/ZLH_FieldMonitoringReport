@@ -40,7 +40,11 @@ sap.ui.define(
         // });
       },
       _onRouteMatch: function (oEvent) {
+        debugger;
         var sOrderNum = oEvent.getParameter("arguments").OrderID;
+        var sOpCode = oEvent.getParameter("arguments").OpCode;
+        oController._orderNumber = sOrderNum;
+        oController._opCode = sOpCode;
         var oModel = oController.getView().getModel("CTPTModel");
         if (sOrderNum) {
           // oController.getView().byId("idTableCTPT").bindRows({
@@ -103,6 +107,80 @@ sap.ui.define(
       },
       onSubmitFieldMonList: function (oEvent) {
         debugger;
+      },
+      onSave: function (oEvent) {
+        debugger;
+        var oMeterset = [], oCTPT = [], oMeterDetails = [], oCTPTDetails = [];
+        var oModel = oController.getView().getModel("CTPTModel");
+        oMeterset = oModel.getProperty("/SoForm");
+        oCTPT = oModel.getProperty("/CTPT");
+        for (var i = 0; i < oMeterset.length; i++) {
+          oMeterDetails.push({
+            "Rev_Num": oMeterset[i].Rev_Num,
+            "Old_Meternum_Corectd": oMeterset[i].OLD_METERNUM_CORECTD,
+            "New_Meternum_Corectd": oMeterset[i].NEW_METERNUM_CORECTD,
+            "New_Delivered_Read_KWH_Corectd": oMeterset[i].NEW_DELIVERED_READ_KWH_CORECTD,
+            "New_Delivered_Read_KW_Corectd": oMeterset[i].NEW_DELIVERED_READ_KW_CORECTD,
+            "New_Delivered_Read_KVA_Corectd": oMeterset[i].NEW_DELIVERED_READ_KVA_CORECTD,
+            "New_Received_Read_KWH_Corectd": oMeterset[i].NEW_RECEIVED_READ_KWH_CORECTD,
+            "New_Received_Read_KW_Corectd": oMeterset[i].NEW_RECEIVED_READ_KW_CORECTD,
+            "New_Received_Read_KVA_Corectd": oMeterset[i].NEW_RECEIVED_READ_KVA_CORECTD,
+            "New_Comm_Equip_Corectd": oMeterset[i].NEW_COMM_EQUIP_CORECTD,
+            "New_Comm_Addr_Corectd": oMeterset[i].NEW_COMM_ADDR_CORECTD,
+            "Old_Delivered_Read_KWH_Corectd": oMeterset[i].OLD_DELIVERED_READ_KWH_CORECTD,
+            "Old_Delivered_Read_KW_Corectd": oMeterset[i].OLD_DELIVERED_READ_KW_CORECTD,
+            "Old_Delivered_Read_KVA_Corectd": oMeterset[i].OLD_DELIVERED_READ_KVA_CORECTD,
+            "Old_Received_Read_KWH_Corectd": oMeterset[i].OLD_RECEIVED_READ_KWH_CORECTD,
+            "Old_Received_Read_KW_Corectd": oMeterset[i].OLD_RECEIVED_READ_KW_CORECTD,
+            "Old_Received_Read_KVA_Corectd": oMeterset[i].OLD_RECEIVED_READ_KVA_CORECTD,
+            "Old_Comm_Equip_Corectd": oMeterset[i].OLD_COMM_EQUIP_CORECTD,
+            "Old_Comm_Addr_Corectd": oMeterset[i].OLD_COMM_ADDR_CORECTD
+          });
+        }
+
+        for (var j = 0; j < oCTPT.length; j++) {
+          oCTPTDetails.push({
+            "Rev_Num": oCTPT[j].Rev_Num,
+            "NewSerialnumber_Corectd": oCTPT[j].NEWSERIALNUMBER_CORECTD,
+            "OldSerialnumber_Corectd": oCTPT[j].OLDSERIALNUMBER_CORECTD,
+            "Denominator_Corectd": oCTPT[j].DENOMINATOR_CORECTD,
+            "Numerator_Corectd": oCTPT[j].NUMERATOR_CORECTD
+          });
+        }
+
+        var oPayload = {
+          "ORDER_NO": oController._orderNumber,
+          "OP_CODE": oController._opCode,
+          "NavOrderHeaderToMeterData": oMeterDetails,
+          "NavOrderHeaderToCtptdata": oCTPTDetails
+        };
+        if (oMeterset.length > 0 || oCTPT.length > 0) {
+          oOEBoDataModel.create("/OrderHeaderSet", oPayload, {
+            success: function (data) {
+              debugger;
+              MessageBox.success("Data posted successfully...");
+              window.location.reload();
+            },
+            error: function (oError) {
+              debugger;
+              var oMessage;
+              if (oError.responseText.startsWith("<")) {
+                var parser = new DOMParser();
+                var xmlDoc = parser.parseFromString(oError.responseText, "text/xml");
+                oMessage = xmlDoc.getElementsByTagName("message")[0].childNodes[0].nodeValue;
+              } else {
+                var oResponseText = oError.responseText;
+                var sParsedResponse = JSON.parse(oResponseText);
+                oMessage = sParsedResponse.error.message.value;
+              }
+              MessageBox.error(oMessage);
+            }
+          });
+        }
+        else {
+          return MessageBox.error("There are no records!");
+        }
+
       }
     });
   }

@@ -60,7 +60,8 @@
                             text="Products"
                         />
                         <m:ToolbarSeparator/>
-                         <!-- <vm:VariantManagement id="p13nVm" for="persoTable"/> -->
+                         <vm:VariantManagement id="idVManagement" for="persoTable"
+                         select="onSelectVariant" save="onSaveVariant" manage="onManageVariant"/>
                         <m:ToolbarSpacer />
                         <m:Button
                             editable="{= ${FieldMonitorModel>/aFieldMonList}.length}"
@@ -115,6 +116,22 @@
                             <m:Label text="{FieldMonitorModel>Notification}" />
                         </template>
                     </Column>
+                    <Column
+                        id="review_col" 
+                    sortProperty="{i18n>label.review}" headerMenu="menu" resizable="true" 
+                    autoResizable="true" width="11rem"
+                        hAlign="Center"
+                    >
+                        <m:Label text="{i18n>label.review}" />
+                        <template>
+                            <m:CheckBox
+                                selected="{
+								path: 'FieldMonitorModel>REVIEW'
+							}"
+                                editable="{FieldMonitorModel>REVIEW_EDITABLE}"
+                            />
+                        </template>
+                    </Column>
                     <Column id="ActivityType_col" 
                     sortProperty="{i18n>label.activityType}" headerMenu="menu" resizable="true" 
                     autoResizable="true" width="5rem">
@@ -135,14 +152,6 @@
                             <!-- <m:Label text="{FieldMonitorModel>ORDER_NO}"/> -->
                         </template>
                     </Column>
-                    <Column id="Opcode_col" 
-                    sortProperty="{i18n>label.opCode}" headerMenu="menu" resizable="true" 
-                    autoResizable="true" width="11rem">
-                        <m:Label text="{i18n>label.opCode}" />
-                        <template>
-                            <m:Label text="{FieldMonitorModel>OpCode}" />
-                        </template>
-                    </Column>
                      <Column id="opDescription_col" 
                     sortProperty="{i18n>label.opDescription}" headerMenu="menu" resizable="true" 
                     autoResizable="true" width="11rem">
@@ -150,7 +159,119 @@
                         <template>
                             <m:Label text="{FieldMonitorModel>OpDescription}" />
                         </template>
-                    </Column>                    
+                    </Column>  
+                    <Column id="billingClass_col" 
+                    sortProperty="{i18n>label.billingClass}" headerMenu="menu" resizable="true" 
+                    autoResizable="true" width="12rem">
+                        <m:Label text="{i18n>label.billingClass}" />
+                        <template>
+                            <m:Label text="{FieldMonitorModel>BILLING_CLASS}" />
+                        </template>
+                    </Column> 
+                    <Column id="fieldCompletionDt_col" 
+                    sortProperty="{i18n>label.fieldCompletionDt}" headerMenu="menu" resizable="true" 
+                    autoResizable="true" width="12rem">
+                        <m:Label text="{i18n>label.fieldCompletionDt}" />
+                        <template>
+                            <m:Label text="{FieldMonitorModel>FIELD_COMP_DT}" />
+                        </template>
+                    </Column>
+                    <Column
+                        id="address_col" 
+                    sortProperty="{i18n>label.address}" headerMenu="menu" resizable="true" 
+                    autoResizable="true" width="18rem"
+                        hAlign="Center"
+                    >
+                        <m:Label text="{i18n>label.address}" />
+                        <template>
+                            <m:Label text="{FieldMonitorModel>ADDRESS}" />
+                        </template>
+                    </Column> 
+                    <Column
+                        id="meterNo_col" 
+                    sortProperty="{i18n>label.meterNo}" headerMenu="menu" resizable="true" 
+                    autoResizable="true" width="11rem"
+                        hAlign="Center"
+                    >
+                        <m:Label text="{i18n>label.meterNo}" />
+                        <template>
+                            <m:Label text="{FieldMonitorModel>METER_NO}" />
+                        </template>
+                    </Column>
+                    <Column
+                        id="ctpt_col" 
+                    sortProperty="{i18n>label.ctpt}" headerMenu="menu" resizable="true" 
+                    autoResizable="true" width="11rem"
+                        hAlign="Center"
+                    >
+                        <m:Label text="{i18n>label.ctpt}" />
+                        <template>
+                            <m:Label text="{FieldMonitorModel>CTPT}" />
+                        </template>
+                    </Column> 
+                    <Column
+                        id="activity_col" 
+                    sortProperty="{i18n>label.activity}" headerMenu="menu" resizable="true" 
+                    autoResizable="true" width="11rem"
+                        hAlign="Center"
+                    >
+                        <m:Label text="{i18n>label.activity}" />
+                        <template>
+                            <m:Label text="{FieldMonitorModel>ACTIVITY_DESC}" />
+                        </template>
+                    </Column>
+                    <Column
+                       id="mainActivity_col" 
+                    sortProperty="{i18n>label.mainActivity}" headerMenu="menu" resizable="true" 
+                    autoResizable="true" width="11rem"
+                        hAlign="Center"
+                    >
+                        <m:Label text="{i18n>label.mainActivity}" />
+                        <template>
+                            <m:Label text="{FieldMonitorModel>MAIN_ACTIVITY}" />
+                        </template>
+                    </Column>
+                    <Column
+                        id="inLogStatus_col" 
+                    sortProperty="{i18n>label.inLogStatus}" headerMenu="menu" resizable="true" 
+                    autoResizable="true" width="11rem"
+                        hAlign="Center"
+                    >
+                        <m:Label text="{i18n>label.inLogStatus}" />
+                        <template>
+                            <m:Label text="{FieldMonitorModel>InLog}" />
+                        </template>
+                    </Column>
+                    <Column
+                        id="descrepancy_col" 
+                    sortProperty="{i18n>label.descrepancy}" headerMenu="menu" resizable="true" 
+                    autoResizable="true" width="11rem"
+                        hAlign="Center"
+                    >
+                        <m:Label text="{i18n>label.descrepancy}" />
+                        <template>
+                            <m:CheckBox selected="{FieldMonitorModel>Descrepancy}"/>
+                        </template>
+                    </Column>
+                    <Column
+                        id="outLogException_col" 
+                    sortProperty="{i18n>label.outLogException}" headerMenu="menu" resizable="true" 
+                    autoResizable="true" width="11rem"
+                        hAlign="Center"
+                    >
+                        <m:Label text="{i18n>label.outLogException}" />
+                        <template>
+                            <m:Label text="{FieldMonitorModel>OutLog}" />
+                        </template>
+                    </Column>
+                    <Column id="Opcode_col" 
+                    sortProperty="{i18n>label.opCode}" headerMenu="menu" resizable="true" 
+                    autoResizable="true" width="11rem">
+                        <m:Label text="{i18n>label.opCode}" />
+                        <template>
+                            <m:Label text="{FieldMonitorModel>OpCode}" />
+                        </template>
+                    </Column>                
                     <Column id="esa_col" 
                     sortProperty="{i18n>label.esa}" headerMenu="menu" resizable="true" 
                     autoResizable="true" width="5rem">
@@ -190,15 +311,7 @@
                         <template>
                             <m:Label text="{FieldMonitorModel>Anlage}" />
                         </template>
-                    </Column>
-                    <Column id="billingClass_col" 
-                    sortProperty="{i18n>label.billingClass}" headerMenu="menu" resizable="true" 
-                    autoResizable="true" width="12rem">
-                        <m:Label text="{i18n>label.billingClass}" />
-                        <template>
-                            <m:Label text="{FieldMonitorModel>BILLING_CLASS}" />
-                        </template>
-                    </Column>                    
+                    </Column>                   
                      <Column
                         id="functionalLocation_col" 
                     sortProperty="{i18n>label.functionalLocation}" headerMenu="menu" resizable="true" 
@@ -208,25 +321,6 @@
                         <m:Label text="{i18n>label.functionalLocation}" />
                         <template>
                             <m:Label text="{FieldMonitorModel>Functional_Loc}" />
-                        </template>
-                    </Column>
-                    <Column id="fieldCompletionDt_col" 
-                    sortProperty="{i18n>label.fieldCompletionDt}" headerMenu="menu" resizable="true" 
-                    autoResizable="true" width="12rem">
-                        <m:Label text="{i18n>label.fieldCompletionDt}" />
-                        <template>
-                            <m:Label text="{FieldMonitorModel>FIELD_COMP_DT}" />
-                        </template>
-                    </Column>
-                    <Column
-                        id="address_col" 
-                    sortProperty="{i18n>label.address}" headerMenu="menu" resizable="true" 
-                    autoResizable="true" width="18rem"
-                        hAlign="Center"
-                    >
-                        <m:Label text="{i18n>label.address}" />
-                        <template>
-                            <m:Label text="{FieldMonitorModel>ADDRESS}" />
                         </template>
                     </Column>
                     <Column
@@ -241,28 +335,6 @@
                         </template>
                     </Column>
                     <Column
-                        id="meterNo_col" 
-                    sortProperty="{i18n>label.meterNo}" headerMenu="menu" resizable="true" 
-                    autoResizable="true" width="11rem"
-                        hAlign="Center"
-                    >
-                        <m:Label text="{i18n>label.meterNo}" />
-                        <template>
-                            <m:Label text="{FieldMonitorModel>METER_NO}" />
-                        </template>
-                    </Column>
-                    <Column
-                        id="ctpt_col" 
-                    sortProperty="{i18n>label.ctpt}" headerMenu="menu" resizable="true" 
-                    autoResizable="true" width="11rem"
-                        hAlign="Center"
-                    >
-                        <m:Label text="{i18n>label.ctpt}" />
-                        <template>
-                            <m:Label text="{FieldMonitorModel>CTPT}" />
-                        </template>
-                    </Column>
-                    <Column
                         id="orderType_col" 
                     sortProperty="{i18n>label.orderType}" headerMenu="menu" resizable="true" 
                     autoResizable="true" width="11rem"
@@ -271,17 +343,6 @@
                         <m:Label text="{i18n>label.orderType}" />
                         <template>
                             <m:Label text="{FieldMonitorModel>OT}" />
-                        </template>
-                    </Column>
-                    <Column
-                        id="activity_col" 
-                    sortProperty="{i18n>label.activity}" headerMenu="menu" resizable="true" 
-                    autoResizable="true" width="11rem"
-                        hAlign="Center"
-                    >
-                        <m:Label text="{i18n>label.activity}" />
-                        <template>
-                            <m:Label text="{FieldMonitorModel>ACTIVITY_DESC}" />
                         </template>
                     </Column>
                     <Column
@@ -307,50 +368,6 @@
                         </template>
                     </Column>
                     <Column
-                        id="descrepancy_col" 
-                    sortProperty="{i18n>label.descrepancy}" headerMenu="menu" resizable="true" 
-                    autoResizable="true" width="11rem"
-                        hAlign="Center"
-                    >
-                        <m:Label text="{i18n>label.descrepancy}" />
-                        <template>
-                            <m:CheckBox selected="{FieldMonitorModel>Descrepancy}"/>
-                        </template>
-                    </Column>
-                    <Column
-                       id="mainActivity_col" 
-                    sortProperty="{i18n>label.mainActivity}" headerMenu="menu" resizable="true" 
-                    autoResizable="true" width="11rem"
-                        hAlign="Center"
-                    >
-                        <m:Label text="{i18n>label.mainActivity}" />
-                        <template>
-                            <m:Label text="{FieldMonitorModel>MAIN_ACTIVITY}" />
-                        </template>
-                    </Column>
-                    <Column
-                        id="inLogStatus_col" 
-                    sortProperty="{i18n>label.inLogStatus}" headerMenu="menu" resizable="true" 
-                    autoResizable="true" width="11rem"
-                        hAlign="Center"
-                    >
-                        <m:Label text="{i18n>label.inLogStatus}" />
-                        <template>
-                            <m:Label text="{FieldMonitorModel>InLog}" />
-                        </template>
-                    </Column>
-                    <Column
-                        id="outLogException_col" 
-                    sortProperty="{i18n>label.outLogException}" headerMenu="menu" resizable="true" 
-                    autoResizable="true" width="11rem"
-                        hAlign="Center"
-                    >
-                        <m:Label text="{i18n>label.outLogException}" />
-                        <template>
-                            <m:Label text="{FieldMonitorModel>OutLog}" />
-                        </template>
-                    </Column>
-                    <Column
                         id="newMeterLocation_col" 
                     sortProperty="{i18n>label.newMeterLocation}" headerMenu="menu" resizable="true" 
                     autoResizable="true" width="11rem"
@@ -359,22 +376,6 @@
                         <m:Label text="{i18n>label.newMeterLocation}" />
                         <template>
                             <m:Label text="{FieldMonitorModel>NEW_METER_LOC}" />
-                        </template>
-                    </Column>
-                    <Column
-                        id="review_col" 
-                    sortProperty="{i18n>label.review}" headerMenu="menu" resizable="true" 
-                    autoResizable="true" width="11rem"
-                        hAlign="Center"
-                    >
-                        <m:Label text="{i18n>label.review}" />
-                        <template>
-                            <m:CheckBox
-                                selected="{
-								path: 'FieldMonitorModel>REVIEW'
-							}"
-                                editable="{FieldMonitorModel>REVIEW_EDITABLE}"
-                            />
                         </template>
                     </Column>
                     <Column

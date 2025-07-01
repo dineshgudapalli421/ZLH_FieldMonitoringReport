@@ -129,36 +129,49 @@
                 width="9rem"
                 hAlign="Center"
             >
-                <m:Label text="NEWSERIALNUMBER_CORECTD" />
+                <m:Label text="Rev_Num" />
                 <template>
-                    <m:Text text="{CTPTModel>NEWSERIALNUMBER_CORECTD}" />
+                    <m:Text text="{CTPTModel>Rev_Num}" />
                 </template>
             </Column>
             <Column
-                width="9rem"
+                width="15rem"
                 hAlign="Center"
             >
-                <m:Label text="OLDSERIALNUMBER_CORECTD" />
+                <m:Label text="NEWSERIALNUMBER_CORECTD" class="statusColumn"/>
                 <template>
-                    <m:Text text="{CTPTModel>OLDSERIALNUMBER_CORECTD}" />
+                    <!-- <m:Text text="{CTPTModel>NEWSERIALNUMBER_CORECTD}"/> -->
+                    <m:Input id="idNEWSERIALNUMBER_CORECTD" value="{CTPTModel>NEWSERIALNUMBER_CORECTD}" maxLength="20"></m:Input>
                 </template>
             </Column>
             <Column
-                width="9rem"
+                width="15rem"
                 hAlign="Center"
             >
-                <m:Label text="DENOMINATOR_CORECTD" />
+                <m:Label text="OLDSERIALNUMBER_CORECTD" class="statusColumn" />
                 <template>
-                    <m:Text text="{CTPTModel>DENOMINATOR_CORECTD}" />
+                    <!-- <m:Text text="{CTPTModel>OLDSERIALNUMBER_CORECTD}" /> -->
+                    <m:Input id="idOLDSERIALNUMBER_CORECTD" value="{CTPTModel>OLDSERIALNUMBER_CORECTD}" maxLength="20"></m:Input>
                 </template>
             </Column>
             <Column
-                width="9rem"
+                width="15rem"
+                hAlign="Center" 
+            >
+                <m:Label text="DENOMINATOR_CORECTD" class="statusColumn"/>
+                <template>
+                    <!-- <m:Text text="{CTPTModel>DENOMINATOR_CORECTD}" /> -->
+                    <m:Input id="idDENOMINATOR_CORECTD" value="{CTPTModel>DENOMINATOR_CORECTD}" maxLength="20"></m:Input>
+                </template>
+            </Column>
+            <Column
+                width="15rem"
                 hAlign="Center"
             >
-                <m:Label text="NUMERATOR_CORECTD" />
+                <m:Label text="NUMERATOR_CORECTD" class="statusColumn"/>
                 <template>
-                    <m:Text text="{CTPTModel>NUMERATOR_CORECTD}" />
+                    <!-- <m:Text text="{CTPTModel>NUMERATOR_CORECTD}" /> -->
+                    <m:Input id="idNUMERATOR_CORECTD" value="{CTPTModel>NUMERATOR_CORECTD}" maxLength="20"></m:Input>
                 </template>
             </Column>
         </columns>

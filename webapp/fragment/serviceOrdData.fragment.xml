@@ -3,6 +3,7 @@
     xmlns:core="sap.ui.core"
     xmlns:l="sap.ui.layout"
     xmlns:f="sap.ui.layout.form"
+    xmlns:mvc="sap.ui.core.mvc"
 >
     <f:SimpleForm
         editable="true"
@@ -31,7 +32,8 @@
                 tokenUpdate=".onOrderNoTokenUpdate"
                 submit="onSubmitOrderNumber"
                 valueHelpRequest=".onValueHelp"
-                suggestionItemSelected=".onOrderSuggestionItemPress"                
+                maxTokens="1600"
+                suggestionItemSelected=".onOrderSuggestionItemPress" 
                 suggestionRows="{
 				path: 'OEBmainService>/Service_OrderSet'
 			}"
@@ -49,12 +51,15 @@
                 </suggestionColumns>
                 <suggestionRows>
                     <ColumnListItem>
-                        <Label text="{OEBmainService>OrderId}" />
-                        <Label text="{OEBmainService>OrderType}" />
-                        <Label text="{OEBmainService>Description}" />
+                        <cells>
+                            <Label text="{OEBmainService>OrderId}" />
+                            <Label text="{OEBmainService>OrderType}" />
+                            <Label text="{OEBmainService>Description}" />
+                        </cells>                        
                     </ColumnListItem>
-                </suggestionRows>
+                </suggestionRows>                
             </MultiInput>
+
 
             <Label text="Order Type" />
             <MultiInput
