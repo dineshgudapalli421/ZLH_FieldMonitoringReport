@@ -42,9 +42,9 @@ sap.ui.define(
       _onRouteMatch: function (oEvent) {
         debugger;
         var sOrderNum = oEvent.getParameter("arguments").OrderID;
-        var sOpCode = oEvent.getParameter("arguments").OpCode;
+        var OPS_NO = oEvent.getParameter("arguments").OPSNo;
         oController._orderNumber = sOrderNum;
-        oController._opCode = sOpCode;
+        oController._OPS_NO = OPS_NO;
         var oModel = oController.getView().getModel("CTPTModel");
         if (sOrderNum) {
           // oController.getView().byId("idTableCTPT").bindRows({
@@ -117,40 +117,40 @@ sap.ui.define(
         for (var i = 0; i < oMeterset.length; i++) {
           oMeterDetails.push({
             "Rev_Num": oMeterset[i].Rev_Num,
-            "Old_Meternum_Corectd": oMeterset[i].OLD_METERNUM_CORECTD,
-            "New_Meternum_Corectd": oMeterset[i].NEW_METERNUM_CORECTD,
-            "New_Delivered_Read_KWH_Corectd": oMeterset[i].NEW_DELIVERED_READ_KWH_CORECTD,
-            "New_Delivered_Read_KW_Corectd": oMeterset[i].NEW_DELIVERED_READ_KW_CORECTD,
-            "New_Delivered_Read_KVA_Corectd": oMeterset[i].NEW_DELIVERED_READ_KVA_CORECTD,
-            "New_Received_Read_KWH_Corectd": oMeterset[i].NEW_RECEIVED_READ_KWH_CORECTD,
-            "New_Received_Read_KW_Corectd": oMeterset[i].NEW_RECEIVED_READ_KW_CORECTD,
-            "New_Received_Read_KVA_Corectd": oMeterset[i].NEW_RECEIVED_READ_KVA_CORECTD,
-            "New_Comm_Equip_Corectd": oMeterset[i].NEW_COMM_EQUIP_CORECTD,
-            "New_Comm_Addr_Corectd": oMeterset[i].NEW_COMM_ADDR_CORECTD,
-            "Old_Delivered_Read_KWH_Corectd": oMeterset[i].OLD_DELIVERED_READ_KWH_CORECTD,
-            "Old_Delivered_Read_KW_Corectd": oMeterset[i].OLD_DELIVERED_READ_KW_CORECTD,
-            "Old_Delivered_Read_KVA_Corectd": oMeterset[i].OLD_DELIVERED_READ_KVA_CORECTD,
-            "Old_Received_Read_KWH_Corectd": oMeterset[i].OLD_RECEIVED_READ_KWH_CORECTD,
-            "Old_Received_Read_KW_Corectd": oMeterset[i].OLD_RECEIVED_READ_KW_CORECTD,
-            "Old_Received_Read_KVA_Corectd": oMeterset[i].OLD_RECEIVED_READ_KVA_CORECTD,
-            "Old_Comm_Equip_Corectd": oMeterset[i].OLD_COMM_EQUIP_CORECTD,
-            "Old_Comm_Addr_Corectd": oMeterset[i].OLD_COMM_ADDR_CORECTD
+            "Old_Meternum_Corectd": oMeterset[i].Old_Meternum_Corectd,
+            "New_Meternum_Corectd": oMeterset[i].New_Meternum_Corectd,
+            "New_Delivered_Read_KWH_Corectd": oMeterset[i].New_Delivered_Read_KWH_Corectd,
+            "New_Delivered_Read_KW_Corectd": oMeterset[i].New_Delivered_Read_KW_Corectd,
+            "New_Delivered_Read_KVA_Corectd": oMeterset[i].New_Delivered_Read_KVA_Corectd,
+            "New_Received_Read_KWH_Corectd": oMeterset[i].New_Received_Read_KWH_Corectd,
+            "New_Received_Read_KW_Corectd": oMeterset[i].New_Received_Read_KW_Corectd,
+            "New_Received_Read_KVA_Corectd": oMeterset[i].New_Received_Read_KVA_Corectd,
+            "New_Comm_Equip_Corectd": oMeterset[i].New_Comm_Equip_Corectd,
+            "New_Comm_Addr_Corectd": oMeterset[i].New_Comm_Addr_Corectd,
+            "Old_Delivered_Read_KWH_Corectd": oMeterset[i].Old_Delivered_Read_KWH_Corectd,
+            "Old_Delivered_Read_KW_Corectd": oMeterset[i].Old_Delivered_Read_KW_Corectd,
+            "Old_Delivered_Read_KVA_Corectd": oMeterset[i].Old_Delivered_Read_KVA_Corectd,
+            "Old_Received_Read_KWH_Corectd": oMeterset[i].Old_Received_Read_KWH_Corectd,
+            "Old_Received_Read_KW_Corectd": oMeterset[i].Old_Received_Read_KW_Corectd,
+            "Old_Received_Read_KVA_Corectd": oMeterset[i].Old_Received_Read_KVA_Corectd,
+            "Old_Comm_Equip_Corectd": oMeterset[i].Old_Comm_Equip_Corectd,
+            "Old_Comm_Addr_Corectd": oMeterset[i].Old_Comm_Addr_Corectd
           });
         }
 
         for (var j = 0; j < oCTPT.length; j++) {
           oCTPTDetails.push({
             "Rev_Num": oCTPT[j].Rev_Num,
-            "NewSerialnumber_Corectd": oCTPT[j].NEWSERIALNUMBER_CORECTD,
-            "OldSerialnumber_Corectd": oCTPT[j].OLDSERIALNUMBER_CORECTD,
-            "Denominator_Corectd": oCTPT[j].DENOMINATOR_CORECTD,
-            "Numerator_Corectd": oCTPT[j].NUMERATOR_CORECTD
+            "NewSerialnumber_Corectd": oCTPT[j].NewSerialnumber_Corectd,
+            "OldSerialnumber_Corectd": oCTPT[j].OldSerialnumber_Corectd,
+            "Denominator_Corectd": oCTPT[j].Denominator_Corectd,
+            "Numerator_Corectd": oCTPT[j].Numerator_Corectd
           });
         }
 
         var oPayload = {
-          "ORDER_NO": oController._orderNumber,
-          "OP_CODE": oController._opCode,
+          "Order_No": oController._orderNumber,
+          "Ops_No": oController._OPS_NO,
           "NavOrderHeaderToMeterData": oMeterDetails,
           "NavOrderHeaderToCtptdata": oCTPTDetails
         };
@@ -159,7 +159,8 @@ sap.ui.define(
             success: function (data) {
               debugger;
               MessageBox.success("Data posted successfully...");
-              window.location.reload();
+              oModel.refresh(true);
+              //window.location.reload();
             },
             error: function (oError) {
               debugger;

@@ -9,6 +9,7 @@
     >
         <content>
             <PDFViewer
+                id="idPdfViewer"
                 source="{FieldMonitorModel>/sSourceSOFORM}"
                 isTrustedSource="true"
                 title="{i18n>SoFORMTitle}"

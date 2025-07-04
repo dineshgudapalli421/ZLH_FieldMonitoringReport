@@ -16,7 +16,7 @@
             >
                 <m:Label text="Eid" />
                 <template>
-                    <m:Text text="{CTPTModel>eid}" />
+                    <m:Text text="{CTPTModel>eid}" textAlign="Center"/>
                 </template>
             </Column>
             <Column
@@ -25,7 +25,7 @@
             >
                 <m:Label text="{i18n>orderNumber}" />
                 <template>
-                    <m:Text text="{CTPTModel>OrderID}" />
+                    <m:Text text="{CTPTModel>OrderID}" textAlign="Center"/>
                 </template>
             </Column>
             <Column
@@ -34,7 +34,7 @@
             >
                 <m:Label text="{i18n>oldEquipmentSerialNum}" />
                 <template>
-                    <m:Text text="{CTPTModel>Serialnumber}" />
+                    <m:Text text="{CTPTModel>Serialnumber}" textAlign="Center"/>
                 </template>
             </Column>
             <Column
@@ -43,7 +43,7 @@
             >
                 <m:Label text="{i18n>oldManufSerialNum}" />
                 <template>
-                    <m:Text text="{CTPTModel>Manufserialnumber}" />
+                    <m:Text text="{CTPTModel>Manufserialnumber}" textAlign="Center"/>
                 </template>
             </Column>
             <Column
@@ -52,7 +52,7 @@
             >
                 <m:Label text="{i18n>deviceCategory}" />
                 <template>
-                    <m:Text text="{CTPTModel>Devicecategory}" />
+                    <m:Text text="{CTPTModel>Devicecategory}"  textAlign="Center"/>
                 </template>
             </Column>
             <Column
@@ -64,7 +64,7 @@
                     <m:Text
                         text="{CTPTModel>Deviceremoval}"
                         wrapping="true"
-                    />
+                     textAlign="Center"/>
                 </template>
             </Column>
             <Column
@@ -73,7 +73,7 @@
             >
                 <m:Label text="{i18n>newEquipmentSerialNum}" />
                 <template>
-                    <m:Text text="{CTPTModel>Newserialnumber}" />
+                    <m:Text text="{CTPTModel>Newserialnumber}" textAlign="Center"/>
                 </template>
             </Column>
             <Column
@@ -82,7 +82,7 @@
             >
                 <m:Label text="{i18n>newManufSerialNum}" />
                 <template>
-                    <m:Text text="{CTPTModel>Newmanufserialnumber}" />
+                    <m:Text text="{CTPTModel>Newmanufserialnumber}"  textAlign="Center"/>
                 </template>
             </Column>
             <Column
@@ -94,7 +94,7 @@
                     <m:Text
                         text="{CTPTModel>Newdevicecategory}"
                         wrapping="true"
-                    />
+                     textAlign="Center"/>
                 </template>
             </Column>
             <Column
@@ -103,7 +103,7 @@
             >
                 <m:Label text="{i18n>newFuncClass}" />
                 <template>
-                    <m:Text text="{CTPTModel>newfuncclass}" />
+                    <m:Text text="{CTPTModel>newfuncclass}" textAlign="Center"/>
                 </template>
             </Column>
             <Column
@@ -112,7 +112,7 @@
             >
                 <m:Label text="{i18n>newTxWinDenom}" />
                 <template>
-                    <m:Text text="{CTPTModel>newtxwindenom}" />
+                    <m:Text text="{CTPTModel>newtxwindenom}" textAlign="Center"/>
                 </template>
             </Column>
             <Column
@@ -121,7 +121,7 @@
             >
                 <m:Label text="{i18n>newTxWinNumber}" />
                 <template>
-                    <m:Text text="{CTPTModel>Newtxwindnumber}" />
+                    <m:Text text="{CTPTModel>Newtxwindnumber}"  textAlign="Center"/>
                 </template>
             </Column>
             <!-- added columns @25-06-2025 -->
@@ -131,7 +131,7 @@
             >
                 <m:Label text="Rev_Num" />
                 <template>
-                    <m:Text text="{CTPTModel>Rev_Num}" />
+                    <m:Text text="{CTPTModel>Rev_Num}"  textAlign="Center"/>
                 </template>
             </Column>
             <Column
@@ -141,7 +141,7 @@
                 <m:Label text="NEWSERIALNUMBER_CORECTD" class="statusColumn"/>
                 <template>
                     <!-- <m:Text text="{CTPTModel>NEWSERIALNUMBER_CORECTD}"/> -->
-                    <m:Input id="idNEWSERIALNUMBER_CORECTD" value="{CTPTModel>NEWSERIALNUMBER_CORECTD}" maxLength="20"></m:Input>
+                    <m:Input id="idNEWSERIALNUMBER_CORECTD" value="{CTPTModel>NewSerialnumber_Corectd}" maxLength="20"></m:Input>
                 </template>
             </Column>
             <Column
@@ -151,7 +151,7 @@
                 <m:Label text="OLDSERIALNUMBER_CORECTD" class="statusColumn" />
                 <template>
                     <!-- <m:Text text="{CTPTModel>OLDSERIALNUMBER_CORECTD}" /> -->
-                    <m:Input id="idOLDSERIALNUMBER_CORECTD" value="{CTPTModel>OLDSERIALNUMBER_CORECTD}" maxLength="20"></m:Input>
+                    <m:Input id="idOLDSERIALNUMBER_CORECTD" value="{CTPTModel>OldSerialnumber_Corectd}" maxLength="20"></m:Input>
                 </template>
             </Column>
             <Column
@@ -161,7 +161,7 @@
                 <m:Label text="DENOMINATOR_CORECTD" class="statusColumn"/>
                 <template>
                     <!-- <m:Text text="{CTPTModel>DENOMINATOR_CORECTD}" /> -->
-                    <m:Input id="idDENOMINATOR_CORECTD" value="{CTPTModel>DENOMINATOR_CORECTD}" maxLength="20"></m:Input>
+                    <m:Input id="idDENOMINATOR_CORECTD" value="{CTPTModel>Denominator_Corectd}" maxLength="20"></m:Input>
                 </template>
             </Column>
             <Column
@@ -171,7 +171,7 @@
                 <m:Label text="NUMERATOR_CORECTD" class="statusColumn"/>
                 <template>
                     <!-- <m:Text text="{CTPTModel>NUMERATOR_CORECTD}" /> -->
-                    <m:Input id="idNUMERATOR_CORECTD" value="{CTPTModel>NUMERATOR_CORECTD}" maxLength="20"></m:Input>
+                    <m:Input id="idNUMERATOR_CORECTD" value="{CTPTModel>Numerator_Corectd}" maxLength="20"></m:Input>
                 </template>
             </Column>
         </columns>

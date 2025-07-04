@@ -12,235 +12,235 @@
         rows="{path: 'CTPTModel>/SoForm'}"
     >
         <columns>
-            <Column width="170px">                
+            <Column width="170px" hAlign="Center">                
                 <m:Label text="Order Number"/>                
                 <template>
-                    <m:Text text="{CTPTModel>OrderID}" />
+                    <m:Text text="{CTPTModel>OrderID}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="Operation" />                 
                 <template>
-                    <m:Text text="{CTPTModel>Operation}" />
+                    <m:Text text="{CTPTModel>Operation}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="Counter" />
                 <template>
-                    <m:Text text="{CTPTModel>Counter}" />
+                    <m:Text text="{CTPTModel>Counter}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="Additional Notes" />
                 <template>
-                    <m:Text text="{CTPTModel>additional_notes}" />
+                    <m:Text text="{CTPTModel>additional_notes}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="Additional Info" />
                 <template>
-                    <m:Text text="{CTPTModel>additional_info}" />
+                    <m:Text text="{CTPTModel>additional_info}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="Meter Number" />
                 <template>
-                    <m:Text text="{CTPTModel>UtilitiesDevice}" />
+                    <m:Text text="{CTPTModel>UtilitiesDevice}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="New Meter Number" />
                 <template>
-                    <m:Text text="{CTPTModel>new_meter_num}" />
+                    <m:Text text="{CTPTModel>new_meter_num}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="Old Meter read KWH" />
                 <template>
-                    <m:Text text="{CTPTModel>old_meter_read_kwh}" />
+                    <m:Text text="{CTPTModel>old_meter_read_kwh}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="New Meter read KWH" />
                 <template>
-                    <m:Text text="{CTPTModel>new_meter_read_kwh}" />
+                    <m:Text text="{CTPTModel>new_meter_read_kwh}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="Security Seal number" />
                 <template>
-                    <m:Text text="{CTPTModel>new_security_seal}" />
+                    <m:Text text="{CTPTModel>new_security_seal}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="Corrected Tx" />
                 <template>
-                    <m:Text text="{CTPTModel>corrected_tx}" />
+                    <m:Text text="{CTPTModel>corrected_tx}"  textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="New Tx Num" />
                 <template>
-                    <m:Text text="{CTPTModel>new_tx_num}" />
+                    <m:Text text="{CTPTModel>new_tx_num}"  textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="Old Meter read W" />
                 <template>
-                    <m:Text text="{CTPTModel>old_meter_read_w}" />
+                    <m:Text text="{CTPTModel>old_meter_read_w}"  textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="Old Meter read VA" />
                 <template>
-                    <m:Text text="{CTPTModel>old_meter_read_va}" />
+                    <m:Text text="{CTPTModel>old_meter_read_va}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="New Meter read W" />
                 <template>
-                    <m:Text text="{CTPTModel>new_meter_read_w}" />
+                    <m:Text text="{CTPTModel>new_meter_read_w}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="New Meter read VA" />
                 <template>
-                    <m:Text text="{CTPTModel>new_meter_read_va}" />
+                    <m:Text text="{CTPTModel>new_meter_read_va}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="New Manufacturing ser No" />
                 <template>
-                    <m:Text text="{CTPTModel>Manufserialnumber}" />
+                    <m:Text text="{CTPTModel>Manufserialnumber}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="Old delivered read KWH" />
                 <template>
-                    <m:Text text="{CTPTModel>old_delivered_reading_kwh}" />
+                    <m:Text text="{CTPTModel>old_delivered_reading_kwh}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="Old delivered read W" />
                 <template>
-                    <m:Text text="{CTPTModel>old_delivered_reading_w}" />
+                    <m:Text text="{CTPTModel>old_delivered_reading_w}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="Old delivered read VA" />
                 <template>
-                    <m:Text text="{CTPTModel>old_delivered_reading_va}" />
+                    <m:Text text="{CTPTModel>old_delivered_reading_va}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="Old received read KWH" />
                 <template>
-                    <m:Text text="{CTPTModel>old_recieved_reading_kwh}" />
+                    <m:Text text="{CTPTModel>old_recieved_reading_kwh}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="Old received read W" />
                 <template>
-                    <m:Text text="{CTPTModel>old_recieved_reading_w}" />
+                    <m:Text text="{CTPTModel>old_recieved_reading_w}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="New delivered read KWH" />
                 <template>
-                    <m:Text text="{CTPTModel>new_delivered_reading_kwh}" />
+                    <m:Text text="{CTPTModel>new_delivered_reading_kwh}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="New delivered read W" />
                 <template>
-                    <m:Text text="{CTPTModel>new_delivered_reading_w}" />
+                    <m:Text text="{CTPTModel>new_delivered_reading_w}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="New delivered read VA" />
                 <template>
-                    <m:Text text="{CTPTModel>new_delivered_reading_va}" />
+                    <m:Text text="{CTPTModel>new_delivered_reading_va}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="New received read KWH" />
                 <template>
-                    <m:Text text="{CTPTModel>new_recieved_reading_kwh}" />
+                    <m:Text text="{CTPTModel>new_recieved_reading_kwh}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="New delivered read W" />
                 <template>
-                    <m:Text text="{CTPTModel>new_recieved_reading_w}" />
+                    <m:Text text="{CTPTModel>new_recieved_reading_w}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="New delivered read VA" />
                 <template>
-                    <m:Text text="{CTPTModel>new_recieved_reading_va}" />
+                    <m:Text text="{CTPTModel>new_recieved_reading_va}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="Old communication equipment number" />
                 <template>
-                    <m:Text text="{CTPTModel>ex_comm_equip}" />
+                    <m:Text text="{CTPTModel>ex_comm_equip}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="Old Communication address" />
                 <template>
-                    <m:Text text="{CTPTModel>ex_comm_addr}" />
+                    <m:Text text="{CTPTModel>ex_comm_addr}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="Read only password" />
                 <template>
-                    <m:Text text="{CTPTModel>ex_readonly_pwd}" />
+                    <m:Text text="{CTPTModel>ex_readonly_pwd}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="New read only password" />
                 <template>
-                    <m:Text text="{CTPTModel>new_readonly_pwd}" />
+                    <m:Text text="{CTPTModel>new_readonly_pwd}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="New communication equipment number" />
                 <template>
-                    <m:Text text="{CTPTModel>new_comm_equip}" />
+                    <m:Text text="{CTPTModel>new_comm_equip}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="New Communication address" />
                 <template>
-                    <m:Text text="{CTPTModel>new_comm_addr}" />
+                    <m:Text text="{CTPTModel>new_comm_addr}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="New billing password" />
                 <template>
-                    <m:Text text="{CTPTModel>new_billing_pwd}" />
+                    <m:Text text="{CTPTModel>new_billing_pwd}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="Billable Flag Indicator" />
                 <template>
-                    <m:Text text="{CTPTModel>Billable}" />
+                    <m:Text text="{CTPTModel>Billable}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="Order Complete Date" />
                 <template>
-                    <m:Text text="{CTPTModel>Complete_date}" />
+                    <m:Text text="{CTPTModel>Complete_date}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="Main Activity" />
                 <template>
-                    <m:Text text="{CTPTModel>Main_Activity}" />
+                    <m:Text text="{CTPTModel>Main_Activity}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="Order Complete Time" />
                 <template>
                     <m:Text
@@ -248,112 +248,112 @@
                     />
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="NEW_METER_LOC" />
                 <template>
-                    <m:Text text="{CTPTModel>UtilsDeviceLocationLocation}" />
+                    <m:Text text="{CTPTModel>UtilsDeviceLocationLocation}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="COMPLETE_BY" />
                 <template>
-                    <m:Text text="{CTPTModel>COMPLETE_BY}" />
+                    <m:Text text="{CTPTModel>COMPLETE_BY}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="VERBAL" />
                 <template>
-                    <m:Text text="{CTPTModel>VERBAL}" />
+                    <m:Text text="{CTPTModel>VERBAL}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="UNIT_ID" />
                 <template>
-                    <m:Text text="{CTPTModel>UNIT_ID}" />
+                    <m:Text text="{CTPTModel>UNIT_ID}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="TIME_SYNC_REQ" />
                 <template>
-                    <m:Text text="{CTPTModel>TIME_SYNC_REQ}" />
+                    <m:Text text="{CTPTModel>TIME_SYNC_REQ}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="SET_MPASS" />
                 <template>
-                    <m:Text text="{CTPTModel>SET_MPASS}" />
+                    <m:Text text="{CTPTModel>SET_MPASS}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="INSTALL_RF" />
                 <template>
-                    <m:Text text="{CTPTModel>INSTALL_RF}" />
+                    <m:Text text="{CTPTModel>INSTALL_RF}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="INVESTIGATION_REQ" />
                 <template>
-                    <m:Text text="{CTPTModel>INVESTIGATION_REQ}" />
+                    <m:Text text="{CTPTModel>INVESTIGATION_REQ}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="CONVERT_EL" />
                 <template>
-                    <m:Text text="{CTPTModel>CONVERT_EL}" />
+                    <m:Text text="{CTPTModel>CONVERT_EL}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="INTERVAL_READY" />
                 <template>
-                    <m:Text text="{CTPTModel>INTERVAL_READY}" />
+                    <m:Text text="{CTPTModel>INTERVAL_READY}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="IVP" />
                 <template>
-                    <m:Text text="{CTPTModel>IVP}" />
+                    <m:Text text="{CTPTModel>IVP}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="OLD_METER_ACTION" />
                 <template>
-                    <m:Text text="{CTPTModel>OLD_METER_ACTION}" />
+                    <m:Text text="{CTPTModel>OLD_METER_ACTION}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="MAN_HRS" />
                 <template>
-                    <m:Text text="{CTPTModel>MAN_HRS}" />
+                    <m:Text text="{CTPTModel>MAN_HRS}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="TRUCK_HRS" />
                 <template>
-                    <m:Text text="{CTPTModel>TRUCK_HRS}" />
+                    <m:Text text="{CTPTModel>TRUCK_HRS}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="OTHER_HRS" />
                 <template>
-                    <m:Text text="{CTPTModel>OTHER_HRS}" />
+                    <m:Text text="{CTPTModel>OTHER_HRS}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="REMOVED" />
                 <template>
-                    <m:Text text="{CTPTModel>REMOVED}" />
+                    <m:Text text="{CTPTModel>REMOVED}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="CHARGE_ACCT" />
                 <template>
-                    <m:Text text="{CTPTModel>CHARGE_ACCT}" />
+                    <m:Text text="{CTPTModel>CHARGE_ACCT}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="FIELD_RETURN_REASON" />
                 <template>
-                    <m:Text text="{CTPTModel>FIELD_RETURN_REASON}" />
+                    <m:Text text="{CTPTModel>FIELD_RETURN_REASON}" textAlign="Center"/>
                 </template>
             </Column>
             <!-- added fields on 25-o6-2025 -->
@@ -362,134 +362,134 @@
             >
                 <m:Label text="Rev_Num" />
                 <template>
-                    <m:Text text="{CTPTModel>Rev_Num}" />
+                    <m:Text text="{CTPTModel>Rev_Num}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="OLD_METERNUM_CORECTD" class="statusColumn"/>
                 <template>
-                    <!-- <m:Text text="{CTPTModel>OLD_METERNUM_CORECTD}" /> -->
-                    <m:Input id="idOLD_METERNUM_CORECTD" value="{CTPTModel>OLD_METERNUM_CORECTD}" maxLength="18"></m:Input>
+                    <!-- <m:Text text="{CTPTModel>OLD_METERNUM_CORECTD}" textAlign="Center"/> -->
+                    <m:Input id="idOLD_METERNUM_CORECTD" value="{CTPTModel>Old_Meternum_Corectd}" maxLength="18"></m:Input>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="NEW_METERNUM_CORECTD" class="statusColumn"/>
                 <template>
-                    <!-- <m:Text text="{CTPTModel>NEW_METERNUM_CORECTD}" /> -->
-                    <m:Input id="idNEW_METERNUM_CORECTD" value="{CTPTModel>NEW_METERNUM_CORECTD}" maxLength="18"></m:Input>
+                    <!-- <m:Text text="{CTPTModel>NEW_METERNUM_CORECTD}" textAlign="Center"/> -->
+                    <m:Input id="idNEW_METERNUM_CORECTD" value="{CTPTModel>New_Meternum_Corectd}" maxLength="18"></m:Input>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="NEW_DELIVERED_READ_KWH_CORECTD" class="statusColumn"/>
                 <template>
-                    <!-- <m:Text text="{CTPTModel>NEW_DELIVERED_READ_KWH_CORECTD}" /> -->
-                    <m:Input id="idNEW_DELIVERED_READ_KWH_CORECTD" value="{CTPTModel>NEW_DELIVERED_READ_KWH_CORECTD}" maxLength="20">
+                    <!-- <m:Text text="{CTPTModel>NEW_DELIVERED_READ_KWH_CORECTD}" textAlign="Center"/> -->
+                    <m:Input id="idNEW_DELIVERED_READ_KWH_CORECTD" value="{CTPTModel>New_Delivered_Read_KWH_Corectd}" maxLength="20">
                     </m:Input>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="NEW_DELIVERED_READ_KW_CORECTD" class="statusColumn"/>
                 <template>
-                    <!-- <m:Text text="{CTPTModel>NEW_DELIVERED_READ_KW_CORECTD}" /> -->
-                    <m:Input id="idNEW_DELIVERED_READ_KW_CORECTD" value="{CTPTModel>NEW_DELIVERED_READ_KW_CORECTD}" maxLength="20"></m:Input>
+                    <!-- <m:Text text="{CTPTModel>NEW_DELIVERED_READ_KW_CORECTD}" textAlign="Center"/> -->
+                    <m:Input id="idNEW_DELIVERED_READ_KW_CORECTD" value="{CTPTModel>New_Delivered_Read_KW_Corectd}" maxLength="20"></m:Input>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="NEW_DELIVERED_READ_KVA_CORECTD" class="statusColumn" />
                 <template>
-                    <!-- <m:Text text="{CTPTModel>NEW_DELIVERED_READ_KVA_CORECTD}" /> -->
-                    <m:Input id="idNEW_DELIVERED_READ_KVA_CORECTD" value="{CTPTModel>NEW_DELIVERED_READ_KVA_CORECTD}" maxLength="20"></m:Input>
+                    <!-- <m:Text text="{CTPTModel>NEW_DELIVERED_READ_KVA_CORECTD}" textAlign="Center"/> -->
+                    <m:Input id="idNEW_DELIVERED_READ_KVA_CORECTD" value="{CTPTModel>New_Delivered_Read_KVA_Corectd}" maxLength="20"></m:Input>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="NEW_RECEIVED_READ_KWH_CORECTD" class="statusColumn"/>
                 <template>
-                    <!-- <m:Text text="{CTPTModel>NEW_RECEIVED_READ_KWH_CORECTD}" /> -->
-                    <m:Input id="idNEW_RECEIVED_READ_KWH_CORECTD" value="{CTPTModel>NEW_RECEIVED_READ_KWH_CORECTD}" maxLength="20"></m:Input>
+                    <!-- <m:Text text="{CTPTModel>NEW_RECEIVED_READ_KWH_CORECTD}" textAlign="Center"/> -->
+                    <m:Input id="idNEW_RECEIVED_READ_KWH_CORECTD" value="{CTPTModel>New_Received_Read_KWH_Corectd}" maxLength="20"></m:Input>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="NEW_RECEIVED_READ_KW_CORECTD" class="statusColumn"/>
                 <template>
-                    <!-- <m:Text text="{CTPTModel>NEW_RECEIVED_READ_KW_CORECTD}" /> -->
-                    <m:Input id="idNEW_RECEIVED_READ_KW_CORECTD" value="{CTPTModel>NEW_RECEIVED_READ_KW_CORECTD}" maxLength="20"></m:Input>
+                    <!-- <m:Text text="{CTPTModel>NEW_RECEIVED_READ_KW_CORECTD}" textAlign="Center"/> -->
+                    <m:Input id="idNEW_RECEIVED_READ_KW_CORECTD" value="{CTPTModel>New_Received_Read_KW_Corectd}" maxLength="20"></m:Input>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="NEW_RECEIVED_READ_KVA_CORECTD" class="statusColumn"/>
                 <template>
-                    <!-- <m:Text text="{CTPTModel>NEW_RECEIVED_READ_KVA_CORECTD}" /> -->
-                    <m:Input id="idNEW_RECEIVED_READ_KVA_CORECTD" value="{CTPTModel>NEW_RECEIVED_READ_KVA_CORECTD}" maxLength="20"></m:Input>
+                    <!-- <m:Text text="{CTPTModel>NEW_RECEIVED_READ_KVA_CORECTD}" textAlign="Center"/> -->
+                    <m:Input id="idNEW_RECEIVED_READ_KVA_CORECTD" value="{CTPTModel>New_Received_Read_KVA_Corectd}" maxLength="20"></m:Input>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="NEW_COMM_EQUIP_CORECTD" class="statusColumn"/>
                 <template>
-                    <!-- <m:Text text="{CTPTModel>NEW_COMM_EQUIP_CORECTD}" /> -->
-                    <m:Input id="idNEW_COMM_EQUIP_CORECTD" value="{CTPTModel>NEW_COMM_EQUIP_CORECTD}" maxLength="8"></m:Input>
+                    <!-- <m:Text text="{CTPTModel>NEW_COMM_EQUIP_CORECTD}" textAlign="Center"/> -->
+                    <m:Input id="idNEW_COMM_EQUIP_CORECTD" value="{CTPTModel>New_Comm_Equip_Corectd}" maxLength="8"></m:Input>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="NEW_COMM_ADDR_CORECTD" class="statusColumn"/>
                 <template>
-                    <!-- <m:Text text="{CTPTModel>NEW_COMM_ADDR_CORECTD}" /> -->
-                    <m:Input id="idNEW_COMM_ADDR_CORECTD" value="{CTPTModel>NEW_COMM_ADDR_CORECTD}" maxLength="100"></m:Input>
+                    <!-- <m:Text text="{CTPTModel>NEW_COMM_ADDR_CORECTD}" textAlign="Center"/> -->
+                    <m:Input id="idNEW_COMM_ADDR_CORECTD" value="{CTPTModel>New_Comm_Addr_Corectd}" maxLength="100"></m:Input>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="OLD_DELIVERED_READ_KWH_CORECTD" class="statusColumn"/>
                 <template>
-                    <!-- <m:Text text="{CTPTModel>OLD_DELIVERED_READ_KWH_CORECTD}" /> -->
-                    <m:Input id="idOLD_DELIVERED_READ_KWH_CORECTD" value="{CTPTModel>OLD_DELIVERED_READ_KWH_CORECTD}" maxLength="20"></m:Input>
+                    <!-- <m:Text text="{CTPTModel>OLD_DELIVERED_READ_KWH_CORECTD}" textAlign="Center"/> -->
+                    <m:Input id="idOLD_DELIVERED_READ_KWH_CORECTD" value="{CTPTModel>Old_Delivered_Read_KWH_Corectd}" maxLength="20"></m:Input>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="OLD_DELIVERED_READ_KW_CORECTD" class="statusColumn"/>
                 <template>
-                    <!-- <m:Text text="{CTPTModel>OLD_DELIVERED_READ_KW_CORECTD}" /> -->
-                    <m:Input id="idOLD_DELIVERED_READ_KW_CORECTD" value="{CTPTModel>OLD_DELIVERED_READ_KW_CORECTD}" maxLength="20"></m:Input>
+                    <!-- <m:Text text="{CTPTModel>OLD_DELIVERED_READ_KW_CORECTD}" textAlign="Center"/> -->
+                    <m:Input id="idOLD_DELIVERED_READ_KW_CORECTD" value="{CTPTModel>Old_Delivered_Read_KW_Corectd}" maxLength="20"></m:Input>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="OLD_DELIVERED_READ_KVA_CORECTD" class="statusColumn"/>
                 <template>
-                    <!-- <m:Text text="{CTPTModel>OLD_DELIVERED_READ_KVA_CORECTD}" /> -->
-                    <m:Input id="idOLD_DELIVERED_READ_KVA_CORECTD" value="{CTPTModel>OLD_DELIVERED_READ_KVA_CORECTD}" maxLength="20"></m:Input>
+                    <!-- <m:Text text="{CTPTModel>OLD_DELIVERED_READ_KVA_CORECTD}" textAlign="Center"/> -->
+                    <m:Input id="idOLD_DELIVERED_READ_KVA_CORECTD" value="{CTPTModel>Old_Delivered_Read_KVA_Corectd}" maxLength="20"></m:Input>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="OLD_RECEIVED_READ_KWH_CORECTD" class="statusColumn"/>
                 <template>
-                    <!-- <m:Text text="{CTPTModel>OLD_RECEIVED_READ_KWH_CORECTD}" /> -->
-                    <m:Input id="idOLD_RECEIVED_READ_KWH_CORECTD" value="{CTPTModel>OLD_RECEIVED_READ_KWH_CORECTD}" maxLength="20"></m:Input>
+                    <!-- <m:Text text="{CTPTModel>OLD_RECEIVED_READ_KWH_CORECTD}" textAlign="Center"/> -->
+                    <m:Input id="idOLD_RECEIVED_READ_KWH_CORECTD" value="{CTPTModel>Old_Received_Read_KWH_Corectd}" maxLength="20"></m:Input>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="OLD_RECEIVED_READ_KW_CORECTD" class="statusColumn"/>
                 <template>
-                    <!-- <m:Text text="{CTPTModel>OLD_RECEIVED_READ_KW_CORECTD}" /> -->
-                    <m:Input id="idOLD_RECEIVED_READ_KW_CORECTD" value="{CTPTModel>OLD_RECEIVED_READ_KW_CORECTD}" maxLength="20"></m:Input>
+                    <!-- <m:Text text="{CTPTModel>OLD_RECEIVED_READ_KW_CORECTD}" textAlign="Center"/> -->
+                    <m:Input id="idOLD_RECEIVED_READ_KW_CORECTD" value="{CTPTModel>Old_Received_Read_KW_Corectd}" maxLength="20"></m:Input>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="OLD_RECEIVED_READ_KVA_CORECTD" class="statusColumn" />
                 <template>
-                    <!-- <m:Text text="{CTPTModel>OLD_RECEIVED_READ_KVA_CORECTD}" /> -->
-                    <m:Input id="idOLD_RECEIVED_READ_KVA_CORECTD" value="{CTPTModel>OLD_RECEIVED_READ_KVA_CORECTD}" maxLength="20"></m:Input>
+                    <!-- <m:Text text="{CTPTModel>OLD_RECEIVED_READ_KVA_CORECTD}" textAlign="Center"/> -->
+                    <m:Input id="idOLD_RECEIVED_READ_KVA_CORECTD" value="{CTPTModel>Old_Received_Read_KVA_Corectd}" maxLength="20"></m:Input>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="OLD_COMM_EQUIP_CORECTD" class="statusColumn"/>
                 <template>
-                    <!-- <m:Text text="{CTPTModel>OLD_COMM_EQUIP_CORECTD}" /> -->
-                    <m:Input id="idOLD_COMM_EQUIP_CORECTD" value="{CTPTModel>OLD_COMM_EQUIP_CORECTD}" maxLength="8"></m:Input>
+                    <!-- <m:Text text="{CTPTModel>OLD_COMM_EQUIP_CORECTD}" textAlign="Center"/> -->
+                    <m:Input id="idOLD_COMM_EQUIP_CORECTD" value="{CTPTModel>Old_Comm_Equip_Corectd}" maxLength="8"></m:Input>
                 </template>
             </Column>
-            <Column width="170px">
+            <Column width="170px" hAlign="Center">
                 <m:Label text="OLD_COMM_ADDR_CORECTD" class="statusColumn"/>
                 <template>
-                    <!-- <m:Text text="{CTPTModel>OLD_COMM_ADDR_CORECTD}" /> -->
-                    <m:Input id="idOLD_COMM_ADDR_CORECTD" value="{CTPTModel>OLD_COMM_ADDR_CORECTD}" maxLength="100"></m:Input>
+                    <!-- <m:Text text="{CTPTModel>OLD_COMM_ADDR_CORECTD}" textAlign="Center"/> -->
+                    <m:Input id="idOLD_COMM_ADDR_CORECTD" value="{CTPTModel>Old_Comm_Addr_Corectd}" maxLength="100"></m:Input>
                 </template>
             </Column>
         </columns>

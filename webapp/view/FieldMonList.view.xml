@@ -89,31 +89,30 @@
                 </columnmenu:Menu>
                 </dependents>               
                 <columns>
-                    <Column id="Status_col" 
+                    <Column id="Status_col" hAlign="Center"
                     sortProperty="{i18n>label.status}" headerMenu="menu" resizable="true" 
                     autoResizable="true" width="7rem">
                         <m:Label text="{i18n>label.status}" />
                         <template>
-                            <m:Label text="{FieldMonitorModel>Status}" />
+                            <m:Label text="{FieldMonitorModel>Status}" textAlign="Center"/>
                         </template>
                     </Column>
-                    <Column id="Text_col" 
+                    <Column id="Text_col" hAlign="Center"
                     sortProperty="{i18n>label.text}" headerMenu="menu" resizable="true" 
                     autoResizable="true" width="11rem">
                         <m:Label text="{i18n>label.text}" />
                         <template>
-                            <m:Label text="{FieldMonitorModel>TEXT}" />
+                            <m:Label text="{FieldMonitorModel>TEXT}" textAlign="Center"/>
                         </template>
                     </Column>
-                    <Column id="Log_col" 
+                    <Column id="Log_col" hAlign="Center"
                     sortProperty="{i18n>label.log}" headerMenu="menu" resizable="true" 
                     autoResizable="true" 
-                        width="6rem"
-                        hAlign="End"
+                        width="6rem"                        
                     >
                         <m:Label text="{i18n>label.log}" />
                         <template>
-                            <m:Label text="{FieldMonitorModel>Notification}" />
+                            <m:Label text="{FieldMonitorModel>Notification}" textAlign="Center"/>
                         </template>
                     </Column>
                     <Column
@@ -132,15 +131,15 @@
                             />
                         </template>
                     </Column>
-                    <Column id="ActivityType_col" 
+                    <Column id="ActivityType_col" hAlign="Center"
                     sortProperty="{i18n>label.activityType}" headerMenu="menu" resizable="true" 
                     autoResizable="true" width="5rem">
                         <m:Label text="{i18n>label.activityType}" />
                         <template>
-                            <m:Label text="{FieldMonitorModel>ACTIVITY_TYPE}" />
+                            <m:Label text="{FieldMonitorModel>ACTIVITY_TYPE}" textAlign="Center"/>
                         </template>
                     </Column>
-                    <Column id="Order_col" 
+                    <Column id="Order_col" hAlign="Center" class="sapUiContentPadding"
                     sortProperty="{i18n>label.order}" headerMenu="menu" resizable="true" 
                     autoResizable="true" width="14rem">
                         <m:Label text="{i18n>label.order}" />
@@ -148,32 +147,32 @@
                             <m:Link
 				text="{FieldMonitorModel>ORDER_NO}"
 				subtle="true"
-				press="handleLinkPress" />
+				press="handleLinkPress" emphasized="true" textAlign="Center"/>
                             <!-- <m:Label text="{FieldMonitorModel>ORDER_NO}"/> -->
                         </template>
                     </Column>
-                     <Column id="opDescription_col" 
+                     <Column id="opDescription_col" hAlign="Center" 
                     sortProperty="{i18n>label.opDescription}" headerMenu="menu" resizable="true" 
                     autoResizable="true" width="11rem">
                         <m:Label text="{i18n>label.opDescription}" />
                         <template>
-                            <m:Label text="{FieldMonitorModel>OpDescription}" />
+                            <m:Label text="{FieldMonitorModel>OpDescription}" textAlign="Center"/>
                         </template>
                     </Column>  
-                    <Column id="billingClass_col" 
+                    <Column id="billingClass_col" hAlign="Center"
                     sortProperty="{i18n>label.billingClass}" headerMenu="menu" resizable="true" 
                     autoResizable="true" width="12rem">
                         <m:Label text="{i18n>label.billingClass}" />
                         <template>
-                            <m:Label text="{FieldMonitorModel>BILLING_CLASS}" />
+                            <m:Label text="{FieldMonitorModel>BILLING_CLASS}" textAlign="Center"/>
                         </template>
                     </Column> 
-                    <Column id="fieldCompletionDt_col" 
+                    <Column id="fieldCompletionDt_col" hAlign="Center"
                     sortProperty="{i18n>label.fieldCompletionDt}" headerMenu="menu" resizable="true" 
                     autoResizable="true" width="12rem">
                         <m:Label text="{i18n>label.fieldCompletionDt}" />
                         <template>
-                            <m:Label text="{FieldMonitorModel>FIELD_COMP_DT}" />
+                            <m:Label text="{FieldMonitorModel>FIELD_COMP_DT}" textAlign="Center"/>
                         </template>
                     </Column>
                     <Column
@@ -184,7 +183,7 @@
                     >
                         <m:Label text="{i18n>label.address}" />
                         <template>
-                            <m:Label text="{FieldMonitorModel>ADDRESS}" />
+                            <m:Label text="{FieldMonitorModel>ADDRESS}" textAlign="Center"/>
                         </template>
                     </Column> 
                     <Column
@@ -195,7 +194,7 @@
                     >
                         <m:Label text="{i18n>label.meterNo}" />
                         <template>
-                            <m:Label text="{FieldMonitorModel>METER_NO}" />
+                            <m:Label text="{FieldMonitorModel>METER_NO}" textAlign="Center"/>
                         </template>
                     </Column>
                     <Column
@@ -206,7 +205,7 @@
                     >
                         <m:Label text="{i18n>label.ctpt}" />
                         <template>
-                            <m:Label text="{FieldMonitorModel>CTPT}" />
+                            <m:Label text="{FieldMonitorModel>CTPT}" textAlign="Center"/>
                         </template>
                     </Column> 
                     <Column
@@ -217,7 +216,7 @@
                     >
                         <m:Label text="{i18n>label.activity}" />
                         <template>
-                            <m:Label text="{FieldMonitorModel>ACTIVITY_DESC}" />
+                            <m:Label text="{FieldMonitorModel>ACTIVITY_DESC}" textAlign="Center"/>
                         </template>
                     </Column>
                     <Column
@@ -228,7 +227,7 @@
                     >
                         <m:Label text="{i18n>label.mainActivity}" />
                         <template>
-                            <m:Label text="{FieldMonitorModel>MAIN_ACTIVITY}" />
+                            <m:Label text="{FieldMonitorModel>MAIN_ACTIVITY}" textAlign="Center"/>
                         </template>
                     </Column>
                     <Column
@@ -239,7 +238,7 @@
                     >
                         <m:Label text="{i18n>label.inLogStatus}" />
                         <template>
-                            <m:Label text="{FieldMonitorModel>InLog}" />
+                            <m:Label text="{FieldMonitorModel>InLog}" textAlign="Center"/>
                         </template>
                     </Column>
                     <Column
@@ -250,7 +249,7 @@
                     >
                         <m:Label text="{i18n>label.descrepancy}" />
                         <template>
-                            <m:CheckBox selected="{FieldMonitorModel>Descrepancy}"/>
+                            <m:CheckBox selected="{FieldMonitorModel>Descrepancy}" textAlign="Center"/>
                         </template>
                     </Column>
                     <Column
@@ -261,66 +260,66 @@
                     >
                         <m:Label text="{i18n>label.outLogException}" />
                         <template>
-                            <m:Label text="{FieldMonitorModel>OutLog}" />
+                            <m:Label text="{FieldMonitorModel>OutLog}" textAlign="Center"/>
                         </template>
                     </Column>
-                    <Column id="Opcode_col" 
+                    <Column id="Opcode_col" hAlign="Center"
                     sortProperty="{i18n>label.opCode}" headerMenu="menu" resizable="true" 
                     autoResizable="true" width="11rem">
                         <m:Label text="{i18n>label.opCode}" />
                         <template>
-                            <m:Label text="{FieldMonitorModel>OpCode}" />
+                            <m:Label text="{FieldMonitorModel>OpCode}" textAlign="Center"/>
                         </template>
                     </Column>                
-                    <Column id="esa_col" 
+                    <Column id="esa_col" hAlign="Center"
                     sortProperty="{i18n>label.esa}" headerMenu="menu" resizable="true" 
                     autoResizable="true" width="5rem">
                         <m:Label text="{i18n>label.esa}" />
                         <template>
-                            <m:Label text="{FieldMonitorModel>ESA}" />
+                            <m:Label text="{FieldMonitorModel>ESA}" textAlign="Center"/>
                         </template>
                     </Column>
-                    <Column id="billable_col" 
+                    <Column id="billable_col" hAlign="Center"
                     sortProperty="{i18n>label.billable}" headerMenu="menu" resizable="true" 
                     autoResizable="true" width="7rem">
                         <m:Label text="{i18n>label.billable}" />
                         <template>
-                            <m:Label text="{FieldMonitorModel>BILLABLE}" />
+                            <m:Label text="{FieldMonitorModel>BILLABLE}" textAlign="Center"/>
                         </template>
                     </Column>
-                    <Column id="opsNo_col" 
+                    <Column id="opsNo_col" hAlign="Center"
                     sortProperty="{i18n>label.opsNo}" headerMenu="menu" resizable="true" 
                     autoResizable="true" width="14rem">
                         <m:Label text="{i18n>label.opsNo}" />
                         <template>
-                            <m:Label text="{FieldMonitorModel>OPS_NO}" />
+                            <m:Label text="{FieldMonitorModel>OPS_NO}" textAlign="Center"/>
                         </template>
                     </Column>
-                    <Column id="opsDesc_col" 
+                    <Column id="opsDesc_col" hAlign="Center"
                     sortProperty="{i18n>label.opsDesc}" headerMenu="menu" resizable="true" 
                     autoResizable="true" width="14rem">
                         <m:Label text="{i18n>label.opsDesc}" />
                         <template>
-                            <m:Label text="{FieldMonitorModel>OPS_DESC}" />
+                            <m:Label text="{FieldMonitorModel>OPS_DESC}" textAlign="Center"/>
                         </template>
                     </Column>                    
-                    <Column id="anlage_col" 
+                    <Column id="anlage_col" hAlign="Center"
                     sortProperty="{i18n>label.anlage}" headerMenu="menu" resizable="true" 
                     autoResizable="true" width="11rem">
                         <m:Label text="{i18n>label.anlage}" />
                         <template>
-                            <m:Label text="{FieldMonitorModel>Anlage}" />
+                            <m:Label text="{FieldMonitorModel>Anlage}" textAlign="Center"/>
                         </template>
                     </Column>                   
                      <Column
-                        id="functionalLocation_col" 
+                        id="functionalLocation_col"
                     sortProperty="{i18n>label.functionalLocation}" headerMenu="menu" resizable="true" 
                     autoResizable="true" width="11rem"
                         hAlign="Center"
                     >
                         <m:Label text="{i18n>label.functionalLocation}" />
                         <template>
-                            <m:Label text="{FieldMonitorModel>Functional_Loc}" />
+                            <m:Label text="{FieldMonitorModel>Functional_Loc}" textAlign="Center"/>
                         </template>
                     </Column>
                     <Column
@@ -331,7 +330,7 @@
                     >
                         <m:Label text="{i18n>label.keyNo}" />
                         <template>
-                            <m:Label text="{FieldMonitorModel>KEY_NO}" />
+                            <m:Label text="{FieldMonitorModel>KEY_NO}" textAlign="Center"/>
                         </template>
                     </Column>
                     <Column
@@ -342,7 +341,7 @@
                     >
                         <m:Label text="{i18n>label.orderType}" />
                         <template>
-                            <m:Label text="{FieldMonitorModel>OT}" />
+                            <m:Label text="{FieldMonitorModel>OT}" textAlign="Center"/>
                         </template>
                     </Column>
                     <Column
@@ -353,7 +352,7 @@
                     >
                         <m:Label text="{i18n>label.workCenterId}" />
                         <template>
-                            <m:Label text="{FieldMonitorModel>WRKCNTR_ID}" />
+                            <m:Label text="{FieldMonitorModel>WRKCNTR_ID}" textAlign="Center"/>
                         </template>
                     </Column>
                     <Column
@@ -364,7 +363,7 @@
                     >
                         <m:Label text="{i18n>label.wrkCntrDesc}" />
                         <template>
-                            <m:Label text="{FieldMonitorModel>WRKCNTR_DESC}" />
+                            <m:Label text="{FieldMonitorModel>WRKCNTR_DESC}" textAlign="Center"/>
                         </template>
                     </Column>
                     <Column
@@ -375,7 +374,7 @@
                     >
                         <m:Label text="{i18n>label.newMeterLocation}" />
                         <template>
-                            <m:Label text="{FieldMonitorModel>NEW_METER_LOC}" />
+                            <m:Label text="{FieldMonitorModel>NEW_METER_LOC}" textAlign="Center"/>
                         </template>
                     </Column>
                     <Column
@@ -388,7 +387,7 @@
                         <template>
                             <m:Label
                                 text="{= !${FieldMonitorModel>REVIEW} ? '' : ${FieldMonitorModel>BY_USER}}"
-                            />
+                            textAlign="Center"/>
                         </template>
                     </Column>
                     <Column
@@ -399,7 +398,7 @@
                     >
                         <m:Label text="{i18n>label.on}" />
                         <template>
-                            <m:Label
+                            <m:Label textAlign="Center"
                                 id="labelId"
                                 text="{= !${FieldMonitorModel>REVIEW} ? '' : ${path:'FieldMonitorModel>ON_SYSTEM', type:'sap.ui.model.odata.type.Date'}}"
                             />
@@ -415,7 +414,7 @@
                         <template>
                             <m:Label
                                 text="{= !${FieldMonitorModel>REVIEW} ? '' : ${path:'FieldMonitorModel>ON_TIME', type:'sap.ui.model.odata.type.Time'}}"
-                            />
+                           textAlign="Center" />
                         </template>
                     </Column>
                     <Column
@@ -428,7 +427,7 @@
                         <template>
                             <m:Label
                                 text="{path:'FieldMonitorModel>BASIC_START_DT_FROM', type: 'sap.ca.ui.model.type.Date'}"
-                            />
+                            textAlign="Center"/>
                         </template>
                     </Column>
                     <Column
@@ -441,7 +440,7 @@
                         <template>
                             <m:Label
                                 text="{path:'FieldMonitorModel>FINISH_DT_FROM', type: 'sap.ui.model.type.Date'}"
-                            />
+                            textAlign="Center"/>
                         </template>
                     </Column>
                     <Column
@@ -454,7 +453,7 @@
                         <template>
                             <m:Label
                                 text="{path:'FieldMonitorModel>MOBILE_COMPLETION_DT',type:'sap.ui.model.odata.type.Date'}"
-                            />
+                            textAlign="Center"/>
                         </template>
                     </Column>
                     <Column
@@ -467,7 +466,7 @@
                         <template>
                             <m:Label
                                 text="{path:'FieldMonitorModel>MOBILE_COMPLETION_TIME',type:'sap.ui.model.odata.type.Time'}"
-                            />
+                            textAlign="Center"/>
                         </template>
                     </Column>
                     <Column
@@ -478,7 +477,7 @@
                     >
                         <m:Label text="{i18n>label.createdBy}" />
                         <template>
-                            <m:Label text="{FieldMonitorModel>CREATED_BY}" />
+                            <m:Label text="{FieldMonitorModel>CREATED_BY}" textAlign="Center"/>
                         </template>
                     </Column>
                     <Column
@@ -491,7 +490,7 @@
                         <template>
                             <m:Label
                                 text="{path:'FieldMonitorModel>CREATED_ON_FROM', type: 'sap.ca.ui.model.type.Date'}"
-                            />
+                            textAlign="Center"/>
                         </template>
                     </Column>
                     <Column
@@ -503,7 +502,7 @@
                         <m:Label text="{i18n>label.completedBy}" />
                         <template>
                             <m:Label
-                                text="{path:'FieldMonitorModel>COMPLETED_BY'}"
+                                text="{path:'FieldMonitorModel>COMPLETED_BY'}" textAlign="Center"
                             />
                         </template>
                     </Column>
@@ -515,7 +514,7 @@
                     >
                         <m:Label text="{i18n>label.plantSection}" />
                         <template>
-                            <m:Label text="{FieldMonitorModel>PLANT_SECTION}" />
+                            <m:Label text="{FieldMonitorModel>PLANT_SECTION}" textAlign="Center"/>
                         </template>
                     </Column>
                     <Column
@@ -526,7 +525,7 @@
                     >
                         <m:Label text="{i18n>label.fieldsNotes}" />
                         <template>
-                            <m:Label text="{FieldMonitorModel>FIELDS_NOTES}" />
+                            <m:Label text="{FieldMonitorModel>FIELDS_NOTES}" textAlign="Center"/>
                         </template>
                     </Column>
                     <Column
@@ -538,7 +537,7 @@
                         <m:Label text="{i18n>label.activityPerformed}" />
                         <template>
                             <m:Label
-                                text="{FieldMonitorModel>ACTIVITY_PERFORMED}"
+                                text="{FieldMonitorModel>ACTIVITY_PERFORMED}" textAlign="Center"
                             />
                         </template>
                     </Column>
@@ -550,7 +549,7 @@
                     >
                         <m:Label text="{i18n>label.workArea}" />
                         <template>
-                            <m:Label text="{FieldMonitorModel>WORK_AREA}" />
+                            <m:Label text="{FieldMonitorModel>WORK_AREA}" textAlign="Center"/>
                         </template>
                     </Column>
                     <Column
@@ -561,7 +560,7 @@
                     >
                         <m:Label text="{i18n>label.opStatus}" />
                         <template>
-                            <m:Label text="{FieldMonitorModel>OP_STATUS}" />
+                            <m:Label text="{FieldMonitorModel>OP_STATUS}" textAlign="Center"/>
                         </template>
                     </Column>
                 </columns>                              

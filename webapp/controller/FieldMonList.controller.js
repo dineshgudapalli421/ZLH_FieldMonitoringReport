@@ -723,7 +723,7 @@ sap.ui.define(
         if (aSelectedRows.length) {
           oRouter.navTo("SOForm", {
             OrderID: aSelectedRows[0].ORDER_NO,
-            OpCode: aSelectedRows[0].OpCode
+            OPSNo: aSelectedRows[0].OPS_NO
             // "?query": {
             //   OpCode: aSelectedRows[0].OpCode
             // }
@@ -854,7 +854,7 @@ sap.ui.define(
         var OrderNumber = aSelectedRows[0]?.ORDER_NO;
         return OrderNumber;
       },
-      onPressSoForms: function (oEvent, letterId) {
+      onPressSoForms: function (oEvent) {
         var sOrderNumber = oController.getSelectedOrderNumber();
         if (!!sOrderNumber) {
           var oSource = "/sap/opu/odata/SAP/ZWM_FIELD_COMP_WORK_SRV/SOFormSet('" + sOrderNumber + "')/$value";
