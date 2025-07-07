@@ -135,6 +135,15 @@
                 </template>
             </Column>
             <Column
+                width="9rem"
+                hAlign="Center"
+            >
+                <m:Label text="Eid" />
+                <template>
+                    <m:Text text="{CTPTModel>Eid}"  textAlign="Center"/>
+                </template>
+            </Column>
+            <Column
                 width="15rem"
                 hAlign="Center"
             >

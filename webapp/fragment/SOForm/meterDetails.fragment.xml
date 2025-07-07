@@ -365,6 +365,14 @@
                     <m:Text text="{CTPTModel>Rev_Num}" textAlign="Center"/>
                 </template>
             </Column>
+            <Column
+                width="170px"
+            >
+                <m:Label text="Eid" />
+                <template>
+                    <m:Text text="{CTPTModel>Eid}" textAlign="Center"/>
+                </template>
+            </Column>
             <Column width="170px" hAlign="Center">
                 <m:Label text="OLD_METERNUM_CORECTD" class="statusColumn"/>
                 <template>

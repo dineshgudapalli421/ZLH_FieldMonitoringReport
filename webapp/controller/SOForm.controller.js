@@ -44,7 +44,6 @@ sap.ui.define(
         var sOrderNum = oEvent.getParameter("arguments").OrderID;
         var OPS_NO = oEvent.getParameter("arguments").OPSNo;
         oController._orderNumber = sOrderNum;
-        oController._OPS_NO = OPS_NO;
         var oModel = oController.getView().getModel("CTPTModel");
         if (sOrderNum) {
           // oController.getView().byId("idTableCTPT").bindRows({
@@ -117,6 +116,7 @@ sap.ui.define(
         for (var i = 0; i < oMeterset.length; i++) {
           oMeterDetails.push({
             "Rev_Num": oMeterset[i].Rev_Num,
+            "Eid": oMeterset[i].Eid,
             "Old_Meternum_Corectd": oMeterset[i].Old_Meternum_Corectd,
             "New_Meternum_Corectd": oMeterset[i].New_Meternum_Corectd,
             "New_Delivered_Read_KWH_Corectd": oMeterset[i].New_Delivered_Read_KWH_Corectd,
@@ -141,6 +141,7 @@ sap.ui.define(
         for (var j = 0; j < oCTPT.length; j++) {
           oCTPTDetails.push({
             "Rev_Num": oCTPT[j].Rev_Num,
+            "Eid": oCTPT[j].Eid,
             "NewSerialnumber_Corectd": oCTPT[j].NewSerialnumber_Corectd,
             "OldSerialnumber_Corectd": oCTPT[j].OldSerialnumber_Corectd,
             "Denominator_Corectd": oCTPT[j].Denominator_Corectd,
@@ -150,7 +151,6 @@ sap.ui.define(
 
         var oPayload = {
           "Order_No": oController._orderNumber,
-          "Ops_No": oController._OPS_NO,
           "NavOrderHeaderToMeterData": oMeterDetails,
           "NavOrderHeaderToCtptdata": oCTPTDetails
         };

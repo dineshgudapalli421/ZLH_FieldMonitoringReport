@@ -722,8 +722,8 @@ sap.ui.define(
         var aSelectedRows = aSelectedIndices.map(iIndex => oTable.getContextByIndex(iIndex).getObject());
         if (aSelectedRows.length) {
           oRouter.navTo("SOForm", {
-            OrderID: aSelectedRows[0].ORDER_NO,
-            OPSNo: aSelectedRows[0].OPS_NO
+            OrderID: aSelectedRows[0].ORDER_NO
+            // OPSNo: aSelectedRows[0].OPS_NO
             // "?query": {
             //   OpCode: aSelectedRows[0].OpCode
             // }
@@ -731,32 +731,7 @@ sap.ui.define(
         } else {
           MessageToast.show(oResourceBundle.getText("selectLineItemMessage"));
         }
-      },
-      // onPressSoForms: function () {
-      //   var oTable = oController.getView().byId("idFieldMonTable");
-      //   var aSelectedIndices = oTable.getSelectedIndices();
-      //   var aSelectedRows = aSelectedIndices.map(iIndex => oTable.getContextByIndex(iIndex).getObject());
-      //   var OrderNumber = aSelectedRows[0].ORDER_NO;//'1000021';
-      //   if (!this.oSoFormDialog) {
-      //     this.oSoFormDialog = new sap.m.Dialog({
-      //       title: oResourceBundle.getText("soFormTitle"),
-      //       content: new sap.m.PDFViewer({
-      //         source: `/sap/opu/odata/SAP/ZWM_FIELD_COMP_WORK_SRV/SOFormSet('${OrderNumber}')/$value`
-      //       }),
-      //       buttons: [
-      //         new sap.m.Button({
-      //           text: oResourceBundle.getText("closeButton"),
-      //           type: "Reject",
-      //           press: function () {
-      //             this.oSoFormDialog.close();
-      //           }.bind(this)
-      //         })
-      //       ]
-      //     });
-      //     this.getView().addDependent(this.oSoFormDialog);
-      //   }
-      //   this.oSoFormDialog.open();
-      // },
+      },      
       onSubmitFieldMonList: function () {
         var oView = oController.getView();
         var oModel = oView.getModel("FieldMonitorModel");
