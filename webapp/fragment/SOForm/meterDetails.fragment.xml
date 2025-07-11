@@ -1,246 +1,528 @@
 <core:FragmentDefinition
-    xmlns="sap.ui.table"
+   xmlns="sap.ui.table"
     xmlns:core="sap.ui.core"
-    xmlns:l="sap.ui.layout"
-    xmlns:f="sap.ui.layout.form"
     xmlns:m="sap.m"
+    xmlns:smarttable="sap.ui.comp.smarttable"
+    height="100%"
+>
+<smarttable:SmartTable 
+    id="idMeterDetailsSmartTable"
+    entitySet="SoForm"
+    tableBindingPath="CTPTModel>/SoForm"
+    tableType="ResponsiveTable"
+    useVariantManagement="true"
+    useTablePersonalisation="true"
+    header="Meter Details"
+    showRowCount="true"
+    enableAutoBinding="true"
+    enableExport="false"
+    demandPopin="true"
+    persistencyKey="SmartTableSoFormMeterDetails"
+    requestAtLeastFields="OrderID,Operation,Counter,additional_notes,additional_info,UtilitiesDevice,new_meter_num,Old_Meternum_Corectd,New_Meternum_Corectd,old_meter_read_kwh,new_meter_read_kwh,new_security_seal,corrected_tx,new_tx_num,Rev_Num,Row_Num,Eid,old_meter_read_w,old_meter_read_va,new_meter_read_w,new_meter_read_va,Manufserialnumber,old_delivered_reading_kwh,Old_Delivered_Read_KWH_Corectd,old_delivered_reading_w,Old_Delivered_Read_KW_Corectd,old_delivered_reading_va,Old_Delivered_Read_KVA_Corectd,old_recieved_reading_kwh,Old_Received_Read_KWH_Corectd,old_recieved_reading_w,Old_Received_Read_KW_Corectd,Old_Received_Read_KVA_Corectd,new_delivered_reading_kwh,New_Delivered_Read_KWH_Corectd,new_delivered_reading_w,New_Delivered_Read_KW_Corectd,new_delivered_reading_va,New_Delivered_Read_KVA_Corectd,new_recieved_reading_kwh,New_Received_Read_KWH_Corectd,new_recieved_reading_w,New_Received_Read_KW_Corectd,new_recieved_reading_va,New_Received_Read_KVA_Corectd,ex_comm_equip,Old_Comm_Equip_Corectd,ex_comm_addr,Old_Comm_Addr_Corectd,ex_readonly_pwd,new_readonly_pwd,new_comm_equip,New_Comm_Equip_Corectd,new_comm_addr,New_Comm_Addr_Corectd,new_billing_pwd,Billable,Complete_date,Main_Activity,Completed_Time,UtilsDeviceLocationLocation,COMPLETE_BY,VERBAL,UNIT_ID,TIME_SYNC_REQ,SET_MPASS,INSTALL_RF,INVESTIGATION_REQ,CONVERT_EL,INTERVAL_READY,IVP,OLD_METER_ACTION,MAN_HRS,TRUCK_HRS,OTHER_HRS,REMOVED,CHARGE_ACCT,FIELD_RETURN_REASON"
 >
     <Table
         id="meterDetailsTable"
+        rowMode="Auto"
         selectionMode="None"
         showNoData="true"
         rows="{path: 'CTPTModel>/SoForm'}"
     >
+          
         <columns>
-            <Column width="170px" hAlign="Center">                
+            <Column id="idOrderID" sortProperty="Order Number" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">                
                 <m:Label text="Order Number"/>                
                 <template>
                     <m:Text text="{CTPTModel>OrderID}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px" hAlign="Center">
+            <Column id="idOperation" sortProperty="Operation" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
                 <m:Label text="Operation" />                 
                 <template>
                     <m:Text text="{CTPTModel>Operation}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px" hAlign="Center">
+            <Column id="idCounter" sortProperty="Counter" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
                 <m:Label text="Counter" />
                 <template>
                     <m:Text text="{CTPTModel>Counter}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px" hAlign="Center">
+            <Column id="idAdditionalNotes" sortProperty="Additional Notes" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
                 <m:Label text="Additional Notes" />
                 <template>
                     <m:Text text="{CTPTModel>additional_notes}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px" hAlign="Center">
+            <Column id="idAdditionalInfo" sortProperty="Additional Info" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
                 <m:Label text="Additional Info" />
                 <template>
                     <m:Text text="{CTPTModel>additional_info}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px" hAlign="Center">
+            <Column id="idMeterNo" sortProperty="Meter Number" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
                 <m:Label text="Meter Number" />
                 <template>
                     <m:Text text="{CTPTModel>UtilitiesDevice}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px" hAlign="Center">
+            <Column id="idNewMeterNo" sortProperty="New Meter Number" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
                 <m:Label text="New Meter Number" />
                 <template>
                     <m:Text text="{CTPTModel>new_meter_num}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px" hAlign="Center">
+            <Column id="idOLDMETERNUMCORECTD" sortProperty="OLD_METERNUM_CORECTD" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
+                <m:Label text="OLD_METERNUM_CORECTD" class="statusColumn" tooltip="Old Meter Number Corrected"/>
+                <template>
+                    <!-- <m:Text text="{CTPTModel>OLD_METERNUM_CORECTD}" textAlign="Center"/> -->
+                    <m:Input id="idOLD_METERNUM_CORECTD" value="{CTPTModel>Old_Meternum_Corectd}" maxLength="18"></m:Input>
+                </template>
+            </Column>
+            <Column id="idNEWMETERNUMCORECTD" sortProperty="NEW_METERNUM_CORECTD" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
+                <m:Label text="NEW_METERNUM_CORECTD" class="statusColumn" tooltip="New Meter Number Corrected"/>
+                <template>
+                    <!-- <m:Text text="{CTPTModel>NEW_METERNUM_CORECTD}" textAlign="Center"/> -->
+                    <m:Input id="idNEW_METERNUM_CORECTD" value="{CTPTModel>New_Meternum_Corectd}" maxLength="18"></m:Input>
+                </template>
+            </Column>
+            <Column id="idOldMeterreadKWH" sortProperty="Old Meter read KWH" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
                 <m:Label text="Old Meter read KWH" />
                 <template>
                     <m:Text text="{CTPTModel>old_meter_read_kwh}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px" hAlign="Center">
+            <Column id="idNewMeterreadKWH" sortProperty="New Meter read KWH" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
                 <m:Label text="New Meter read KWH" />
                 <template>
                     <m:Text text="{CTPTModel>new_meter_read_kwh}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px" hAlign="Center">
+            <Column id="idSecuritySealNo" sortProperty="Security Seal number" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
                 <m:Label text="Security Seal number" />
                 <template>
                     <m:Text text="{CTPTModel>new_security_seal}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px" hAlign="Center">
+            <Column id="idCorrectedTx" sortProperty="Corrected Tx" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
                 <m:Label text="Corrected Tx" />
                 <template>
                     <m:Text text="{CTPTModel>corrected_tx}"  textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px" hAlign="Center">
+            <Column id="idNewTxNum" sortProperty="New Tx Num" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
                 <m:Label text="New Tx Num" />
                 <template>
                     <m:Text text="{CTPTModel>new_tx_num}"  textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px" hAlign="Center">
+            <Column id="idRevNum" sortProperty="Rev_Num" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
+                <m:Label text="Rev_Num" />
+                <template>
+                    <m:Text text="{CTPTModel>Rev_Num}" textAlign="Center"/>
+                </template>
+            </Column>
+            <Column id="idRowNum" sortProperty="Row_Num" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
+                <m:Label text="Row_Num" />
+                <template>
+                    <m:Text text="{CTPTModel>Row_Num}" textAlign="Center"/>
+                </template>
+            </Column>
+            <Column id="idEid" sortProperty="Eid" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
+                <m:Label text="Eid" />
+                <template>
+                    <m:Text text="{CTPTModel>Eid}" textAlign="Center"/>
+                </template>
+            </Column>
+            <Column id="idOldMeterreadW" sortProperty="Old Meter read W" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
                 <m:Label text="Old Meter read W" />
                 <template>
                     <m:Text text="{CTPTModel>old_meter_read_w}"  textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px" hAlign="Center">
+            <Column id="idOldMeterreadVA" sortProperty="Old Meter read VA" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
                 <m:Label text="Old Meter read VA" />
                 <template>
                     <m:Text text="{CTPTModel>old_meter_read_va}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px" hAlign="Center">
+            <Column id="idNewMeterreadW" sortProperty="New Meter read W" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
                 <m:Label text="New Meter read W" />
                 <template>
                     <m:Text text="{CTPTModel>new_meter_read_w}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px" hAlign="Center">
+            <Column id="idNewMeterreadVA" sortProperty="New Meter read VA" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
                 <m:Label text="New Meter read VA" />
                 <template>
                     <m:Text text="{CTPTModel>new_meter_read_va}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px" hAlign="Center">
+            <Column id="idNewManufSerNo" sortProperty="New Manufacturing ser No" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
                 <m:Label text="New Manufacturing ser No" />
                 <template>
                     <m:Text text="{CTPTModel>Manufserialnumber}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px" hAlign="Center">
+            <Column id="idOlddeliveredreadKWH" sortProperty="Old delivered read KWH" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
                 <m:Label text="Old delivered read KWH" />
                 <template>
                     <m:Text text="{CTPTModel>old_delivered_reading_kwh}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px" hAlign="Center">
+            <Column id="idOLDDELIVEREDREADKWHCORECTD" sortProperty="OLD_DELIVERED_READ_KWH_CORECTD" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
+                <m:Label text="OLD_DELIVERED_READ_KWH_CORECTD" class="statusColumn" tooltip="Old Delivered Read KWH Corrected"/>
+                <template>
+                    <!-- <m:Text text="{CTPTModel>OLD_DELIVERED_READ_KWH_CORECTD}" textAlign="Center"/> -->
+                    <m:Input id="idOLD_DELIVERED_READ_KWH_CORECTD" value="{CTPTModel>Old_Delivered_Read_KWH_Corectd}" maxLength="20"></m:Input>
+                </template>
+            </Column>
+            <Column id="idOlddeliveredreadW" sortProperty="Old delivered read W" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
                 <m:Label text="Old delivered read W" />
                 <template>
                     <m:Text text="{CTPTModel>old_delivered_reading_w}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px" hAlign="Center">
+            <Column id="idOLDDELIVEREDREADKWCORECTD" sortProperty="OLD_DELIVERED_READ_KW_CORECTD" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
+                <m:Label text="OLD_DELIVERED_READ_KW_CORECTD" class="statusColumn" tooltip="Old Delivered Read KW Corrected"/>
+                <template>
+                    <!-- <m:Text text="{CTPTModel>OLD_DELIVERED_READ_KW_CORECTD}" textAlign="Center"/> -->
+                    <m:Input id="idOLD_DELIVERED_READ_KW_CORECTD" value="{CTPTModel>Old_Delivered_Read_KW_Corectd}" maxLength="20"></m:Input>
+                </template>
+            </Column>
+            <Column id="idOlddeliveredreadVA" sortProperty="Old delivered read VA" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
                 <m:Label text="Old delivered read VA" />
                 <template>
                     <m:Text text="{CTPTModel>old_delivered_reading_va}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px" hAlign="Center">
+            <Column id="idOLDDELIVEREDREADKVACORECTD" sortProperty="OLD_DELIVERED_READ_KVA_CORECTD" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
+                <m:Label text="OLD_DELIVERED_READ_KVA_CORECTD" class="statusColumn" tooltip="Old Delivered Read KVA Corrected"/>
+                <template>
+                    <!-- <m:Text text="{CTPTModel>OLD_DELIVERED_READ_KVA_CORECTD}" textAlign="Center"/> -->
+                    <m:Input id="idOLD_DELIVERED_READ_KVA_CORECTD" value="{CTPTModel>Old_Delivered_Read_KVA_Corectd}" maxLength="20"></m:Input>
+                </template>
+            </Column>
+            <Column id="idOldreceivedreadKWH" sortProperty="Old received read KWH" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
                 <m:Label text="Old received read KWH" />
                 <template>
                     <m:Text text="{CTPTModel>old_recieved_reading_kwh}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px" hAlign="Center">
+            <Column id="idOLDRECEIVEDREADKWHCORECTD" sortProperty="OLD_RECEIVED_READ_KWH_CORECTD" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
+                <m:Label text="OLD_RECEIVED_READ_KWH_CORECTD" class="statusColumn" tooltip="Old Received Read KWH Corrected"/>
+                <template>
+                    <!-- <m:Text text="{CTPTModel>OLD_RECEIVED_READ_KWH_CORECTD}" textAlign="Center"/> -->
+                    <m:Input id="idOLD_RECEIVED_READ_KWH_CORECTD" value="{CTPTModel>Old_Received_Read_KWH_Corectd}" maxLength="20"></m:Input>
+                </template>
+            </Column>
+            <Column id="idOldreceivedreadW" sortProperty="Old received read W" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
                 <m:Label text="Old received read W" />
                 <template>
                     <m:Text text="{CTPTModel>old_recieved_reading_w}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px" hAlign="Center">
+            <Column id="idOLDRECEIVEDREADKWCORECTD" sortProperty="OLD_RECEIVED_READ_KW_CORECTD" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
+                <m:Label text="OLD_RECEIVED_READ_KW_CORECTD" class="statusColumn" tooltip="Old Received Read KW Corrected"/>
+                <template>
+                    <!-- <m:Text text="{CTPTModel>OLD_RECEIVED_READ_KW_CORECTD}" textAlign="Center"/> -->
+                    <m:Input id="idOLD_RECEIVED_READ_KW_CORECTD" value="{CTPTModel>Old_Received_Read_KW_Corectd}" maxLength="20"></m:Input>
+                </template>
+            </Column>
+            <Column id="idOLDRECEIVEDREADKVACORECTD" sortProperty="OLD_RECEIVED_READ_KVA_CORECTD" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
+                <m:Label text="OLD_RECEIVED_READ_KVA_CORECTD" class="statusColumn" tooltip="Old Received Read KVA Corrected"/>
+                <template>
+                    <!-- <m:Text text="{CTPTModel>OLD_RECEIVED_READ_KVA_CORECTD}" textAlign="Center"/> -->
+                    <m:Input id="idOLD_RECEIVED_READ_KVA_CORECTD" value="{CTPTModel>Old_Received_Read_KVA_Corectd}" maxLength="20"></m:Input>
+                </template>
+            </Column>
+            <Column id="idNewdeliveredreadKWH" sortProperty="New delivered read KWH" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
                 <m:Label text="New delivered read KWH" />
                 <template>
                     <m:Text text="{CTPTModel>new_delivered_reading_kwh}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px" hAlign="Center">
+            <Column id="idNEWDELIVEREDREADKWHCORECTD" sortProperty="NEW_DELIVERED_READ_KWH_CORECTD" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
+                <m:Label text="NEW_DELIVERED_READ_KWH_CORECTD" class="statusColumn" tooltip="New Delivered Read KWH Corrected"/>
+                <template>
+                    <!-- <m:Text text="{CTPTModel>NEW_DELIVERED_READ_KWH_CORECTD}" textAlign="Center"/> -->
+                    <m:Input id="idNEW_DELIVERED_READ_KWH_CORECTD" value="{CTPTModel>New_Delivered_Read_KWH_Corectd}" maxLength="20">
+                    </m:Input>
+                </template>
+            </Column>
+            <Column id="idNewdeliveredreadW" sortProperty="New delivered read W" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
                 <m:Label text="New delivered read W" />
                 <template>
                     <m:Text text="{CTPTModel>new_delivered_reading_w}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px" hAlign="Center">
+            <Column id="idNEWDELIVEREDREADKWCORECTD" sortProperty="NEW_DELIVERED_READ_KW_CORECTD" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
+                <m:Label text="NEW_DELIVERED_READ_KW_CORECTD" class="statusColumn" tooltip="New Delivered Read KW Corrected"/>
+                <template>
+                    <!-- <m:Text text="{CTPTModel>NEW_DELIVERED_READ_KW_CORECTD}" textAlign="Center"/> -->
+                    <m:Input id="idNEW_DELIVERED_READ_KW_CORECTD" value="{CTPTModel>New_Delivered_Read_KW_Corectd}" maxLength="20"></m:Input>
+                </template>
+            </Column>
+            <Column id="idNewdeliveredreadVA" sortProperty="New delivered read VA" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
                 <m:Label text="New delivered read VA" />
                 <template>
                     <m:Text text="{CTPTModel>new_delivered_reading_va}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px" hAlign="Center">
+            <Column id="idNEWDELIVEREDREADKVACORECTD" sortProperty="NEW_DELIVERED_READ_KVA_CORECTD" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
+                <m:Label text="NEW_DELIVERED_READ_KVA_CORECTD" class="statusColumn" tooltip="New Delivered Read KVA Corrected"/>
+                <template>
+                    <!-- <m:Text text="{CTPTModel>NEW_DELIVERED_READ_KVA_CORECTD}" textAlign="Center"/> -->
+                    <m:Input id="idNEW_DELIVERED_READ_KVA_CORECTD" value="{CTPTModel>New_Delivered_Read_KVA_Corectd}" maxLength="20"></m:Input>
+                </template>
+            </Column>
+            <Column id="idNewreceivedreadKWH" sortProperty="New received read KWH" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
                 <m:Label text="New received read KWH" />
                 <template>
                     <m:Text text="{CTPTModel>new_recieved_reading_kwh}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px" hAlign="Center">
-                <m:Label text="New delivered read W" />
+            <Column id="idNEWRECEIVEDREADKWHCORECTD" sortProperty="NEW_RECEIVED_READ_KWH_CORECTD" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
+                <m:Label text="NEW_RECEIVED_READ_KWH_CORECTD" class="statusColumn" tooltip="New Received Read KWH Corrected"/>
+                <template>
+                    <!-- <m:Text text="{CTPTModel>NEW_RECEIVED_READ_KWH_CORECTD}" textAlign="Center"/> -->
+                    <m:Input id="idNEW_RECEIVED_READ_KWH_CORECTD" value="{CTPTModel>New_Received_Read_KWH_Corectd}" maxLength="20"></m:Input>
+                </template>
+            </Column>
+            <Column id="idNewrecievedreadW" sortProperty="New recieved read W" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
+                <m:Label text="New recieved read W" />
                 <template>
                     <m:Text text="{CTPTModel>new_recieved_reading_w}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px" hAlign="Center">
-                <m:Label text="New delivered read VA" />
+            <Column id="idNEWRECEIVEDREADKWCORECTD" sortProperty="NEW_RECEIVED_READ_KW_CORECTD" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
+                <m:Label text="NEW_RECEIVED_READ_KW_CORECTD" class="statusColumn" tooltip="New Received Read KW Corrected"/>
+                <template>
+                    <!-- <m:Text text="{CTPTModel>NEW_RECEIVED_READ_KW_CORECTD}" textAlign="Center"/> -->
+                    <m:Input id="idNEW_RECEIVED_READ_KW_CORECTD" value="{CTPTModel>New_Received_Read_KW_Corectd}" maxLength="20"></m:Input>
+                </template>
+            </Column>
+            <Column id="idNewrecievedreadVA" sortProperty="New recieved read VA" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
+                <m:Label text="New recieved read VA" />
                 <template>
                     <m:Text text="{CTPTModel>new_recieved_reading_va}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px" hAlign="Center">
+            <Column id="idNEWRECEIVEDREADKVACORECTD" sortProperty="NEW_RECEIVED_READ_KVA_CORECTD" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
+                <m:Label text="NEW_RECEIVED_READ_KVA_CORECTD" class="statusColumn" tooltip="New Received Read KVA Corrected"/>
+                <template>
+                    <!-- <m:Text text="{CTPTModel>NEW_RECEIVED_READ_KVA_CORECTD}" textAlign="Center"/> -->
+                    <m:Input id="idNEW_RECEIVED_READ_KVA_CORECTD" value="{CTPTModel>New_Received_Read_KVA_Corectd}" maxLength="20"></m:Input>
+                </template>
+            </Column>
+            <Column id="idOldCommEquipmentNo" sortProperty="Old communication equipment number" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
                 <m:Label text="Old communication equipment number" />
                 <template>
                     <m:Text text="{CTPTModel>ex_comm_equip}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px" hAlign="Center">
+            <Column id="idOLDCOMMEQUIPCORECTD" sortProperty="OLD_COMM_EQUIP_CORECTD" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
+                <m:Label text="OLD_COMM_EQUIP_CORECTD" class="statusColumn" tooltip="Old Communication Equipment Number Corrected"/>
+                <template>
+                    <!-- <m:Text text="{CTPTModel>OLD_COMM_EQUIP_CORECTD}" textAlign="Center"/> -->
+                    <m:Input id="idOLD_COMM_EQUIP_CORECTD" value="{CTPTModel>Old_Comm_Equip_Corectd}" maxLength="8"></m:Input>
+                </template>
+            </Column>
+            <Column id="idOldCommAddress" sortProperty="Old Communication address" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
                 <m:Label text="Old Communication address" />
                 <template>
                     <m:Text text="{CTPTModel>ex_comm_addr}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px" hAlign="Center">
+            <Column id="idOLDCOMMADDRCORECTD" sortProperty="OLD_COMM_ADDR_CORECTD" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
+                <m:Label text="OLD_COMM_ADDR_CORECTD" class="statusColumn" tooltip="Old Communication Address Corrected"/>
+                <template>
+                    <!-- <m:Text text="{CTPTModel>OLD_COMM_ADDR_CORECTD}" textAlign="Center"/> -->
+                    <m:Input id="idOLD_COMM_ADDR_CORECTD" value="{CTPTModel>Old_Comm_Addr_Corectd}" maxLength="100"></m:Input>
+                </template>
+            </Column>
+            <Column id="idReadOnlyPwd" sortProperty="Read only password" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
                 <m:Label text="Read only password" />
                 <template>
                     <m:Text text="{CTPTModel>ex_readonly_pwd}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px" hAlign="Center">
+            <Column id="idNewReadOnlyPwd" sortProperty="New read only password" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
                 <m:Label text="New read only password" />
                 <template>
                     <m:Text text="{CTPTModel>new_readonly_pwd}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px" hAlign="Center">
+            <Column id="idNewCommEquipmentNo" sortProperty="New communication equipment number" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
                 <m:Label text="New communication equipment number" />
                 <template>
                     <m:Text text="{CTPTModel>new_comm_equip}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px" hAlign="Center">
+            <Column id="idNEWCOMMEQUIPCORECTD" sortProperty="NEW_COMM_EQUIP_CORECTD" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
+                <m:Label text="NEW_COMM_EQUIP_CORECTD" class="statusColumn" tooltip="New Communication Equipment Number Corrected"/>
+                <template>
+                    <!-- <m:Text text="{CTPTModel>NEW_COMM_EQUIP_CORECTD}" textAlign="Center"/> -->
+                    <m:Input id="idNEW_COMM_EQUIP_CORECTD" value="{CTPTModel>New_Comm_Equip_Corectd}" maxLength="8"></m:Input>
+                </template>
+            </Column>
+            <Column id="idNewCommAddress" sortProperty="New Communication address" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
                 <m:Label text="New Communication address" />
                 <template>
                     <m:Text text="{CTPTModel>new_comm_addr}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px" hAlign="Center">
+            <Column id="idNEWCOMMADDRCORECTD" sortProperty="NEW_COMM_ADDR_CORECTD" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
+                <m:Label text="NEW_COMM_ADDR_CORECTD" class="statusColumn" tooltip="New Communication Address Corrected"/>
+                <template>
+                    <!-- <m:Text text="{CTPTModel>NEW_COMM_ADDR_CORECTD}" textAlign="Center"/> -->
+                    <m:Input id="idNEW_COMM_ADDR_CORECTD" value="{CTPTModel>New_Comm_Addr_Corectd}" maxLength="100"></m:Input>
+                </template>
+            </Column>
+            <Column id="idNewBillingPwd" sortProperty="New billing password" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
                 <m:Label text="New billing password" />
                 <template>
                     <m:Text text="{CTPTModel>new_billing_pwd}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px" hAlign="Center">
+            <Column id="idBillableFlagIndicator" sortProperty="Billable Flag Indicator" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
                 <m:Label text="Billable Flag Indicator" />
                 <template>
                     <m:Text text="{CTPTModel>Billable}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px" hAlign="Center">
+            <Column id="idOrderCompleteDate" sortProperty="Order Complete Date" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
                 <m:Label text="Order Complete Date" />
                 <template>
                     <m:Text text="{CTPTModel>Complete_date}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px" hAlign="Center">
+            <Column id="idMainActivity" sortProperty="Main Activity" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
                 <m:Label text="Main Activity" />
                 <template>
                     <m:Text text="{CTPTModel>Main_Activity}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px" hAlign="Center">
+            <Column id="idOrderCompleteTime" sortProperty="Order Complete Time" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
                 <m:Label text="Order Complete Time" />
                 <template>
                     <m:Text
@@ -248,258 +530,153 @@
                     />
                 </template>
             </Column>
-            <Column width="170px" hAlign="Center">
+            <Column id="idNewMeterLoc" sortProperty="NEW_METER_LOC" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
                 <m:Label text="NEW_METER_LOC" />
                 <template>
                     <m:Text text="{CTPTModel>UtilsDeviceLocationLocation}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px" hAlign="Center">
+            <Column id="idCompleteBy" sortProperty="COMPLETE_BY" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
                 <m:Label text="COMPLETE_BY" />
                 <template>
                     <m:Text text="{CTPTModel>COMPLETE_BY}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px" hAlign="Center">
+            <Column id="idVerbal" sortProperty="VERBAL" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
                 <m:Label text="VERBAL" />
                 <template>
                     <m:Text text="{CTPTModel>VERBAL}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px" hAlign="Center">
+            <Column id="idUnitId" sortProperty="UNIT_ID" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
                 <m:Label text="UNIT_ID" />
                 <template>
                     <m:Text text="{CTPTModel>UNIT_ID}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px" hAlign="Center">
+            <Column id="idTimeSyncReq" sortProperty="TIME_SYNC_REQ" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
                 <m:Label text="TIME_SYNC_REQ" />
                 <template>
                     <m:Text text="{CTPTModel>TIME_SYNC_REQ}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px" hAlign="Center">
+            <Column id="idSetMPass" sortProperty="SET_MPASS" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
                 <m:Label text="SET_MPASS" />
                 <template>
                     <m:Text text="{CTPTModel>SET_MPASS}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px" hAlign="Center">
+            <Column id="idInstallRF" sortProperty="INSTALL_RF" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
                 <m:Label text="INSTALL_RF" />
                 <template>
                     <m:Text text="{CTPTModel>INSTALL_RF}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px" hAlign="Center">
+            <Column id="idInvestigationReq" sortProperty="INVESTIGATION_REQ" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
                 <m:Label text="INVESTIGATION_REQ" />
                 <template>
                     <m:Text text="{CTPTModel>INVESTIGATION_REQ}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px" hAlign="Center">
+            <Column id="idConvertEL" sortProperty="CONVERT_EL" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
                 <m:Label text="CONVERT_EL" />
                 <template>
                     <m:Text text="{CTPTModel>CONVERT_EL}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px" hAlign="Center">
+            <Column id="idInvertalReady" sortProperty="INTERVAL_READY" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
                 <m:Label text="INTERVAL_READY" />
                 <template>
                     <m:Text text="{CTPTModel>INTERVAL_READY}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px" hAlign="Center">
+            <Column id="idIVP" sortProperty="IVP" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
                 <m:Label text="IVP" />
                 <template>
                     <m:Text text="{CTPTModel>IVP}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px" hAlign="Center">
+            <Column id="idOldMeterAction" sortProperty="OLD_METER_ACTION" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
                 <m:Label text="OLD_METER_ACTION" />
                 <template>
                     <m:Text text="{CTPTModel>OLD_METER_ACTION}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px" hAlign="Center">
+            <Column id="idManHRS" sortProperty="MAN_HRS" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
                 <m:Label text="MAN_HRS" />
                 <template>
                     <m:Text text="{CTPTModel>MAN_HRS}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px" hAlign="Center">
+            <Column id="idTruckHRS" sortProperty="TRUCK_HRS" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
                 <m:Label text="TRUCK_HRS" />
                 <template>
                     <m:Text text="{CTPTModel>TRUCK_HRS}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px" hAlign="Center">
+            <Column id="idOtherHRS" sortProperty="OTHER_HRS" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
                 <m:Label text="OTHER_HRS" />
                 <template>
                     <m:Text text="{CTPTModel>OTHER_HRS}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px" hAlign="Center">
+            <Column id="idRemoved" sortProperty="REMOVED" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
                 <m:Label text="REMOVED" />
                 <template>
                     <m:Text text="{CTPTModel>REMOVED}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px" hAlign="Center">
+            <Column id="idChargeAcct" sortProperty="CHARGE_ACCT" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
                 <m:Label text="CHARGE_ACCT" />
                 <template>
                     <m:Text text="{CTPTModel>CHARGE_ACCT}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column width="170px" hAlign="Center">
+            <Column id="idFieldReturnReason" sortProperty="FIELD_RETURN_REASON" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
                 <m:Label text="FIELD_RETURN_REASON" />
                 <template>
                     <m:Text text="{CTPTModel>FIELD_RETURN_REASON}" textAlign="Center"/>
                 </template>
             </Column>
-            <!-- added fields on 25-o6-2025 -->
-            <Column
-                width="170px"
-            >
-                <m:Label text="Rev_Num" />
-                <template>
-                    <m:Text text="{CTPTModel>Rev_Num}" textAlign="Center"/>
-                </template>
-            </Column>
-            <Column
-                width="170px"
-            >
-                <m:Label text="Eid" />
-                <template>
-                    <m:Text text="{CTPTModel>Eid}" textAlign="Center"/>
-                </template>
-            </Column>
-            <Column width="170px" hAlign="Center">
-                <m:Label text="OLD_METERNUM_CORECTD" class="statusColumn"/>
-                <template>
-                    <!-- <m:Text text="{CTPTModel>OLD_METERNUM_CORECTD}" textAlign="Center"/> -->
-                    <m:Input id="idOLD_METERNUM_CORECTD" value="{CTPTModel>Old_Meternum_Corectd}" maxLength="18"></m:Input>
-                </template>
-            </Column>
-            <Column width="170px" hAlign="Center">
-                <m:Label text="NEW_METERNUM_CORECTD" class="statusColumn"/>
-                <template>
-                    <!-- <m:Text text="{CTPTModel>NEW_METERNUM_CORECTD}" textAlign="Center"/> -->
-                    <m:Input id="idNEW_METERNUM_CORECTD" value="{CTPTModel>New_Meternum_Corectd}" maxLength="18"></m:Input>
-                </template>
-            </Column>
-            <Column width="170px" hAlign="Center">
-                <m:Label text="NEW_DELIVERED_READ_KWH_CORECTD" class="statusColumn"/>
-                <template>
-                    <!-- <m:Text text="{CTPTModel>NEW_DELIVERED_READ_KWH_CORECTD}" textAlign="Center"/> -->
-                    <m:Input id="idNEW_DELIVERED_READ_KWH_CORECTD" value="{CTPTModel>New_Delivered_Read_KWH_Corectd}" maxLength="20">
-                    </m:Input>
-                </template>
-            </Column>
-            <Column width="170px" hAlign="Center">
-                <m:Label text="NEW_DELIVERED_READ_KW_CORECTD" class="statusColumn"/>
-                <template>
-                    <!-- <m:Text text="{CTPTModel>NEW_DELIVERED_READ_KW_CORECTD}" textAlign="Center"/> -->
-                    <m:Input id="idNEW_DELIVERED_READ_KW_CORECTD" value="{CTPTModel>New_Delivered_Read_KW_Corectd}" maxLength="20"></m:Input>
-                </template>
-            </Column>
-            <Column width="170px" hAlign="Center">
-                <m:Label text="NEW_DELIVERED_READ_KVA_CORECTD" class="statusColumn" />
-                <template>
-                    <!-- <m:Text text="{CTPTModel>NEW_DELIVERED_READ_KVA_CORECTD}" textAlign="Center"/> -->
-                    <m:Input id="idNEW_DELIVERED_READ_KVA_CORECTD" value="{CTPTModel>New_Delivered_Read_KVA_Corectd}" maxLength="20"></m:Input>
-                </template>
-            </Column>
-            <Column width="170px" hAlign="Center">
-                <m:Label text="NEW_RECEIVED_READ_KWH_CORECTD" class="statusColumn"/>
-                <template>
-                    <!-- <m:Text text="{CTPTModel>NEW_RECEIVED_READ_KWH_CORECTD}" textAlign="Center"/> -->
-                    <m:Input id="idNEW_RECEIVED_READ_KWH_CORECTD" value="{CTPTModel>New_Received_Read_KWH_Corectd}" maxLength="20"></m:Input>
-                </template>
-            </Column>
-            <Column width="170px" hAlign="Center">
-                <m:Label text="NEW_RECEIVED_READ_KW_CORECTD" class="statusColumn"/>
-                <template>
-                    <!-- <m:Text text="{CTPTModel>NEW_RECEIVED_READ_KW_CORECTD}" textAlign="Center"/> -->
-                    <m:Input id="idNEW_RECEIVED_READ_KW_CORECTD" value="{CTPTModel>New_Received_Read_KW_Corectd}" maxLength="20"></m:Input>
-                </template>
-            </Column>
-            <Column width="170px" hAlign="Center">
-                <m:Label text="NEW_RECEIVED_READ_KVA_CORECTD" class="statusColumn"/>
-                <template>
-                    <!-- <m:Text text="{CTPTModel>NEW_RECEIVED_READ_KVA_CORECTD}" textAlign="Center"/> -->
-                    <m:Input id="idNEW_RECEIVED_READ_KVA_CORECTD" value="{CTPTModel>New_Received_Read_KVA_Corectd}" maxLength="20"></m:Input>
-                </template>
-            </Column>
-            <Column width="170px" hAlign="Center">
-                <m:Label text="NEW_COMM_EQUIP_CORECTD" class="statusColumn"/>
-                <template>
-                    <!-- <m:Text text="{CTPTModel>NEW_COMM_EQUIP_CORECTD}" textAlign="Center"/> -->
-                    <m:Input id="idNEW_COMM_EQUIP_CORECTD" value="{CTPTModel>New_Comm_Equip_Corectd}" maxLength="8"></m:Input>
-                </template>
-            </Column>
-            <Column width="170px" hAlign="Center">
-                <m:Label text="NEW_COMM_ADDR_CORECTD" class="statusColumn"/>
-                <template>
-                    <!-- <m:Text text="{CTPTModel>NEW_COMM_ADDR_CORECTD}" textAlign="Center"/> -->
-                    <m:Input id="idNEW_COMM_ADDR_CORECTD" value="{CTPTModel>New_Comm_Addr_Corectd}" maxLength="100"></m:Input>
-                </template>
-            </Column>
-            <Column width="170px" hAlign="Center">
-                <m:Label text="OLD_DELIVERED_READ_KWH_CORECTD" class="statusColumn"/>
-                <template>
-                    <!-- <m:Text text="{CTPTModel>OLD_DELIVERED_READ_KWH_CORECTD}" textAlign="Center"/> -->
-                    <m:Input id="idOLD_DELIVERED_READ_KWH_CORECTD" value="{CTPTModel>Old_Delivered_Read_KWH_Corectd}" maxLength="20"></m:Input>
-                </template>
-            </Column>
-            <Column width="170px" hAlign="Center">
-                <m:Label text="OLD_DELIVERED_READ_KW_CORECTD" class="statusColumn"/>
-                <template>
-                    <!-- <m:Text text="{CTPTModel>OLD_DELIVERED_READ_KW_CORECTD}" textAlign="Center"/> -->
-                    <m:Input id="idOLD_DELIVERED_READ_KW_CORECTD" value="{CTPTModel>Old_Delivered_Read_KW_Corectd}" maxLength="20"></m:Input>
-                </template>
-            </Column>
-            <Column width="170px" hAlign="Center">
-                <m:Label text="OLD_DELIVERED_READ_KVA_CORECTD" class="statusColumn"/>
-                <template>
-                    <!-- <m:Text text="{CTPTModel>OLD_DELIVERED_READ_KVA_CORECTD}" textAlign="Center"/> -->
-                    <m:Input id="idOLD_DELIVERED_READ_KVA_CORECTD" value="{CTPTModel>Old_Delivered_Read_KVA_Corectd}" maxLength="20"></m:Input>
-                </template>
-            </Column>
-            <Column width="170px" hAlign="Center">
-                <m:Label text="OLD_RECEIVED_READ_KWH_CORECTD" class="statusColumn"/>
-                <template>
-                    <!-- <m:Text text="{CTPTModel>OLD_RECEIVED_READ_KWH_CORECTD}" textAlign="Center"/> -->
-                    <m:Input id="idOLD_RECEIVED_READ_KWH_CORECTD" value="{CTPTModel>Old_Received_Read_KWH_Corectd}" maxLength="20"></m:Input>
-                </template>
-            </Column>
-            <Column width="170px" hAlign="Center">
-                <m:Label text="OLD_RECEIVED_READ_KW_CORECTD" class="statusColumn"/>
-                <template>
-                    <!-- <m:Text text="{CTPTModel>OLD_RECEIVED_READ_KW_CORECTD}" textAlign="Center"/> -->
-                    <m:Input id="idOLD_RECEIVED_READ_KW_CORECTD" value="{CTPTModel>Old_Received_Read_KW_Corectd}" maxLength="20"></m:Input>
-                </template>
-            </Column>
-            <Column width="170px" hAlign="Center">
-                <m:Label text="OLD_RECEIVED_READ_KVA_CORECTD" class="statusColumn" />
-                <template>
-                    <!-- <m:Text text="{CTPTModel>OLD_RECEIVED_READ_KVA_CORECTD}" textAlign="Center"/> -->
-                    <m:Input id="idOLD_RECEIVED_READ_KVA_CORECTD" value="{CTPTModel>Old_Received_Read_KVA_Corectd}" maxLength="20"></m:Input>
-                </template>
-            </Column>
-            <Column width="170px" hAlign="Center">
-                <m:Label text="OLD_COMM_EQUIP_CORECTD" class="statusColumn"/>
-                <template>
-                    <!-- <m:Text text="{CTPTModel>OLD_COMM_EQUIP_CORECTD}" textAlign="Center"/> -->
-                    <m:Input id="idOLD_COMM_EQUIP_CORECTD" value="{CTPTModel>Old_Comm_Equip_Corectd}" maxLength="8"></m:Input>
-                </template>
-            </Column>
-            <Column width="170px" hAlign="Center">
-                <m:Label text="OLD_COMM_ADDR_CORECTD" class="statusColumn"/>
-                <template>
-                    <!-- <m:Text text="{CTPTModel>OLD_COMM_ADDR_CORECTD}" textAlign="Center"/> -->
-                    <m:Input id="idOLD_COMM_ADDR_CORECTD" value="{CTPTModel>Old_Comm_Addr_Corectd}" maxLength="100"></m:Input>
-                </template>
-            </Column>
+            
         </columns>
     </Table>
+    </smarttable:SmartTable>
+    
 </core:FragmentDefinition>

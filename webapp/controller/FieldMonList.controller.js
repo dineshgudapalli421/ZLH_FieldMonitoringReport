@@ -28,6 +28,8 @@ sap.ui.define(
         UIComponent = oController.getOwnerComponent();
         oOEBoDataModel = oController.getOwnerComponent().getModel();
         oRouter = UIComponent.getRouter();
+        oController._oTableFieldMon = oController.getView().byId("idFieldMonTable");
+        oController._oP13nEngineFieldMon = Engine.getInstance();
         oResourceBundle = oController.getOwnerComponent().getModel("i18n").getResourceBundle();
         oRouter.getRoute("FieldMonList").attachPatternMatched(oController._onRouteMatch, oController);
         oController._mViewSettingsDialogs = {};
@@ -524,7 +526,7 @@ sap.ui.define(
           "opStatus_col": "11rem"
         };
 
-        Engine.getInstance().register(oTable, {
+        oController._oP13nEngineFieldMon.register(oTable, {
           helper: oController.oMetadataHelper,
           controller: {
             Columns: new SelectionController({
@@ -543,7 +545,12 @@ sap.ui.define(
           }
         });
 
-        Engine.getInstance().attachStateChange(oController.handleStateChange.bind(oController));
+        oController._oP13nEngineFieldMon.attachStateChange(oController.handleStateChange.bind(oController));
+      },
+      onExit: function(){
+        if(oController._oP13nEngineFieldMon){
+          oController._oP13nEngineFieldMon.destroy();
+        }
       },
       handleStateChange: function (oEvent) {
         debugger;
@@ -594,7 +601,7 @@ sap.ui.define(
 
         //Apply the state programatically on sorting through the column menu
         //1) Retrieve the current personalization state
-        Engine.getInstance().retrieveState(oTable).then(function (oState) {
+        oController._oP13nEngineFieldMon.retrieveState(oTable).then(function (oState) {
 
           //2) Modify the existing personalization state --> clear all sorters before
           oState.Sorter.forEach(function (oSorter) {
@@ -606,14 +613,14 @@ sap.ui.define(
           });
 
           //3) Apply the modified personalization state to persist it in the VariantManagement
-          Engine.getInstance().applyState(oTable, oState);
+          oController._oP13nEngineFieldMon.applyState(oTable, oState);
         });
       },
       onColumnHeaderItemPress: function (oEvent) {
         var oTable = oController.getView().byId("idFieldMonTable");
         var sPanel = oEvent.getSource().getIcon().indexOf("sort") >= 0 ? "Sorter" : "Columns";
 
-        Engine.getInstance().show(oTable, [sPanel], {
+        oController._oP13nEngineFieldMon.show(oTable, [sPanel], {
           contentHeight: "35rem",
           contentWidth: "32rem",
           source: oTable
@@ -626,7 +633,7 @@ sap.ui.define(
         var sKey = oController._getKey(oAffectedColumn);
         oEvent.preventDefault();
 
-        Engine.getInstance().retrieveState(oTable).then(function (oState) {
+        oController._oP13nEngineFieldMon.retrieveState(oTable).then(function (oState) {
 
           var oCol = oState.Columns.find(function (oColumn) {
             return oColumn.key === sKey;
@@ -648,7 +655,7 @@ sap.ui.define(
         var oColumnState = {};
         oColumnState[oController._getKey(oColumn)] = sWidth;
 
-        Engine.getInstance().applyState(oTable, {
+        oController._oP13nEngineFieldMon.applyState(oTable, {
           ColumnWidth: oColumnState
         });
       },
@@ -731,7 +738,7 @@ sap.ui.define(
         } else {
           MessageToast.show(oResourceBundle.getText("selectLineItemMessage"));
         }
-      },      
+      },
       onSubmitFieldMonList: function () {
         var oView = oController.getView();
         var oModel = oView.getModel("FieldMonitorModel");
@@ -993,7 +1000,7 @@ sap.ui.define(
       handleSettingsButtonPressed: function (oEvent) {
         const oTable = oController.getView().byId("idFieldMonTable");
 
-        Engine.getInstance().show(oTable, ["Columns", "Sorter"], {
+        oController._oP13nEngineFieldMon.show(oTable, ["Columns", "Sorter"], {
           contentHeight: "35rem",
           contentWidth: "32rem",
           source: oEvent.getSource()

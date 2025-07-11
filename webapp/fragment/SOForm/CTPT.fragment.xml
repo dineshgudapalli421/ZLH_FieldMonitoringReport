@@ -2,14 +2,31 @@
     xmlns="sap.ui.table"
     xmlns:core="sap.ui.core"
     xmlns:m="sap.m"
+    xmlns:smarttable="sap.ui.comp.smarttable"
+    height="100%"
 >
-    <Table
+<smarttable:SmartTable 
+    id="ctptSmartTable"
+    entitySet="CTPT"
+    tableBindingPath="CTPTModel>/CTPT"
+    tableType="ResponsiveTable"
+    useVariantManagement="true"
+    useTablePersonalisation="true"
+    header="CTPT Data"
+    showRowCount="true"
+    enableAutoBinding="true"
+    enableExport="false"
+    demandPopin="true"
+    persistencyKey="SmartTableSoFormCTPT"
+    requestAtLeastFields="OrderID,Rev_Num,Row_Num,Eid,Serialnumber,OldSerialnumber_Corectd,Manufserialnumber,Devicecategory,Deviceremoval,Newserialnumber,NewSerialnumber_Corectd,Newmanufserialnumber,Newdevicecategory,newfuncclass,newtxwindenom,Denominator_Corectd,Newtxwindnumber,Numerator_Corectd"
+>
+<Table
         id="idTableCTPT"
         selectionMode="None"
         rows="{path: 'CTPTModel>/CTPT'}"
     >
         <columns>
-            <Column
+            <!-- <Column
                visible="false"
                 width="9rem"
                 hAlign="Center"
@@ -18,7 +35,7 @@
                 <template>
                     <m:Text text="{CTPTModel>eid}" textAlign="Center"/>
                 </template>
-            </Column>
+            </Column> -->
             <Column
                 width="9rem"
                 hAlign="Center"
@@ -29,12 +46,49 @@
                 </template>
             </Column>
             <Column
+                width="9rem"
+                hAlign="Center"
+            >
+                <m:Label text="Rev_Num" />
+                <template>
+                    <m:Text text="{CTPTModel>Rev_Num}"  textAlign="Center"/>
+                </template>
+            </Column>
+            <Column
+                width="9rem"
+                hAlign="Center"
+            >
+                <m:Label text="Row_Num" />
+                <template>
+                    <m:Text text="{CTPTModel>Row_Num}"  textAlign="Center"/>
+                </template>
+            </Column>
+            <Column
+                width="9rem"
+                hAlign="Center"
+            >
+                <m:Label text="Eid" />
+                <template>
+                    <m:Text text="{CTPTModel>Eid}"  textAlign="Center"/>
+                </template>
+            </Column>
+            <Column
                 width="12rem"
                 hAlign="End"
             >
                 <m:Label text="{i18n>oldEquipmentSerialNum}" />
                 <template>
                     <m:Text text="{CTPTModel>Serialnumber}" textAlign="Center"/>
+                </template>
+            </Column>
+            <Column
+                width="15rem"
+                hAlign="Center"
+            >
+                <m:Label text="OLDSERIALNUMBER_CORECTD" class="statusColumn" tooltip="Old Serial Number Corrected"/>
+                <template>
+                    <!-- <m:Text text="{CTPTModel>OLDSERIALNUMBER_CORECTD}" /> -->
+                    <m:Input id="idOLDSERIALNUMBER_CORECTD" value="{CTPTModel>OldSerialnumber_Corectd}" maxLength="20"></m:Input>
                 </template>
             </Column>
             <Column
@@ -77,6 +131,16 @@
                 </template>
             </Column>
             <Column
+                width="15rem"
+                hAlign="Center"
+            >
+                <m:Label text="NEWSERIALNUMBER_CORECTD" class="statusColumn" tooltip="New Serial Number Corrected"/>
+                <template>
+                    <!-- <m:Text text="{CTPTModel>NEWSERIALNUMBER_CORECTD}"/> -->
+                    <m:Input id="idNEWSERIALNUMBER_CORECTD" value="{CTPTModel>NewSerialnumber_Corectd}" maxLength="20"></m:Input>
+                </template>
+            </Column>
+            <Column
                 width="9rem"
                 hAlign="Center"
             >
@@ -116,6 +180,16 @@
                 </template>
             </Column>
             <Column
+                width="15rem"
+                hAlign="Center" 
+            >
+                <m:Label text="DENOMINATOR_CORECTD" class="statusColumn" tooltip="Denominator Corrected"/>
+                <template>
+                    <!-- <m:Text text="{CTPTModel>DENOMINATOR_CORECTD}" /> -->
+                    <m:Input id="idDENOMINATOR_CORECTD" value="{CTPTModel>Denominator_Corectd}" maxLength="20"></m:Input>
+                </template>
+            </Column>
+            <Column
                 width="9rem"
                 hAlign="Center"
             >
@@ -124,60 +198,11 @@
                     <m:Text text="{CTPTModel>Newtxwindnumber}"  textAlign="Center"/>
                 </template>
             </Column>
-            <!-- added columns @25-06-2025 -->
-            <Column
-                width="9rem"
-                hAlign="Center"
-            >
-                <m:Label text="Rev_Num" />
-                <template>
-                    <m:Text text="{CTPTModel>Rev_Num}"  textAlign="Center"/>
-                </template>
-            </Column>
-            <Column
-                width="9rem"
-                hAlign="Center"
-            >
-                <m:Label text="Eid" />
-                <template>
-                    <m:Text text="{CTPTModel>Eid}"  textAlign="Center"/>
-                </template>
-            </Column>
-            <Column
+           <Column
                 width="15rem"
                 hAlign="Center"
             >
-                <m:Label text="NEWSERIALNUMBER_CORECTD" class="statusColumn"/>
-                <template>
-                    <!-- <m:Text text="{CTPTModel>NEWSERIALNUMBER_CORECTD}"/> -->
-                    <m:Input id="idNEWSERIALNUMBER_CORECTD" value="{CTPTModel>NewSerialnumber_Corectd}" maxLength="20"></m:Input>
-                </template>
-            </Column>
-            <Column
-                width="15rem"
-                hAlign="Center"
-            >
-                <m:Label text="OLDSERIALNUMBER_CORECTD" class="statusColumn" />
-                <template>
-                    <!-- <m:Text text="{CTPTModel>OLDSERIALNUMBER_CORECTD}" /> -->
-                    <m:Input id="idOLDSERIALNUMBER_CORECTD" value="{CTPTModel>OldSerialnumber_Corectd}" maxLength="20"></m:Input>
-                </template>
-            </Column>
-            <Column
-                width="15rem"
-                hAlign="Center" 
-            >
-                <m:Label text="DENOMINATOR_CORECTD" class="statusColumn"/>
-                <template>
-                    <!-- <m:Text text="{CTPTModel>DENOMINATOR_CORECTD}" /> -->
-                    <m:Input id="idDENOMINATOR_CORECTD" value="{CTPTModel>Denominator_Corectd}" maxLength="20"></m:Input>
-                </template>
-            </Column>
-            <Column
-                width="15rem"
-                hAlign="Center"
-            >
-                <m:Label text="NUMERATOR_CORECTD" class="statusColumn"/>
+                <m:Label text="NUMERATOR_CORECTD" class="statusColumn" tooltip="Numerator Corrected"/>
                 <template>
                     <!-- <m:Text text="{CTPTModel>NUMERATOR_CORECTD}" /> -->
                     <m:Input id="idNUMERATOR_CORECTD" value="{CTPTModel>Numerator_Corectd}" maxLength="20"></m:Input>
@@ -185,4 +210,6 @@
             </Column>
         </columns>
     </Table>
+</smarttable:SmartTable>
+    
 </core:FragmentDefinition>
