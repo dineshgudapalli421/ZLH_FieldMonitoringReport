@@ -7,6 +7,7 @@ sap.ui.define(
     "sap/ui/model/FilterOperator",
     "sap/ui/model/json/JSONModel",
     "sap/m/Token",
+    "sap/m/PDFViewer",
     'sap/ui/core/Fragment',
     'sap/ui/model/Sorter',
     'sap/m/p13n/Engine',
@@ -18,7 +19,7 @@ sap.ui.define(
     'sap/ui/core/library',
     "sap/ushell/services/Personalization"
   ],
-  function (Controller, MessageToast, MessageBox, Filter, FilterOperator, JSONModel, Token, Fragment, Sorter, Engine, SelectionController, SortController, GroupController, MetadataHelper, ColumnWidthController, CoreLibrary, Personalization) {
+  function (Controller, MessageToast, MessageBox, Filter, FilterOperator, JSONModel, Token, PDFViewer, Fragment, Sorter, Engine, SelectionController, SortController, GroupController, MetadataHelper, ColumnWidthController, CoreLibrary, Personalization) {
     "use strict";
     var oRouter, oController, oSelectionScreenModel, oOEBoDataModel, oResourceBundle, UIComponent, oSelectionFilter;
     return Controller.extend("com.sap.lh.cs.zlhfieldmonitoring.controller.FieldMonList", {
@@ -547,8 +548,8 @@ sap.ui.define(
 
         oController._oP13nEngineFieldMon.attachStateChange(oController.handleStateChange.bind(oController));
       },
-      onExit: function(){
-        if(oController._oP13nEngineFieldMon){
+      onExit: function () {
+        if (oController._oP13nEngineFieldMon) {
           oController._oP13nEngineFieldMon.destroy();
         }
       },
@@ -840,12 +841,18 @@ sap.ui.define(
         var sOrderNumber = oController.getSelectedOrderNumber();
         if (!!sOrderNumber) {
           var oSource = "/sap/opu/odata/SAP/ZWM_FIELD_COMP_WORK_SRV/SOFormSet('" + sOrderNumber + "')/$value";
-          this.getView().getModel("FieldMonitorModel").setProperty("/sSourceSOFORM", oSource);
-          if (!this.oSoFormDialog) {
-            this.oSoFormDialog = sap.ui.xmlfragment("com.sap.lh.cs.zlhfieldmonitoring.fragment.SOForm.SOFormPDF", this);
-            this.getView().addDependent(this.oSoFormDialog);
-          }
-          this.oSoFormDialog.open();
+          // this.getView().getModel("FieldMonitorModel").setProperty("/sSourceSOFORM", oSource);
+          // if (!this.oSoFormDialog) {
+          //   this.oSoFormDialog = sap.ui.xmlfragment("com.sap.lh.cs.zlhfieldmonitoring.fragment.SOForm.SOFormPDF", this);
+          //   this.getView().addDependent(this.oSoFormDialog);
+          // }
+          // this.oSoFormDialog.open();
+          var oPdfViewer = new PDFViewer({
+            title: "PDF View",
+            height: "600px"
+          });
+          oPdfViewer.setSource(oSource);
+          oPdfViewer.open();
         } else {
           MessageToast.show(oResourceBundle.getText("selectLineItemMessage"));
         }
