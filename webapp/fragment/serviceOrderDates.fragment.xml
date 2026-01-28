@@ -28,16 +28,18 @@
                 id="idcompletedOnDatePicker"
                 width="80%"
                 valueFormat="YYYY-MM-dd"
-                displayFormat="dd.MM.yyyy"
+                displayFormat="MM-dd-yyyy"
                 value="{FieldMonSelModel>/oServiceOrderDates/CompletedOn/From}"
                 change="OnChangeCompletedOnDate"
                 
             />
+            <!-- valueFormat="YYYY-MM-dd"
+                displayFormat="dd.MM.yyyy" -->
             <DatePicker
                 id="idcompletedOnDatePickerTo"
                 width="80%"
                 valueFormat="YYYY-MM-dd"
-                displayFormat="dd.MM.yyyy"
+                displayFormat="MM-dd-yyyy"
                 value="{FieldMonSelModel>/oServiceOrderDates/CompletedOn/To}"
                 change="OnChangeCompletedOnDate"
             />
@@ -62,7 +64,7 @@
                 id="idcreatedOnDatePicker"
                 width="80%"
                 valueFormat="YYYY-MM-dd"
-                displayFormat="dd.MM.yyyy"
+                displayFormat="MM-dd-yyyy"
                 value="{FieldMonSelModel>/oServiceOrderDates/CreatedOn/From}"
                 change="onchangeCreatedOn"
             />
@@ -70,7 +72,7 @@
                 id="idcreatedOnDatePickerTo"
                 width="80%"
                 valueFormat="YYYY-MM-dd"
-                displayFormat="dd.MM.yyyy"
+                displayFormat="MM-dd-yyyy"
                 value="{FieldMonSelModel>/oServiceOrderDates/CreatedOn/To}"
                 change="onchangeCreatedOn"
             />
@@ -80,7 +82,7 @@
                 id="idbasicStartDatePicker"
                 width="80%"
                 valueFormat="YYYY-MM-dd"
-                displayFormat="dd.MM.yyyy"
+                displayFormat="MM-dd-yyyy"
                 value="{FieldMonSelModel>/oServiceOrderDates/BasicStart/From}"
                 change="onChangeBasicStartDate"
             />
@@ -88,7 +90,7 @@
                 id="idbasicStartDatePickerTo"
                 width="80%"
                 valueFormat="YYYY-MM-dd"
-                displayFormat="dd.MM.yyyy"
+                displayFormat="MM-dd-yyyy"
                 value="{FieldMonSelModel>/oServiceOrderDates/BasicStart/To}"
                 change="onChangeBasicStartDate"
             />
