@@ -872,27 +872,51 @@ sap.ui.define(
         this.getViewSettingsDialog("com.sap.lh.cs.zlhfieldmonitoring.fragment.Filters.FilterDialog")
           .then(function (oViewSettingsDialog) {
             // oViewSettingsDialog.setModel();
-            // oViewSettingsDialog.setModel("FieldMonitorModel", new JSONModel();)
+            // oViewSettingsDialog.setModel("FieldMonitorModel", new JSONModel());
             oViewSettingsDialog.open();
           });
 
+      },
+      handleFilterDialogConfirm: function (oEvent) {
+        var oTable = oController.getView().byId("idFieldMonTable"),
+          mParams = oEvent.getParameters(),
+          oBinding = oTable.getBinding("items"),
+          aFilters = [];
+
+        mParams.filterItems.forEach(function (oItem) {
+          var aSplit = oItem.getKey().split("___"),
+            sPath = aSplit[0],
+            sOperator = aSplit[1],
+            sValue1 = aSplit[2],
+            sValue2 = aSplit[3],
+            oFilter = new Filter(sPath, sOperator, sValue1, sValue2);
+          aFilters.push(oFilter);
+        });
+
+        // apply filter settings
+        oBinding.filter(aFilters);
+
+        // update filter bar
+        this.byId("vsdFilterBar").setVisible(aFilters.length > 0);
+        this.byId("vsdFilterLabel").setText(mParams.filterString);
       },
       // _FilterValuecollect: function () {
       // debugger;
       // var oTable = oController.getView().byId("idFieldMonTable");
       // oBinding = oTable.getBinding("rows");
       _FilterValuecollect: function () {
+        debugger;
         var oTable = oController.getView().byId("idFieldMonTable");
         var oBinding = oTable.getBinding("rows");
         var aStatusValues = oBinding.getCurrentContexts().map(function (oContext) {
           return oContext.getProperty("Status");
         });
         // var aStatusValues = oBinding.getCurrentContexts().map(function (oContext) {
-        return aStatusValues;
+        //return aStatusValues;
         // var oFitlerItems = {
 
         // }
-        // oController.getView().getModel("FieldMonitorModel").setProperty("/Filterparameters/Status", aStatusValues)
+         oController.getView().getModel("FieldMonitorModel").setProperty("/Filterparameters/Status", aStatusValues)
         // >/Filterparameters/Status
         // aStatusValues
         // console.log(aStatusValues);
