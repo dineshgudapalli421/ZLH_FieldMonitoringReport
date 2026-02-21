@@ -23,7 +23,7 @@
                 <f:fields>
                     <CheckBox text="Show only CPT TRs/ Metering Tank" selected="{FieldMonSelModel>bShowOnlyMeterTank}"/>
                 </f:fields>
-            </f:FormElement>
+            </f:FormElement>            
             <!-- <f:FormElement>
                 <f:label>
                     <Label text="Layout" />

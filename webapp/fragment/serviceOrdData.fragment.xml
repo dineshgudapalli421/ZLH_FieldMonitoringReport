@@ -88,6 +88,25 @@
                     </ColumnListItem>
                 </suggestionRows>                
             </MultiInput>
+
+             <Label text="Meter Action" />
+            <MultiComboBox
+                id="idMeterAction"
+                selectionChange="handleSelectionChange"
+                selectionFinish="handleSelectionFinish"
+                selectedKeys="{FieldMonSelModel>/MeterActionSelected}"
+                showSelectAll="true"
+                width="350px"
+                items="{
+				path: 'FieldMonSelModel>/MeterAction',
+				sorter: { path: 'Name' }
+			          }"
+            >
+                <core:Item
+                    key="{FieldMonSelModel>Key}"
+                    text="{FieldMonSelModel>description}"
+                />
+            </MultiComboBox>
         </f:content>
     </f:SimpleForm>
 </core:FragmentDefinition>

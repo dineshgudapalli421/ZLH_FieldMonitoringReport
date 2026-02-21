@@ -198,6 +198,17 @@
                         </template>
                     </Column>
                     <Column
+                        id="meterAction_col" 
+                    sortProperty="{i18n>label.meterAction}" headerMenu="menu" resizable="true" 
+                    autoResizable="true" width="11rem"
+                        hAlign="Center"
+                    >
+                        <m:Label text="{i18n>label.meterAction}" />
+                        <template>
+                            <m:Label text="{FieldMonitorModel>METER_ACTION}" textAlign="Center"/>
+                        </template>
+                    </Column>
+                    <Column
                         id="ctpt_col" 
                     sortProperty="{i18n>label.ctpt}" headerMenu="menu" resizable="true" 
                     autoResizable="true" width="11rem"

@@ -349,6 +349,11 @@ sap.ui.define(
           path: "METER_NO"
         },
         {
+          key: "meterAction_col",
+          label: "Meter Action",
+          path: "METER_ACTION"
+        },
+        {
           key: "ctpt_col",
           label: "CT PT",
           path: "CTPT"
@@ -499,6 +504,7 @@ sap.ui.define(
           "address_col": "11rem",
           "keyNo_col": "11rem",
           "meterNo_col": "11rem",
+          "meterAction_col": "11rem",
           "ctpt_col": "11rem",
           "orderType_col": "11rem",
           "activity_col": "11rem",
