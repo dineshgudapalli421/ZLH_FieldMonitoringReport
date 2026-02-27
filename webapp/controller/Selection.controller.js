@@ -118,14 +118,14 @@ sap.ui.define([
                     { Key: "ERRD", description: "Error In Dispatch" }
                 ],
                 MeterAction: [
-                    // { key: "BLANK", description: "BLANK" },
+                    { key: "NO_ACTION", description: "NO ACTION" },
                     { Key: "DISCONNECT", description: "DISCONNECT" },
                     { Key: "EXCHANGE", description: "EXCHANGE" },
                     { Key: "FIX", description: "FIX" },
                     { Key: "INSTALL", description: "INSTALL" },
                     { Key: "RECONNECT", description: "RECONNECT" },
                     { Key: "REMOVE", description: "REMOVE" },
-                    { Key: "SEALCHANGE", description: "SEAL CHANGE" }
+                    { Key: "SEAL_CHANGE", description: "SEAL CHANGE" }
                 ]
             });
 
