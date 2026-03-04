@@ -135,7 +135,7 @@ sap.ui.define([
             oController.getView().setModel(oSelectionModel, "FieldMonSelModel");
             oController.getOwnerComponent().setModel(new JSONModel({}), "GlobalFieldMonModel");
             var oMultiComboBox = oController.getView().byId("idMeterAction");
-            var aSelectedKeys = ["EXCHANGE","FIX","INSTALL","REMOVE"];
+            var aSelectedKeys = ["EXCHANGE","INSTALL","REMOVE"];
             oMultiComboBox.setSelectedKeys(aSelectedKeys);
             this._initPersonalizationService();
         },

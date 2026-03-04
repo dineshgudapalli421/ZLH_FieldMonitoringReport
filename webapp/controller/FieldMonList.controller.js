@@ -17,9 +17,10 @@ sap.ui.define(
     'sap/m/p13n/MetadataHelper',
     'sap/m/table/ColumnWidthController',
     'sap/ui/core/library',
-    "sap/ushell/services/Personalization"
+    "sap/ushell/services/Personalization",
+    "sap/ui/export/Spreadsheet",
   ],
-  function (Controller, MessageToast, MessageBox, Filter, FilterOperator, JSONModel, Token, PDFViewer, Fragment, Sorter, Engine, SelectionController, SortController, GroupController, MetadataHelper, ColumnWidthController, CoreLibrary, Personalization) {
+  function (Controller, MessageToast, MessageBox, Filter, FilterOperator, JSONModel, Token, PDFViewer, Fragment, Sorter, Engine, SelectionController, SortController, GroupController, MetadataHelper, ColumnWidthController, CoreLibrary, Personalization, Spreadsheet) {
     "use strict";
     var oRouter, oController, oSelectionScreenModel, oOEBoDataModel, oResourceBundle, UIComponent, oSelectionFilter;
     return Controller.extend("com.sap.lh.cs.zlhfieldmonitoring.controller.FieldMonList", {
@@ -922,7 +923,7 @@ sap.ui.define(
         // var oFitlerItems = {
 
         // }
-         oController.getView().getModel("FieldMonitorModel").setProperty("/Filterparameters/Status", aStatusValues)
+        oController.getView().getModel("FieldMonitorModel").setProperty("/Filterparameters/Status", aStatusValues)
         // >/Filterparameters/Status
         // aStatusValues
         // console.log(aStatusValues);
@@ -1042,6 +1043,40 @@ sap.ui.define(
           contentWidth: "32rem",
           source: oEvent.getSource()
         });
+      },
+      onExport: function (oEvent) {
+        var oTable =  oController.getView().byId("idFieldMonTable");
+        var oRowBinding = oTable.getBinding("rows");
+        var aColumns = oTable.getColumns();
+
+        // 1. Define Column Configuration
+        var aExportConfig = aColumns.map(function (oColumn) {
+          var sLabel = oColumn.getLabel().getText();
+          var sPath = "";
+
+          // Get the binding path from the template (Text or Input)
+          var oTemplate = oColumn.getTemplate();
+          if (oTemplate && oTemplate.getBindingPath("text")) {
+            sPath = oTemplate.getBindingPath("text");
+          }
+
+          return {
+            label: sLabel,
+            property: sPath,
+            type: "String" // or Date, Number, Boolean, etc.
+          };
+        });
+
+        // 2. Configure Settings
+        var oSettings = {
+          workbook: { columns: aExportConfig },
+          dataSource: oRowBinding, // Uses table's binding (supports filtering/sorting)
+          fileName: "ProductsExport.xlsx"
+        };
+
+        // 3. Trigger Download
+        var oSpreadsheet = new Spreadsheet(oSettings);
+        oSpreadsheet.build();
       }
     });
   }
