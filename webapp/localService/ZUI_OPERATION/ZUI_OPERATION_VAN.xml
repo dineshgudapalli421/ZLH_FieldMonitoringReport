@@ -1,0 +1,591 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Reference Uri="../../catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="../../catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="../../catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="../../catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="../../catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_VALIDATION',Version='0001',SAP__Origin='')/$value">
+        <edmx:Include Namespace="Org.OData.Validation.V1" Alias="Validation"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="../../catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_ANALYTICS',Version='0001',SAP__Origin='')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Analytics.v1" Alias="Analytics"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="../../catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_HTML5',Version='0001',SAP__Origin='')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.HTML5.v1" Alias="HTML5"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="../../../sap/zui_operation/$metadata">
+        <edmx:Include Namespace="ZUI_OPERATION" Alias="SAP"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="zui_operation_van.v1" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <Annotations Target="cds_zui_maintorderoperation.MaintenanceOrderOperationsType/MaintOrderRoutingNumber">
+                <Annotation Term="UI.HiddenFilter"/>
+            </Annotations>
+            <Annotations Target="cds_zui_maintorderoperation.MaintenanceOrderOperationsType/MaintenanceOrderSubOperation">
+                <Annotation Term="UI.HiddenFilter"/>
+            </Annotations>
+            <Annotations Target="cds_zui_maintorderoperation.MaintenanceOrderOperationsType/MaintOrderOperationCounter">
+                <Annotation Term="UI.HiddenFilter"/>
+            </Annotations>
+            <Annotations Target="cds_zui_maintorderoperation.MaintenanceOrderOperationsType/MaintenanceNotification">
+                <Annotation Term="UI.HiddenFilter"/>
+            </Annotations>
+            <Annotations Target="cds_zui_maintorderoperation.MaintenanceOrderOperationsType/MaintenanceOrderInternalID">
+                <Annotation Term="UI.HiddenFilter"/>
+            </Annotations>
+            <Annotations Target="cds_zui_maintorderoperation.MaintenanceOrderOperationsType/MaintOrderOperationlID">
+                <Annotation Term="UI.HiddenFilter"/>
+            </Annotations>
+            <Annotations Target="cds_zui_maintorderoperation.MaintenanceOrderOperationsType/MaintenanceOrderDesc">
+                <Annotation Term="UI.HiddenFilter"/>
+            </Annotations>
+            <Annotations Target="cds_zui_maintorderoperation.MaintenanceOrderOperationsType/ServiceDocument">
+                <Annotation Term="UI.HiddenFilter"/>
+            </Annotations>
+            <Annotations Target="cds_zui_maintorderoperation.MaintenanceOrderOperationsType/ServiceDocumentItem">
+                <Annotation Term="UI.HiddenFilter"/>
+            </Annotations>
+            <Annotations Target="cds_zui_maintorderoperation.MaintenanceOrderOperationsType/ServiceDocumentType">
+                <Annotation Term="UI.HiddenFilter"/>
+            </Annotations>
+            <Annotations Target="cds_zui_maintorderoperation.MaintenanceOrderOperationsType/ServiceDocumentStatus">
+                <Annotation Term="UI.HiddenFilter"/>
+            </Annotations>
+            <Annotations Target="cds_zui_maintorderoperation.MaintenanceOrderOperationsType/BusinessPartner">
+                <Annotation Term="UI.HiddenFilter"/>
+            </Annotations>
+            <Annotations Target="cds_zui_maintorderoperation.MaintenanceOrderOperationsType/MainOrderSystemStatus">
+                <Annotation Term="UI.HiddenFilter"/>
+            </Annotations>
+            <Annotations Target="cds_zui_maintorderoperation.MaintenanceOrderOperationsType/MainOrderUserStatus">
+                <Annotation Term="UI.HiddenFilter"/>
+            </Annotations>
+            <Annotations Target="cds_zui_maintorderoperation.MaintenanceOrderOperationsType/OrderStatusProfile">
+                <Annotation Term="UI.HiddenFilter"/>
+            </Annotations>
+            <Annotations Target="cds_zui_maintorderoperation.MaintenanceOrderOperationsType/MaintOrderOperationInternalID">
+                <Annotation Term="UI.HiddenFilter"/>
+            </Annotations>
+            <Annotations Target="cds_zui_maintorderoperation.MaintenanceOrderOperationsType/OperationStatusProfile">
+                <Annotation Term="UI.HiddenFilter"/>
+            </Annotations>
+            <Annotations Target="cds_zui_maintorderoperation.MaintenanceOrderOperationsType/OperationWorkCenterTypeCode">
+                <Annotation Term="UI.HiddenFilter"/>
+            </Annotations>
+            <Annotations Target="cds_zui_maintorderoperation.MaintenanceOrderOperationsType/OperationWorkCenterInternalID">
+                <Annotation Term="UI.HiddenFilter"/>
+            </Annotations>
+            <Annotations Target="cds_zui_maintorderoperation.MaintenanceOrderOperationsType/OperationControlKey">
+                <Annotation Term="UI.HiddenFilter"/>
+            </Annotations>
+            <Annotations Target="cds_zui_maintorderoperation.MaintenanceOrderOperationsType/OperationDescription">
+                <Annotation Term="UI.HiddenFilter"/>
+            </Annotations>
+            <Annotations Target="cds_zui_maintorderoperation.MaintenanceOrderOperationsType/OperationStandardTextCode">
+                <Annotation Term="UI.HiddenFilter"/>
+            </Annotations>
+            <Annotations Target="cds_zui_maintorderoperation.MaintenanceOrderOperationsType/OpErlstSchedldExecStrtDte">
+                <Annotation Term="UI.HiddenFilter"/>
+            </Annotations>
+            <Annotations Target="cds_zui_maintorderoperation.MaintenanceOrderOperationsType/OpLtstSchedldExecEndDte">
+                <Annotation Term="UI.HiddenFilter"/>
+            </Annotations>
+            <Annotations Target="cds_zui_maintorderoperation.MaintenanceOrderOperationsType/OperationalSystemStatus">
+                <Annotation Term="UI.HiddenFilter"/>
+            </Annotations>
+            <Annotations Target="cds_zui_maintorderoperation.MaintenanceOrderOperationsType/OperationalUserStatus">
+                <Annotation Term="UI.HiddenFilter"/>
+            </Annotations>
+            <Annotations Target="cds_zui_maintorderoperation.MaintenanceOrderOperationsType/CostElement">
+                <Annotation Term="UI.HiddenFilter"/>
+            </Annotations>
+            <Annotations Target="cds_zui_maintorderoperation.MaintenanceOrderOperationsType/ActivityType">
+                <Annotation Term="UI.HiddenFilter"/>
+            </Annotations>
+            <Annotations Target="cds_zui_maintorderoperation.MaintenanceOrderOperationsType/OperationPersonResponsible">
+                <Annotation Term="UI.HiddenFilter"/>
+            </Annotations>
+            <Annotations Target="cds_zui_maintorderoperation.MaintenanceOrderOperationsType/Equipment">
+                <Annotation Term="UI.HiddenFilter"/>
+            </Annotations>
+            <Annotations Target="cds_zui_maintorderoperation.MaintenanceOrderOperationsType/OperationHasLongText">
+                <Annotation Term="UI.HiddenFilter"/>
+            </Annotations>
+            <Annotations Target="cds_zui_maintorderoperation.MaintenanceOrderOperationsType/ControllingArea">
+                <Annotation Term="UI.HiddenFilter"/>
+            </Annotations>
+            <Annotations Target="cds_zui_maintorderoperation.MaintenanceOrderOperationsType/MeterNumber">
+                <Annotation Term="UI.HiddenFilter"/>
+            </Annotations>
+            <Annotations Target="cds_zui_maintorderoperation.MaintenanceOrderOperationsType/SerialNumber">
+                <Annotation Term="UI.HiddenFilter"/>
+            </Annotations>
+            <Annotations Target="cds_zui_maintorderoperation.MaintenanceOrderOperationsType/City">
+                <Annotation Term="UI.HiddenFilter"/>
+            </Annotations>
+            <Annotations Target="cds_zui_maintorderoperation.MaintenanceOrderOperationsType/District">
+                <Annotation Term="UI.HiddenFilter"/>
+            </Annotations>
+            <Annotations Target="cds_zui_maintorderoperation.MaintenanceOrderOperationsType/PostalCode">
+                <Annotation Term="UI.HiddenFilter"/>
+            </Annotations>
+            <Annotations Target="cds_zui_maintorderoperation.MaintenanceOrderOperationsType/PermitType">
+                <Annotation Term="UI.HiddenFilter"/>
+            </Annotations>
+            <Annotations Target="cds_zui_maintorderoperation.MaintenanceOrderOperationsType/PermitNumber">
+                <Annotation Term="UI.HiddenFilter"/>
+            </Annotations>
+            <Annotations Target="cds_zui_maintorderoperation.MaintenanceOrderOperationsType/PermitCreatedByUser">
+                <Annotation Term="UI.HiddenFilter"/>
+            </Annotations>
+            <Annotations Target="cds_zui_maintorderoperation.MaintenanceOrderOperationsType/PermitCreationDate">
+                <Annotation Term="UI.HiddenFilter"/>
+            </Annotations>
+            <Annotations Target="cds_zui_maintorderoperation.MaintenanceOrderOperationsType/MaintOrderConfirmation">
+                <Annotation Term="UI.HiddenFilter"/>
+            </Annotations>
+            <Annotations Target="cds_zui_maintorderoperation.MaintenanceOrderOperationsType/ConfirmEntryDate">
+                <Annotation Term="UI.HiddenFilter"/>
+            </Annotations>
+            <Annotations Target="cds_zui_maintorderoperation.MaintenanceOrderOperationsType/ConfirmEntryUser">
+                <Annotation Term="UI.HiddenFilter"/>
+            </Annotations>
+            <Annotations Target="cds_zui_maintorderoperation.MaintenanceOrderOperationsType/ConfirmPostingDate">
+                <Annotation Term="UI.HiddenFilter"/>
+            </Annotations>
+            <Annotations Target="cds_zui_maintorderoperation.MaintenanceOrderOperationsType/ServiceDocumentTypeName">
+                <Annotation Term="UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="cds_zui_maintorderoperation.MaintenanceOrderOperationsType/ServiceDocumentStatusName">
+                <Annotation Term="UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="cds_zui_maintorderoperation.MaintenanceOrderOperationsType/PartnerName">
+                <Annotation Term="UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="cds_zui_maintorderoperation.MaintenanceOrderOperationsType/addoperation_ac">
+                <Annotation Term="UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="cds_zui_maintorderoperation.MaintenanceOrderOperationsType/deleteoperation_ac">
+                <Annotation Term="UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="cds_zui_maintorderoperation.MaintenanceOrderOperationsType/dispatchOperation_ac">
+                <Annotation Term="UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="cds_zui_maintorderoperation.MaintenanceOrderOperationsType/editoperation_ac">
+                <Annotation Term="UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="cds_zui_maintorderoperation.MaintenanceOrderOperationsType/internalOrderOperation_ac">
+                <Annotation Term="UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="cds_zui_maintorderoperation.MaintenanceOrderOperationsType/workCenterOperation_ac">
+                <Annotation Term="UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="cds_zui_maintorderoperation.MaintenanceOrderOperationsType/OperationLongText">
+                <Annotation Term="UI.MultiLineText"/>
+            </Annotations>
+            <Annotations Target="cds_zui_maintorderoperation.MaintenanceOrderOperationsType">
+                <Annotation Term="UI.Facets">
+                    <Collection>
+                        <Record Type="UI.CollectionFacet">
+                            <PropertyValue Property="Label" String="Maintenance Order"/>
+                            <PropertyValue Property="ID" String="MaintenanceOrderFacet"/>
+                            <PropertyValue Property="Facets">
+                                <Collection>
+                                    <Record Type="UI.ReferenceFacet">
+                                        <PropertyValue Property="Label" String="Maintenance Order Details"/>
+                                        <PropertyValue Property="ID" String="MaintenanceOrderDataFacet"/>
+                                        <PropertyValue Property="Target" AnnotationPath="@UI.Identification#MaintenaceOrder"/>
+                                    </Record>
+                                    <Record Type="UI.ReferenceFacet">
+                                        <PropertyValue Property="Label" String="Status"/>
+                                        <PropertyValue Property="ID" String="StatusFacet"/>
+                                        <PropertyValue Property="Target" AnnotationPath="@UI.Identification#OrderStatus"/>
+                                    </Record>
+                                    <Record Type="UI.ReferenceFacet">
+                                        <PropertyValue Property="Label" String="Address Data"/>
+                                        <PropertyValue Property="ID" String="AddressFacet"/>
+                                        <PropertyValue Property="Target" AnnotationPath="@UI.Identification#AdressData"/>
+                                    </Record>
+                                    <Record Type="UI.ReferenceFacet">
+                                        <PropertyValue Property="Label" String="Permit Data"/>
+                                        <PropertyValue Property="ID" String="PermitFacet"/>
+                                        <PropertyValue Property="Target" AnnotationPath="@UI.Identification#PermitData"/>
+                                    </Record>
+                                    <Record Type="UI.ReferenceFacet">
+                                        <PropertyValue Property="Label" String="Additional Data"/>
+                                        <PropertyValue Property="ID" String="AdditionalFacet"/>
+                                        <PropertyValue Property="Target" AnnotationPath="@UI.Identification#AdditionalData"/>
+                                    </Record>
+                                </Collection>
+                            </PropertyValue>
+                        </Record>
+                        <Record Type="UI.CollectionFacet">
+                            <PropertyValue Property="Label" String="Operation"/>
+                            <PropertyValue Property="ID" String="OperationFacet"/>
+                            <PropertyValue Property="Facets">
+                                <Collection>
+                                    <Record Type="UI.ReferenceFacet">
+                                        <PropertyValue Property="Label" String="Operation Details"/>
+                                        <PropertyValue Property="ID" String="OperationDataFacet"/>
+                                        <PropertyValue Property="Target" AnnotationPath="@UI.Identification#Operation"/>
+                                    </Record>
+                                    <Record Type="UI.ReferenceFacet">
+                                        <PropertyValue Property="Label" String="Status"/>
+                                        <PropertyValue Property="ID" String="OperationStatusFacet"/>
+                                        <PropertyValue Property="Target" AnnotationPath="@UI.Identification#OperationStatus"/>
+                                    </Record>
+                                    <Record Type="UI.ReferenceFacet">
+                                        <PropertyValue Property="Label" String="Confirmation Data"/>
+                                        <PropertyValue Property="ID" String="ConfirmationFacet"/>
+                                        <PropertyValue Property="Target" AnnotationPath="@UI.Identification#Confirmation"/>
+                                    </Record>
+                                </Collection>
+                            </PropertyValue>
+                        </Record>
+                        <Record Type="UI.CollectionFacet">
+                            <PropertyValue Property="Label" String="Service Document"/>
+                            <PropertyValue Property="ID" String="ServiceOrderFacet"/>
+                            <PropertyValue Property="Facets">
+                                <Collection>
+                                    <Record Type="UI.ReferenceFacet">
+                                        <PropertyValue Property="Label" String="Service Document Data"/>
+                                        <PropertyValue Property="ID" String="ServiceDocumentFacet"/>
+                                        <PropertyValue Property="Target" AnnotationPath="@UI.Identification#ServiceDocument"/>
+                                    </Record>
+                                </Collection>
+                            </PropertyValue>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.HeaderFacets">
+                    <Collection>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="ID" String="HeaderFacet"/>
+                            <PropertyValue Property="Target" AnnotationPath="@UI.Identification#OperationHeaderItems"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.HeaderInfo">
+                    <Record>
+                        <PropertyValue Property="TypeName" String="Maintenance Order Operation"/>
+                        <PropertyValue Property="TypeNamePlural" String="Maintenance Order Operations"/>
+                        <PropertyValue Property="Title">
+                            <Record Type="UI.DataField">
+                                <PropertyValue Property="Label" String="Operation Data"/>
+                            </Record>
+                        </PropertyValue>
+                        <PropertyValue Property="Description">
+                            <Record Type="UI.DataField">
+                                <PropertyValue Property="Value" Path="MaintenanceOrderOperation"/>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.Identification" Qualifier="AdditionalData">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Creation Date"/>
+                            <PropertyValue Property="Value" Path="CreationDate"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Created By"/>
+                            <PropertyValue Property="Value" Path="CreatedByUser"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.Identification" Qualifier="AdressData">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Premise"/>
+                            <PropertyValue Property="Value" Path="UtilitiesPremise"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Functional Location"/>
+                            <PropertyValue Property="Value" Path="DeviceLocation"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Meter Number"/>
+                            <PropertyValue Property="Value" Path="MeterNumber"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="House Number"/>
+                            <PropertyValue Property="Value" Path="HouseNumber"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Street Name"/>
+                            <PropertyValue Property="Value" Path="Street"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="City"/>
+                            <PropertyValue Property="Value" Path="City"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="District"/>
+                            <PropertyValue Property="Value" Path="District"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Postal Code"/>
+                            <PropertyValue Property="Value" Path="PostalCode"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.Identification" Qualifier="Confirmation">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Confirmation Number"/>
+                            <PropertyValue Property="Value" Path="MaintOrderConfirmation"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Entry Date"/>
+                            <PropertyValue Property="Value" Path="ConfirmEntryDate"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Entered By"/>
+                            <PropertyValue Property="Value" Path="ConfirmEntryUser"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Confirmation Posting Date"/>
+                            <PropertyValue Property="Value" Path="ConfirmPostingDate"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.Identification" Qualifier="MaintenaceOrder">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Order Type"/>
+                            <PropertyValue Property="Value" Path="MaintenanceOrderType"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="ID"/>
+                            <PropertyValue Property="Value" Path="MaintenanceOrder"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.Identification" Qualifier="Meter">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Meter Type"/>
+                            <PropertyValue Property="Value" Path="Material"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.Identification" Qualifier="Operation">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Operation Number"/>
+                            <PropertyValue Property="Value" Path="MaintenanceOrderOperation"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Dispatch Date"/>
+                            <PropertyValue Property="Value" Path="MaintOrderOperationStartDate"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Operation Code"/>
+                            <PropertyValue Property="Value" Path="OperationCode"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Work Center"/>
+                            <PropertyValue Property="Value" Path="WorkCenter"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.Identification" Qualifier="OperationHeaderItems">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Description"/>
+                            <PropertyValue Property="Value" Path="OperationDescription"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.Identification" Qualifier="OperationStatus">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="User Status"/>
+                            <PropertyValue Property="Value" Path="OperationalUserStatus"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="System Status"/>
+                            <PropertyValue Property="Value" Path="OperationalSystemStatus"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.Identification" Qualifier="OrderStatus">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="System Status"/>
+                            <PropertyValue Property="Value" Path="MainOrderSystemStatus"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="User Status"/>
+                            <PropertyValue Property="Value" Path="MainOrderUserStatus"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.Identification" Qualifier="PermitData">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Permit Type"/>
+                            <PropertyValue Property="Value" Path="PermitType"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Permit Number"/>
+                            <PropertyValue Property="Value" Path="PermitNumber"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Created By"/>
+                            <PropertyValue Property="Value" Path="PermitCreatedByUser"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Creation Date"/>
+                            <PropertyValue Property="Value" Path="PermitCreationDate"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.Identification" Qualifier="ServiceDocument">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Service Document"/>
+                            <PropertyValue Property="Value" Path="ServiceDocument"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Partner"/>
+                            <PropertyValue Property="Value" Path="BusinessPartner"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Document Type"/>
+                            <PropertyValue Property="Value" Path="ServiceDocumentType"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Item"/>
+                            <PropertyValue Property="Value" Path="ServiceDocumentItem"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Document Status"/>
+                            <PropertyValue Property="Value" Path="ServiceDocumentStatus"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Maintenance Order"/>
+                            <PropertyValue Property="Value" Path="MaintenanceOrder"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Operation"/>
+                            <PropertyValue Property="Value" Path="MaintenanceOrderOperation"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Order Type"/>
+                            <PropertyValue Property="Value" Path="MaintenanceOrderType"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="MaintOrderOperationStartDate"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="OperationalSystemStatus"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="OperationalUserStatus"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="ESAStatus"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="ESARequired"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="InternalOrder"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="ProfitCenter"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="WorkCenter"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Operation Code"/>
+                            <PropertyValue Property="Value" Path="OperationCode"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="EventID"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="CreationDate"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="CreatedByUser"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="OperationLongText"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Partner"/>
+                            <PropertyValue Property="Value" Path="BusinessPartner"/>
+                        </Record>
+                        <Record Type="UI.DataFieldWithIntentBasedNavigation">
+                            <PropertyValue Property="SemanticObject" String="MaintenanceOrder"/>
+                            <PropertyValue Property="Action" String="displayMaintenanceOrder"/>
+                            <PropertyValue Property="Value" Path="MaintenanceOrder"/>
+                        </Record>
+                        <Record Type="UI.DataFieldForAction">
+                            <PropertyValue Property="Label" String="Add Operation"/>
+                            <PropertyValue Property="Action" String="cds_zui_maintorderoperation.cds_zui_maintorderoperation_Entities/addoperation"/>
+                            <PropertyValue Property="InvocationGrouping" EnumMember="UI.OperationGroupingType/ChangeSet"/>
+                        </Record>
+                        <Record Type="UI.DataFieldForAction">
+                            <PropertyValue Property="Label" String="Edit Operation"/>
+                            <PropertyValue Property="Action" String="cds_zui_maintorderoperation.cds_zui_maintorderoperation_Entities/editoperation"/>
+                            <PropertyValue Property="InvocationGrouping" EnumMember="UI.OperationGroupingType/ChangeSet"/>
+                        </Record>
+                        <Record Type="UI.DataFieldForAction">
+                            <PropertyValue Property="Label" String="Delete Operation"/>
+                            <PropertyValue Property="Action" String="cds_zui_maintorderoperation.cds_zui_maintorderoperation_Entities/deleteoperation"/>
+                            <PropertyValue Property="InvocationGrouping" EnumMember="UI.OperationGroupingType/Isolated"/>
+                        </Record>
+                        <Record Type="UI.DataFieldForAction">
+                            <PropertyValue Property="Label" String="Internal Order"/>
+                            <PropertyValue Property="Action" String="cds_zui_maintorderoperation.cds_zui_maintorderoperation_Entities/internalOrderOperation"/>
+                            <PropertyValue Property="InvocationGrouping" EnumMember="UI.OperationGroupingType/ChangeSet"/>
+                        </Record>
+                        <Record Type="UI.DataFieldForAction">
+                            <PropertyValue Property="Label" String="Work Center"/>
+                            <PropertyValue Property="Action" String="cds_zui_maintorderoperation.cds_zui_maintorderoperation_Entities/workCenterOperation"/>
+                            <PropertyValue Property="InvocationGrouping" EnumMember="UI.OperationGroupingType/Isolated"/>
+                        </Record>
+                        <Record Type="UI.DataFieldForAction">
+                            <PropertyValue Property="Label" String="Dispatch"/>
+                            <PropertyValue Property="Action" String="cds_zui_maintorderoperation.cds_zui_maintorderoperation_Entities/dispatchOperation"/>
+                            <PropertyValue Property="InvocationGrouping" EnumMember="UI.OperationGroupingType/ChangeSet"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.SelectionFields">
+                    <Collection>
+                        <PropertyPath>MaintenanceOrder</PropertyPath>
+                        <PropertyPath>MaintenanceOrderType</PropertyPath>
+                        <PropertyPath>OperationCode</PropertyPath>
+                        <PropertyPath>WorkCenter</PropertyPath>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zui_maintorderoperation.ZI_WorkCenterVHType/WorkCenterInternalID">
+                <Annotation Term="UI.HiddenFilter"/>
+            </Annotations>
+            <Annotations Target="cds_zui_maintorderoperation.cds_zui_maintorderoperation_Entities/addoperation/LongText">
+                <Annotation Term="UI.MultiLineText"/>
+            </Annotations>
+            <Annotations Target="cds_zui_maintorderoperation.cds_zui_maintorderoperation_Entities/editoperation/OperationLongText">
+                <Annotation Term="UI.MultiLineText"/>
+            </Annotations>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

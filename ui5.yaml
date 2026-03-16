@@ -9,7 +9,6 @@ server:
     - name: fiori-tools-proxy
       afterMiddleware: compression
       configuration:
-        ignoreCertError: true # If set to true, certificate errors will be ignored. E.g. self-signed certificates will be accepted
         ui5:
           path:
             - /resources
@@ -19,6 +18,10 @@ server:
           - path: /sap
             url: http://sapsdvapp.aws.londonhydro.cloud:8000
             client: '200'
+          - url: http://sapsdvapp.aws.londonhydro.cloud:8000/
+            client: '200'
+            path: /sap/opu/odata/sap/ZUI_OPERATION/
+        ignoreCertErrors: false
     - name: fiori-tools-appreload
       afterMiddleware: compression
       configuration:

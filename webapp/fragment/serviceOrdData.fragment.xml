@@ -30,21 +30,20 @@
                 width="60%"
                 showValueHelp="false"
                 tokenUpdate=".onOrderNoTokenUpdate"
-                submit="onSubmitOrderNumber"
                 valueHelpRequest=".onValueHelp"
                 maxTokens="1600"
                 suggestionItemSelected=".onOrderSuggestionItemPress" 
                 suggestionRows="{
-				path: 'OEBmainService>/Service_OrderSet'
+				path: 'ServiceOrderData>/I_MaintenanceOrderStdVH'
 			}"
             >
                 <suggestionColumns>
                     <Column>
                         <Label text="Order ID" />
                     </Column>
-                    <Column>
+                    <!-- <Column>
                         <Label text="Order Type" />
-                    </Column>
+                    </Column> -->
                     <Column>
                         <Label text="Description" />
                     </Column>
@@ -52,9 +51,9 @@
                 <suggestionRows>
                     <ColumnListItem>
                         <cells>
-                            <Label text="{OEBmainService>OrderId}" />
-                            <Label text="{OEBmainService>OrderType}" />
-                            <Label text="{OEBmainService>Description}" />
+                            <Label text="{ServiceOrderData>MaintenanceOrder}" />
+                            <!-- <Label text="{OEBmainService>OrderType}" /> -->
+                            <Label text="{ServiceOrderData>MaintenanceOrderDesc}" />
                         </cells>                        
                     </ColumnListItem>
                 </suggestionRows>                
@@ -70,7 +69,7 @@
                 suggestionItemSelected=".onOrderTypeSuggestionItemPress"
                 tokenUpdate=".onOrderTypeTokenUpdate"
                 suggestionRows="{
-				path: 'OEBmainService>/Order_TYpeSet'
+				path: 'ServiceOrderData>/I_OrderTypeVH'
 			}"
             >
                 <suggestionColumns>
@@ -83,8 +82,8 @@
                 </suggestionColumns>
                 <suggestionRows>
                     <ColumnListItem>
-                        <Label text="{OEBmainService>OrderType}" />
-                        <Label text="{OEBmainService>Description}" />
+                        <Label text="{ServiceOrderData>OrderType}" />
+                        <Label text="{ServiceOrderData>OrderType_Text}" />
                     </ColumnListItem>
                 </suggestionRows>                
             </MultiInput>

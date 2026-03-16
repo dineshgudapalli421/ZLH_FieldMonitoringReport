@@ -46,8 +46,8 @@ sap.ui.define([
                 FunctionalLocation: "",
                 oServiceOrderDates: {
                     CompletedOn: {
-                        From: "", //oController._fnCurrentMonthStartDate(true),
-                        To: "", //oController._fnCurrentMonthStartDate(false)
+                        From: oController._fnGetOneMonthFromCurrentDate(),//"", //oController._fnCurrentMonthStartDate(true),
+                        To: oController._fngetDateFormat(new Date()), //oController._fnCurrentMonthStartDate(false)
                     },
                     CreatedOn: {
                         From: "", //oController._fnCurrentMonthStartDate(true)
@@ -135,7 +135,7 @@ sap.ui.define([
             oController.getView().setModel(oSelectionModel, "FieldMonSelModel");
             oController.getOwnerComponent().setModel(new JSONModel({}), "GlobalFieldMonModel");
             var oMultiComboBox = oController.getView().byId("idMeterAction");
-            var aSelectedKeys = ["EXCHANGE","INSTALL","REMOVE"];
+            var aSelectedKeys = ["EXCHANGE", "INSTALL", "REMOVE"];
             oMultiComboBox.setSelectedKeys(aSelectedKeys);
             this._initPersonalizationService();
         },
@@ -241,7 +241,7 @@ sap.ui.define([
         },
 
         onSaveVariant: function (oEvent) {
-           // debugger;
+            // debugger;
             var oParameters = oEvent.getParameters();
             var sVariantKey = oParameters.key || Date.now().toString();
             var sVariantText = oParameters.name;
@@ -279,7 +279,7 @@ sap.ui.define([
 
         },
         onSelectVariant: function (oEvent) {
-           // debugger;
+            // debugger;
             var sVariantKey = oEvent.getParameter("key");
             var objVariant = {}, objVariantItems = [], oName = '';
             objVariant = oEvent.getSource().oContext.getModel().getData();
@@ -323,7 +323,7 @@ sap.ui.define([
             var oVariantSet = this._oContainer.getItemValue("variantSet") || { variants: [] };
             if (aDeleted !== undefined) {
                 oParameters.deleted.forEach(function (sKey) {
-                   // debugger;
+                    // debugger;
                     for (var i = 0; i < objVariantItems.length; i++) {
                         if (sKey !== objVariantItems[i].key) {
                             oName = objVariantItems[i].title;
@@ -413,8 +413,17 @@ sap.ui.define([
         },
 
         onPressNext: function () {
-           // debugger;
+            // debugger;
             var oModel = oController.getView().getModel("FieldMonSelModel");
+            var oView = oController.getView();
+            var aSerOrder = oController._getTokens(oView.byId("idServiceOrder"));
+            var oCompletedOnDatePicker = oView.byId("idcompletedOnDatePicker").getValue();
+            var oCompletedOnDatePickerTo = oView.byId("idcompletedOnDatePickerTo").getValue();
+            if (aSerOrder.length === 0) {
+                if (oCompletedOnDatePicker === '' || oCompletedOnDatePickerTo === '') {
+                    return MessageBox.error("Please Input Completed On Date Range");
+                }
+            }
             var sPath = "/Monitoring_FiledWorkSet";
             oModel.setProperty("/bPageBusy", true);
             var aFilter = oController._fnReturnFilterparameter();
@@ -450,6 +459,7 @@ sap.ui.define([
             });
         },
         onSubmitOrderNumber: function (oEvent) {
+            debugger;
             var oMultiInput = oEvent.getSource();
             // var oMultiServiceOrder = oEvent.getSource().getTokens();
             // if(oMultiServiceOrder.length === 0)
@@ -525,7 +535,7 @@ sap.ui.define([
         //     oController.onSuggestionItemSelected(oSelectedItem, oMultiInput);
         // },
         onSuggestionItemSelected: function (oSelectedItem, oMultiInput) {
-           // debugger;
+            // debugger;
             var oSelectedCells = oSelectedItem.getCells();
             var oToken = new Token({
                 key: oSelectedCells[1].getText(),
@@ -767,8 +777,15 @@ sap.ui.define([
             var formatDate = oDateFormat.format(new Date(strDate));
             return formatDate.toString();
         },
+        _fnGetOneMonthFromCurrentDate: function () {
+            var currentDate = new Date(); // Get the current date and time
+            var oneMonthAgoDate = new Date(currentDate); // Create a new Date object as a copy
+
+            oneMonthAgoDate.setMonth(oneMonthAgoDate.getMonth() - 1);
+            return oController._fngetDateFormat(oneMonthAgoDate);
+        },
         onWorkCenterSuggestionItemPress: function (oEvent) {
-           // debugger;
+            // debugger;
             var oModel = oController.getView().getModel("FieldMonSelModel");
             var oMultiInput = oController.getView().byId("idWorkCenter");
             var oSelectedItem = oEvent.getParameter("selectedRow");

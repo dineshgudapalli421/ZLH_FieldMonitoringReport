@@ -25,7 +25,7 @@ sap.ui.define(
     var oRouter, oController, oSelectionScreenModel, oOEBoDataModel, oResourceBundle, UIComponent, oSelectionFilter;
     return Controller.extend("com.sap.lh.cs.zlhfieldmonitoring.controller.FieldMonList", {
       onInit: function () {
-        debugger;
+       //debugger;
         oController = this;
         UIComponent = oController.getOwnerComponent();
         oOEBoDataModel = oController.getOwnerComponent().getModel();
@@ -39,7 +39,7 @@ sap.ui.define(
         oController._registerForP13n();
       },
       _initializeVariantManagement: function () {
-        debugger;
+       //debugger;
         var oView = this.getView();
         var oVariantManagement = oView.byId("idVManagement");
         sap.ushell.Container.getServiceAsync("Personalization").then(function (oPersonalizationService) {
@@ -65,7 +65,7 @@ sap.ui.define(
       },
 
       _loadVariants: function (oVariantSet) {
-        debugger;
+       //debugger;
         var oVM = oController.getView().byId("idVManagement");
         oVariantSet.variants.forEach(function (oVariant) {
           oVM.addVariantItem({
@@ -78,7 +78,7 @@ sap.ui.define(
         //oController.getView().getModel("FieldMonSelModel").setProperty("/Variants", aVariants);
       },
       _applyVariant: function (sVariantKey, sName) {
-        debugger;
+       //debugger;
         var oTable = oController.getView().byId("idFieldMonTable");
         var oVariantSet = this._oContainer.getItemValue("variantSet") || { "variants": [] };
         var oDefaultVariant = oVariantSet.defaultVariant;
@@ -118,7 +118,7 @@ sap.ui.define(
         });
       },
       onSelectVariant: function (oEvent) {
-        debugger;
+       //debugger;
         var oTable = oController.getView().byId("idFieldMonTable");
         var sVariantKey = oEvent.getParameter("key");
         var objVariant = {}, objVariantItems = [], oName = '';
@@ -146,7 +146,7 @@ sap.ui.define(
 
       },
       onSaveVariant: function (oEvent) {
-        debugger;
+       //debugger;
         var oParameters = oEvent.getParameters();
         var sVariantKey = oParameters.key || Date.now().toString();
         var sVariantText = oParameters.name;
@@ -185,7 +185,7 @@ sap.ui.define(
 
       },
       onManageVariant: function (oEvent) {
-        debugger;
+       //debugger;
         var objVariant = {}, objVariantItems = [], oName = '';
         objVariant = oEvent.getSource().oContext.getModel().getData();
         objVariantItems = objVariant["FieldMonList--idVManagement"].variants;
@@ -196,7 +196,7 @@ sap.ui.define(
         var oVariantSet = this._oContainer.getItemValue("variantSet") || { variants: [] };
         if (aDeleted !== undefined) {
           oParameters.deleted.forEach(function (sKey) {
-            debugger;
+           //debugger;
             for (var i = 0; i < objVariantItems.length; i++) {
               if (sKey !== objVariantItems[i].key) {
                 oName = objVariantItems[i].title;
@@ -257,7 +257,7 @@ sap.ui.define(
         }
       },
       _registerForP13n: function () {
-        debugger;
+       //debugger;
         const oTable = oController.getView().byId("idFieldMonTable");
         oController.oMetadataHelper = new MetadataHelper([{
           key: "Status_col",
@@ -489,50 +489,98 @@ sap.ui.define(
         oController._mIntialWidth = {
           "Status_col": "11rem",
           "Text_col": "11rem",
-          "Log_col": "11rem",
-          "ActivityType_col": "11rem",
-          "Order_col": "11rem",
-          "Opcode_col": "11rem",
-          "opDescription_col": "11rem",
-          "esa_col": "11rem",
+          "Log_col": "5rem",
+          "ActivityType_col": "5rem",
+          "Order_col": "5rem",
+          "Opcode_col": "4rem",
+          "opDescription_col": "8rem",
+          "esa_col": "4rem",
           "billable_col": "11rem",
-          "opsNo_col": "11rem",
-          "opsDesc_col": "11rem",
-          "anlage_col": "11rem",
+          "opsNo_col": "3rem",
+          "opsDesc_col": "6rem",
+          "anlage_col": "5rem",
           "billingClass_col": "11rem",
-          "functionalLocation_col": "11rem",
+          "functionalLocation_col": "8rem",
           "fieldCompletionDt_col": "11rem",
-          "address_col": "11rem",
-          "keyNo_col": "11rem",
-          "meterNo_col": "11rem",
-          "meterAction_col": "11rem",
-          "ctpt_col": "11rem",
-          "orderType_col": "11rem",
-          "activity_col": "11rem",
-          "workCenterId_col": "11rem",
-          "wrkCntrDesc_col": "11rem",
-          "descrepancy_col": "11rem",
-          "mainActivity_col": "11rem",
-          "inLogStatus_col": "11rem",
-          "outLogException_col": "11rem",
-          "newMeterLocation_col": "11rem",
+          "address_col": "9rem",
+          "keyNo_col": "4rem",
+          "meterNo_col": "5rem",
+          "meterAction_col": "5rem",
+          "ctpt_col": "4rem",
+          "orderType_col": "5rem",
+          "activity_col": "9rem",
+          "workCenterId_col": "5rem",
+          "wrkCntrDesc_col": "7rem",
+          "descrepancy_col": "3rem",
+          "mainActivity_col": "5rem",
+          "inLogStatus_col": "6rem",
+          "outLogException_col": "6rem",
+          "newMeterLocation_col": "3rem",
           "review_col": "11rem",
-          "by_col": "11rem",
-          "on_col": "11rem",
-          "at_col": "11rem",
-          "basicStartDt_col": "11rem",
-          "finishDt_col": "11rem",
-          "mobileCompletionDt_col": "11rem",
-          "mobileCompletionTm_col": "11rem",
-          "createdBy_col": "11rem",
-          "createdOn_col": "11rem",
-          "completedBy_col": "11rem",
-          "plantSection_col": "11rem",
+          "by_col": "6rem",
+          "on_col": "6rem",
+          "at_col": "6rem",
+          "basicStartDt_col": "6rem",
+          "finishDt_col": "6rem",
+          "mobileCompletionDt_col": "6rem",
+          "mobileCompletionTm_col": "6rem",
+          "createdBy_col": "6rem",
+          "createdOn_col": "6rem",
+          "completedBy_col": "6rem",
+          "plantSection_col": "4rem",
           "fieldsNotes_col": "11rem",
-          "activityPerformed_col": "11rem",
-          "workArea_col": "11rem",
-          "opStatus_col": "11rem"
+          "activityPerformed_col": "4rem",
+          "workArea_col": "6rem",
+          "opStatus_col": "5rem"
         };
+
+        // oController._mIntialWidth = {
+        //   "Status_col": oResourceBundle.getText("label.status").length + oResourceBundle.getText("rem"),
+        //   "Text_col": oResourceBundle.getText("label.text").length + oResourceBundle.getText("rem"),
+        //   "Log_col": oResourceBundle.getText("label.log").length + oResourceBundle.getText("rem"),
+        //   "ActivityType_col": oResourceBundle.getText("label.activityType").length + oResourceBundle.getText("rem"),
+        //   "Order_col": oResourceBundle.getText("label.order").length + oResourceBundle.getText("rem"),
+        //   "Opcode_col": oResourceBundle.getText("label.opCode").length + oResourceBundle.getText("rem"),
+        //   "opDescription_col": oResourceBundle.getText("label.opDescription").length + oResourceBundle.getText("rem"),
+        //   "esa_col": oResourceBundle.getText("label.esa").length + oResourceBundle.getText("rem"),
+        //   "billable_col": oResourceBundle.getText("label.billable").length + oResourceBundle.getText("rem"),
+        //   "opsNo_col": oResourceBundle.getText("label.opsNo").length + oResourceBundle.getText("rem"),
+        //   "opsDesc_col": oResourceBundle.getText("label.opsDesc").length + oResourceBundle.getText("rem"),
+        //   "anlage_col": oResourceBundle.getText("label.anlage").length + oResourceBundle.getText("rem"),
+        //   "billingClass_col": oResourceBundle.getText("label.billingClass").length + oResourceBundle.getText("rem"),
+        //   "functionalLocation_col": oResourceBundle.getText("label.functionalLocation").length + oResourceBundle.getText("rem"),
+        //   "fieldCompletionDt_col": oResourceBundle.getText("label.fieldCompletionDt").length + oResourceBundle.getText("rem"),
+        //   "address_col": oResourceBundle.getText("label.address").length + oResourceBundle.getText("rem"),
+        //   "keyNo_col": oResourceBundle.getText("label.keyNo").length + oResourceBundle.getText("rem"),
+        //   "meterNo_col": oResourceBundle.getText("label.meterNo").length + oResourceBundle.getText("rem"),
+        //   "meterAction_col": oResourceBundle.getText("label.meterAction").length + oResourceBundle.getText("rem"),
+        //   "ctpt_col": oResourceBundle.getText("label.ctpt").length + oResourceBundle.getText("rem"),
+        //   "orderType_col": oResourceBundle.getText("label.ot").length + oResourceBundle.getText("rem"),
+        //   "activity_col": oResourceBundle.getText("label.activity").length + oResourceBundle.getText("rem"),
+        //   "workCenterId_col": oResourceBundle.getText("label.workCenterId").length + oResourceBundle.getText("rem"),
+        //   "wrkCntrDesc_col": oResourceBundle.getText("label.wrkCntrDesc").length + oResourceBundle.getText("rem"),
+        //   "descrepancy_col": oResourceBundle.getText("label.descrepancy").length + oResourceBundle.getText("rem"),
+        //   "mainActivity_col": oResourceBundle.getText("label.mainActivity").length + oResourceBundle.getText("rem"),
+        //   "inLogStatus_col": oResourceBundle.getText("label.inLogStatus").length + oResourceBundle.getText("rem"),
+        //   "outLogException_col": oResourceBundle.getText("label.outLogException").length + oResourceBundle.getText("rem"),
+        //   "newMeterLocation_col": oResourceBundle.getText("label.newMeterLocation").length + oResourceBundle.getText("rem"),
+        //   "review_col": oResourceBundle.getText("label.review").length + oResourceBundle.getText("rem"),
+        //   "by_col": oResourceBundle.getText("label.by").length + oResourceBundle.getText("rem"),
+        //   "on_col": oResourceBundle.getText("label.on").length + oResourceBundle.getText("rem"),
+        //   "at_col": oResourceBundle.getText("label.at").length + oResourceBundle.getText("rem"),
+        //   "basicStartDt_col": oResourceBundle.getText("label.basicStartDt").length + oResourceBundle.getText("rem"),
+        //   "finishDt_col": oResourceBundle.getText("label.finishDt").length + oResourceBundle.getText("rem"),
+        //   "mobileCompletionDt_col": oResourceBundle.getText("label.mobileCompletionDt").length + oResourceBundle.getText("rem"),
+        //   "mobileCompletionTm_col": oResourceBundle.getText("label.mobileCompletionTm").length + oResourceBundle.getText("rem"),
+        //   "createdBy_col": oResourceBundle.getText("label.createdBy").length + oResourceBundle.getText("rem"),
+        //   "createdOn_col": oResourceBundle.getText("label.createdOn").length + oResourceBundle.getText("rem"),
+        //   "completedBy_col": oResourceBundle.getText("label.completedBy").length + oResourceBundle.getText("rem"),
+        //   "plantSection_col": oResourceBundle.getText("label.plantSection").length + oResourceBundle.getText("rem"),
+        //   "fieldsNotes_col": oResourceBundle.getText("label.fieldsNotes").length + oResourceBundle.getText("rem"),
+        //   "activityPerformed_col": oResourceBundle.getText("label.activityPerformed").length + oResourceBundle.getText("rem"),
+        //   "workArea_col": oResourceBundle.getText("label.workArea").length + oResourceBundle.getText("rem"),
+        //   "opStatus_col": oResourceBundle.getText("label.opStatus").length + oResourceBundle.getText("rem")
+        // };
 
         oController._oP13nEngineFieldMon.register(oTable, {
           helper: oController.oMetadataHelper,
@@ -561,7 +609,7 @@ sap.ui.define(
         }
       },
       handleStateChange: function (oEvent) {
-        debugger;
+       //debugger;
         var oTable = oController.getView().byId("idFieldMonTable");
         var oState = oEvent.getParameter("state");
 
@@ -656,6 +704,7 @@ sap.ui.define(
         });
       },
       onColumnResize: function (oEvent) {
+       //debugger;
         var oColumn = oEvent.getParameter("column");
         var sWidth = oEvent.getParameter("width");
         var oTable = oController.getView().byId("idFieldMonTable");
@@ -666,6 +715,13 @@ sap.ui.define(
         oController._oP13nEngineFieldMon.applyState(oTable, {
           ColumnWidth: oColumnState
         });
+        // var oTable = this.byId("myTable");
+        // var aColumns = oTable.getColumns();
+
+        // // Loop through all columns and call autoResizeColumn
+        // aColumns.forEach(function (oColumn, index) {
+        //   oTable.autoResizeColumn(index);
+        // });
       },
       _onReceiveFilters: function (sChannel, sEvent, oData) {
         oSelectionFilter = oData.filters;
@@ -698,9 +754,20 @@ sap.ui.define(
         });
         oController.getView().setModel(oModel, "FieldMonitorModel");
         oController.getView().getModel("FieldMonitorModel").setProperty("/aFieldMonList", oList);
+        // var oTable = oController.getView().byId("idFieldMonTable");
+        // oTable.getBinding('rows').attachEventOnce("dataReceived", oController._adjustColumns, oController);
+
       },
+      _adjustColumns: function () {
+        var oTable = oController.getView().byId("idFieldMonTable");
+        oTable.getColumns().forEach((oColumn, index) => {
+          // The autoResizeColumn method is experimental but effective
+          oTable.autoResizeColumn(index);
+        });
+      }
+      ,
       onRefreshSoResults: function () {
-        debugger;
+       //debugger;
         var oGlobalModel = oController.getOwnerComponent().getModel("GlobalFieldMonModel");
         var oList = oGlobalModel ? oGlobalModel.getProperty("/FiledMonList") : [];
         var oModel = new JSONModel({
@@ -731,7 +798,7 @@ sap.ui.define(
         oController.getView().byId("idFieldMonTable").getModel().refresh(true);
       },
       onPressSoResults: function () {
-        debugger;
+       //debugger;
         var oTable = oController.getView().byId("idFieldMonTable");
         var aSelectedIndices = oTable.getSelectedIndices();
         var aSelectedRows = aSelectedIndices.map(iIndex => oTable.getContextByIndex(iIndex).getObject());
@@ -908,11 +975,11 @@ sap.ui.define(
         this.byId("vsdFilterLabel").setText(mParams.filterString);
       },
       // _FilterValuecollect: function () {
-      // debugger;
+      ////debugger;
       // var oTable = oController.getView().byId("idFieldMonTable");
       // oBinding = oTable.getBinding("rows");
       _FilterValuecollect: function () {
-        debugger;
+       //debugger;
         var oTable = oController.getView().byId("idFieldMonTable");
         var oBinding = oTable.getBinding("rows");
         var aStatusValues = oBinding.getCurrentContexts().map(function (oContext) {
@@ -928,7 +995,7 @@ sap.ui.define(
         // aStatusValues
         // console.log(aStatusValues);
       },
-      // debugger;
+      ////debugger;
       // },
       getViewSettingsDialog: function (sDialogFragmentName) {
         var pDialog = this._mViewSettingsDialogs[sDialogFragmentName];
@@ -976,14 +1043,14 @@ sap.ui.define(
             success: function (oData, oRes) {
               oController.getView().getModel("FieldMonitorModel").setProperty("/BPEMList", oData.results)
             }, error: function (oError) {
-              debugger;
+             //debugger;
             }
           })
         }
       },
       onPressCaseId: function (oEvent) {
         var oSource = oEvent.getSource();
-        debugger;
+       //debugger;
         var navigationService = sap.ushell.Container.getService("CrossApplicationNavigation");
         var hash = (navigationService && navigationService.hrefForExternal({
           target: { semanticObject: "UtilitiesClarificationCase", action: "displayClarificationCase" },
@@ -1003,6 +1070,7 @@ sap.ui.define(
         // navigationService.navigate(target, oController.getOwnerComponent());
       },
       handleLinkPress: function (oEvent) {
+       //debugger;
         var oSource = oEvent.getSource();
         let oOrderNo = oSource.getText();
         if (oOrderNo) {
@@ -1018,7 +1086,12 @@ sap.ui.define(
           })) || "";
 
           var url = window.location.href.split('#')[0] + hash;
+          // var sBaseUrl = window.location.origin + window.location.pathname;
+          // var sFullUrl = sBaseUrl + hash;
+
+          // 3. Open in new tab
           sap.m.URLHelper.redirect(url, true);
+          //sap.m.URLHelper.redirect(url, true);
           // var oTarget = {
           //     target: { semanticObject: "MaintenanceOrder", action: "change" },
           //     params: {
@@ -1030,7 +1103,7 @@ sap.ui.define(
           // }
           // oCrossAppNav.navigate(oTarget, oController.getOwnerComponent());
         }
-        console.log(oData);
+       // console.log(oData);
       },
       _closeDialog: function () {
         oController.oDialog.close();
@@ -1045,7 +1118,7 @@ sap.ui.define(
         });
       },
       onExport: function (oEvent) {
-        var oTable =  oController.getView().byId("idFieldMonTable");
+        var oTable = oController.getView().byId("idFieldMonTable");
         var oRowBinding = oTable.getBinding("rows");
         var aColumns = oTable.getColumns();
 
