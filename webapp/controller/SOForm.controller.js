@@ -1406,7 +1406,8 @@ sap.ui.define(
             "NewSerialnumber_Corectd": oCTPT[j].NewSerialnumber_Corectd,
             "OldSerialnumber_Corectd": oCTPT[j].OldSerialnumber_Corectd,
             "Denominator_Corectd": oCTPT[j].Denominator_Corectd,
-            "Numerator_Corectd": oCTPT[j].Numerator_Corectd
+            "Numerator_Corectd": oCTPT[j].Numerator_Corectd,
+            "DEVICEREMOVAL_CORR": oCTPT[j].Deviceremoval_Corected
           });
         }
 

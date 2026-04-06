@@ -18,7 +18,7 @@
     enableExport="false"
     demandPopin="true"
     persistencyKey="SmartTableSoFormCTPT"
-    requestAtLeastFields="OrderID,Rev_Num,Row_Num,Eid,Serialnumber,OldSerialnumber_Corectd,Manufserialnumber,Devicecategory,Deviceremoval,Newserialnumber,NewSerialnumber_Corectd,Newmanufserialnumber,Newdevicecategory,newfuncclass,newtxwindenom,Denominator_Corectd,Newtxwindnumber,Numerator_Corectd"
+    requestAtLeastFields="OrderID,Rev_Num,Row_Num,Eid,Serialnumber,OldSerialnumber_Corectd,Manufserialnumber,Devicecategory,Deviceremoval,Deviceremoval_Corected,Newserialnumber,NewSerialnumber_Corectd,Newmanufserialnumber,Newdevicecategory,newfuncclass,newtxwindenom,Denominator_Corectd,Newtxwindnumber,Numerator_Corectd"
 >
 <Table
         id="idTableCTPT"
@@ -85,7 +85,7 @@
                 width="15rem"
                 hAlign="Center"
             >
-                <m:Label text="OLDSERIALNUMBER_CORECTD" class="statusColumn" tooltip="Old Serial Number Corrected"/>
+                <m:Label text="Corrected Old Tx Number" class="statusColumn" tooltip="Old Serial Number Corrected"/>
                 <template>
                     <!-- <m:Text text="{CTPTModel>OLDSERIALNUMBER_CORECTD}" /> -->
                     <m:Input id="idOLDSERIALNUMBER_CORECTD" value="{CTPTModel>OldSerialnumber_Corectd}" maxLength="20"></m:Input>
@@ -125,6 +125,19 @@
                 width="13rem"
                 hAlign="Center"
             >
+                <m:Label text="Tx Removed corrected"  class="statusColumn"  tooltip="New Serial Number Corrected"/>
+                <template>
+                <m:Input id="idDeviceremoval_Corected" value="{CTPTModel>Deviceremoval_Corected}" maxLength="20"></m:Input>
+                    <!-- <m:Text
+                        text="{CTPTModel>Deviceremoval_Corected}"
+                        wrapping="true"
+                     textAlign="Center"/> -->
+                </template>
+            </Column>
+            <Column
+                width="13rem"
+                hAlign="Center"
+            >
                 <m:Label text="{i18n>newEquipmentSerialNum}" />
                 <template>
                     <m:Text text="{CTPTModel>Newserialnumber}" textAlign="Center"/>
@@ -134,7 +147,7 @@
                 width="15rem"
                 hAlign="Center"
             >
-                <m:Label text="NEWSERIALNUMBER_CORECTD" class="statusColumn" tooltip="New Serial Number Corrected"/>
+                <m:Label text="Corrected New Tx Badge Number" class="statusColumn" tooltip="New Serial Number Corrected"/>
                 <template>
                     <!-- <m:Text text="{CTPTModel>NEWSERIALNUMBER_CORECTD}"/> -->
                     <m:Input id="idNEWSERIALNUMBER_CORECTD" value="{CTPTModel>NewSerialnumber_Corectd}" maxLength="20"></m:Input>
@@ -174,7 +187,7 @@
                 width="6rem"
                 hAlign="Center"
             >
-                <m:Label text="{i18n>newTxWinDenom}" />
+                <m:Label text="New Tx Demominator" />
                 <template>
                     <m:Text text="{CTPTModel>newtxwindenom}" textAlign="Center"/>
                 </template>
@@ -183,7 +196,7 @@
                 width="15rem"
                 hAlign="Center" 
             >
-                <m:Label text="DENOMINATOR_CORECTD" class="statusColumn" tooltip="Denominator Corrected"/>
+                <m:Label text="Corrected New Tx Demoninator" class="statusColumn" tooltip="Denominator Corrected"/>
                 <template>
                     <!-- <m:Text text="{CTPTModel>DENOMINATOR_CORECTD}" /> -->
                     <m:Input id="idDENOMINATOR_CORECTD" value="{CTPTModel>Denominator_Corectd}" maxLength="20"></m:Input>
@@ -193,7 +206,7 @@
                 width="9rem"
                 hAlign="Center"
             >
-                <m:Label text="{i18n>newTxWinNumber}" />
+                <m:Label text="New Tx Numerator" />
                 <template>
                     <m:Text text="{CTPTModel>Newtxwindnumber}"  textAlign="Center"/>
                 </template>
@@ -202,7 +215,7 @@
                 width="15rem"
                 hAlign="Center"
             >
-                <m:Label text="NUMERATOR_CORECTD" class="statusColumn" tooltip="Numerator Corrected"/>
+                <m:Label text="Corrected New Tx Numerator" class="statusColumn" tooltip="Numerator Corrected"/>
                 <template>
                     <!-- <m:Text text="{CTPTModel>NUMERATOR_CORECTD}" /> -->
                     <m:Input id="idNUMERATOR_CORECTD" value="{CTPTModel>Numerator_Corectd}" maxLength="20"></m:Input>

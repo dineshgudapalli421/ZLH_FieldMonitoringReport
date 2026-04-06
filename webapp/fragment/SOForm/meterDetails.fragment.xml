@@ -18,7 +18,7 @@
     enableExport="false"
     demandPopin="true"
     persistencyKey="SmartTableSoFormMeterDetails"
-    requestAtLeastFields="OrderID,Operation,Counter,additional_notes,additional_info,UtilitiesDevice,new_meter_num,Old_Meternum_Corectd,New_Meternum_Corectd,old_meter_read_kwh,new_meter_read_kwh,new_security_seal,corrected_tx,new_tx_num,Rev_Num,Row_Num,Eid,old_meter_read_w,old_meter_read_va,new_meter_read_w,new_meter_read_va,Manufserialnumber,old_delivered_reading_kwh,Old_Delivered_Read_KWH_Corectd,old_delivered_reading_w,Old_Delivered_Read_KW_Corectd,old_delivered_reading_va,Old_Delivered_Read_KVA_Corectd,old_recieved_reading_kwh,Old_Received_Read_KWH_Corectd,old_recieved_reading_w,Old_Received_Read_KW_Corectd,Old_Received_Read_KVA_Corectd,new_delivered_reading_kwh,New_Delivered_Read_KWH_Corectd,new_delivered_reading_w,New_Delivered_Read_KW_Corectd,new_delivered_reading_va,New_Delivered_Read_KVA_Corectd,new_recieved_reading_kwh,New_Received_Read_KWH_Corectd,new_recieved_reading_w,New_Received_Read_KW_Corectd,new_recieved_reading_va,New_Received_Read_KVA_Corectd,ex_comm_equip,Old_Comm_Equip_Corectd,ex_comm_addr,Old_Comm_Addr_Corectd,ex_readonly_pwd,new_readonly_pwd,new_comm_equip,New_Comm_Equip_Corectd,new_comm_addr,New_Comm_Addr_Corectd,new_billing_pwd,Billable,Complete_date,Main_Activity,Completed_Time,UtilsDeviceLocationLocation,COMPLETE_BY,VERBAL,UNIT_ID,TIME_SYNC_REQ,SET_MPASS,INSTALL_RF,INVESTIGATION_REQ,CONVERT_EL,INTERVAL_READY,IVP,OLD_METER_ACTION,MAN_HRS,TRUCK_HRS,OTHER_HRS,REMOVED,CHARGE_ACCT,FIELD_RETURN_REASON"
+    requestAtLeastFields="OrderID,Operation,Counter,additional_notes,additional_info,UtilitiesDevice,new_meter_num,Old_Meternum_Corectd,New_Meternum_Corectd,new_security_seal,corrected_tx,new_tx_num,Rev_Num,Row_Num,Eid,Manufserialnumber,old_delivered_reading_kwh,Old_Delivered_Read_KWH_Corectd,old_delivered_reading_w,Old_Delivered_Read_KW_Corectd,old_delivered_reading_va,Old_Delivered_Read_KVA_Corectd,old_recieved_reading_kwh,Old_Received_Read_KWH_Corectd,old_recieved_reading_w,Old_Received_Read_KW_Corectd,Old_Received_Read_KVA_Corectd,new_delivered_reading_kwh,New_Delivered_Read_KWH_Corectd,new_delivered_reading_w,New_Delivered_Read_KW_Corectd,new_delivered_reading_va,New_Delivered_Read_KVA_Corectd,new_recieved_reading_kwh,New_Received_Read_KWH_Corectd,new_recieved_reading_w,New_Received_Read_KW_Corectd,new_recieved_reading_va,New_Received_Read_KVA_Corectd,ex_comm_equip,Old_Comm_Equip_Corectd,ex_comm_addr,Old_Comm_Addr_Corectd,new_comm_equip,New_Comm_Equip_Corectd,new_comm_addr,New_Comm_Addr_Corectd,Billable,Complete_date,Main_Activity,Completed_Time,UtilsDeviceLocationLocation,COMPLETE_BY,VERBAL,UNIT_ID,TIME_SYNC_REQ,SET_MPASS,INSTALL_RF,INVESTIGATION_REQ,CONVERT_EL,INTERVAL_READY,IVP,OLD_METER_ACTION,MAN_HRS,TRUCK_HRS,OTHER_HRS,REMOVED,CHARGE_ACCT,FIELD_RETURN_REASON"
 >
     <Table
         id="meterDetailsTable"
@@ -72,7 +72,7 @@
             <Column id="idMeterNo" sortProperty="Meter Number" 
              
                     autoResizable="true" width="170px" hAlign="Center">
-                <m:Label text="Meter Number" />
+                <m:Label text="Old Meter Number" />
                 <template>
                     <m:Text text="{CTPTModel>UtilitiesDevice}" textAlign="Center"/>
                 </template>
@@ -88,7 +88,7 @@
             <Column id="idOLDMETERNUMCORECTD" sortProperty="OLD_METERNUM_CORECTD" 
              
                     autoResizable="true" width="170px" hAlign="Center">
-                <m:Label text="OLD_METERNUM_CORECTD" class="statusColumn" tooltip="Old Meter Number Corrected"/>
+                <m:Label text="Corrected Old Meter Number" class="statusColumn" tooltip="Corrected Old Meter Number"/>
                 <template>
                     <!-- <m:Text text="{CTPTModel>OLD_METERNUM_CORECTD}" textAlign="Center"/> -->
                     <m:Input id="idOLD_METERNUM_CORECTD" value="{CTPTModel>Old_Meternum_Corectd}" maxLength="18"></m:Input>
@@ -97,28 +97,28 @@
             <Column id="idNEWMETERNUMCORECTD" sortProperty="NEW_METERNUM_CORECTD" 
              
                     autoResizable="true" width="170px" hAlign="Center">
-                <m:Label text="NEW_METERNUM_CORECTD" class="statusColumn" tooltip="New Meter Number Corrected"/>
+                <m:Label text="Corrected New Meter Number" class="statusColumn" tooltip="Corrected New Meter Number"/>
                 <template>
                     <!-- <m:Text text="{CTPTModel>NEW_METERNUM_CORECTD}" textAlign="Center"/> -->
                     <m:Input id="idNEW_METERNUM_CORECTD" value="{CTPTModel>New_Meternum_Corectd}" maxLength="18"></m:Input>
                 </template>
             </Column>
-            <Column id="idOldMeterreadKWH" sortProperty="Old Meter read KWH" 
+            <!-- <Column id="idOldMeterreadKWH" sortProperty="Old Meter read KWH" 
              
                     autoResizable="true" width="170px" hAlign="Center">
                 <m:Label text="Old Meter read KWH" />
                 <template>
                     <m:Text text="{CTPTModel>old_meter_read_kwh}" textAlign="Center"/>
                 </template>
-            </Column>
-            <Column id="idNewMeterreadKWH" sortProperty="New Meter read KWH" 
+            </Column> -->
+            <!-- <Column id="idNewMeterreadKWH" sortProperty="New Meter read KWH" 
              
                     autoResizable="true" width="170px" hAlign="Center">
                 <m:Label text="New Meter read KWH" />
                 <template>
                     <m:Text text="{CTPTModel>new_meter_read_kwh}" textAlign="Center"/>
                 </template>
-            </Column>
+            </Column> -->
             <Column id="idSecuritySealNo" sortProperty="Security Seal number" 
              
                     autoResizable="true" width="170px" hAlign="Center">
@@ -167,7 +167,7 @@
                     <m:Text text="{CTPTModel>Eid}" textAlign="Center"/>
                 </template>
             </Column>
-            <Column id="idOldMeterreadW" sortProperty="Old Meter read W" 
+            <!-- <Column id="idOldMeterreadW" sortProperty="Old Meter read W" 
              
                     autoResizable="true" width="170px" hAlign="Center">
                 <m:Label text="Old Meter read W" />
@@ -182,8 +182,8 @@
                 <template>
                     <m:Text text="{CTPTModel>old_meter_read_va}" textAlign="Center"/>
                 </template>
-            </Column>
-            <Column id="idNewMeterreadW" sortProperty="New Meter read W" 
+            </Column> -->
+            <!-- <Column id="idNewMeterreadW" sortProperty="New Meter read W" 
              
                     autoResizable="true" width="170px" hAlign="Center">
                 <m:Label text="New Meter read W" />
@@ -198,11 +198,11 @@
                 <template>
                     <m:Text text="{CTPTModel>new_meter_read_va}" textAlign="Center"/>
                 </template>
-            </Column>
+            </Column> -->
             <Column id="idNewManufSerNo" sortProperty="New Manufacturing ser No" 
              
                     autoResizable="true" width="170px" hAlign="Center">
-                <m:Label text="New Manufacturing ser No" />
+                <m:Label text="New Manufacturer Ser Num" />
                 <template>
                     <m:Text text="{CTPTModel>Manufserialnumber}" textAlign="Center"/>
                 </template>
@@ -210,7 +210,7 @@
             <Column id="idOlddeliveredreadKWH" sortProperty="Old delivered read KWH" 
              
                     autoResizable="true" width="170px" hAlign="Center">
-                <m:Label text="Old delivered read KWH" />
+                <m:Label text="Old Meter Del KWH" />
                 <template>
                     <m:Text text="{CTPTModel>old_delivered_reading_kwh}" textAlign="Center"/>
                 </template>
@@ -218,7 +218,7 @@
             <Column id="idOLDDELIVEREDREADKWHCORECTD" sortProperty="OLD_DELIVERED_READ_KWH_CORECTD" 
              
                     autoResizable="true" width="170px" hAlign="Center">
-                <m:Label text="OLD_DELIVERED_READ_KWH_CORECTD" class="statusColumn" tooltip="Old Delivered Read KWH Corrected"/>
+                <m:Label text="Corrected Old Meter Del KWH" class="statusColumn" tooltip="Corrected Old Meter Del KWH"/>
                 <template>
                     <!-- <m:Text text="{CTPTModel>OLD_DELIVERED_READ_KWH_CORECTD}" textAlign="Center"/> -->
                     <m:Input id="idOLD_DELIVERED_READ_KWH_CORECTD" value="{CTPTModel>Old_Delivered_Read_KWH_Corectd}" maxLength="20"></m:Input>
@@ -227,7 +227,7 @@
             <Column id="idOlddeliveredreadW" sortProperty="Old delivered read W" 
              
                     autoResizable="true" width="170px" hAlign="Center">
-                <m:Label text="Old delivered read W" />
+                <m:Label text="Old Meter Del W" />
                 <template>
                     <m:Text text="{CTPTModel>old_delivered_reading_w}" textAlign="Center"/>
                 </template>
@@ -235,7 +235,7 @@
             <Column id="idOLDDELIVEREDREADKWCORECTD" sortProperty="OLD_DELIVERED_READ_KW_CORECTD" 
              
                     autoResizable="true" width="170px" hAlign="Center">
-                <m:Label text="OLD_DELIVERED_READ_KW_CORECTD" class="statusColumn" tooltip="Old Delivered Read KW Corrected"/>
+                <m:Label text="Corrected Old Meter Del W" class="statusColumn" tooltip="Corrected Old Meter Del W"/>
                 <template>
                     <!-- <m:Text text="{CTPTModel>OLD_DELIVERED_READ_KW_CORECTD}" textAlign="Center"/> -->
                     <m:Input id="idOLD_DELIVERED_READ_KW_CORECTD" value="{CTPTModel>Old_Delivered_Read_KW_Corectd}" maxLength="20"></m:Input>
@@ -244,7 +244,7 @@
             <Column id="idOlddeliveredreadVA" sortProperty="Old delivered read VA" 
              
                     autoResizable="true" width="170px" hAlign="Center">
-                <m:Label text="Old delivered read VA" />
+                <m:Label text="Old Meter Del VA" />
                 <template>
                     <m:Text text="{CTPTModel>old_delivered_reading_va}" textAlign="Center"/>
                 </template>
@@ -252,7 +252,7 @@
             <Column id="idOLDDELIVEREDREADKVACORECTD" sortProperty="OLD_DELIVERED_READ_KVA_CORECTD" 
              
                     autoResizable="true" width="170px" hAlign="Center">
-                <m:Label text="OLD_DELIVERED_READ_KVA_CORECTD" class="statusColumn" tooltip="Old Delivered Read KVA Corrected"/>
+                <m:Label text="Corrected Old Meter Del VA" class="statusColumn" tooltip="Corrected Old Meter Del VA"/>
                 <template>
                     <!-- <m:Text text="{CTPTModel>OLD_DELIVERED_READ_KVA_CORECTD}" textAlign="Center"/> -->
                     <m:Input id="idOLD_DELIVERED_READ_KVA_CORECTD" value="{CTPTModel>Old_Delivered_Read_KVA_Corectd}" maxLength="20"></m:Input>
@@ -261,7 +261,7 @@
             <Column id="idOldreceivedreadKWH" sortProperty="Old received read KWH" 
              
                     autoResizable="true" width="170px" hAlign="Center">
-                <m:Label text="Old received read KWH" />
+                <m:Label text="Old Meter Rec KWH" />
                 <template>
                     <m:Text text="{CTPTModel>old_recieved_reading_kwh}" textAlign="Center"/>
                 </template>
@@ -269,7 +269,7 @@
             <Column id="idOLDRECEIVEDREADKWHCORECTD" sortProperty="OLD_RECEIVED_READ_KWH_CORECTD" 
              
                     autoResizable="true" width="170px" hAlign="Center">
-                <m:Label text="OLD_RECEIVED_READ_KWH_CORECTD" class="statusColumn" tooltip="Old Received Read KWH Corrected"/>
+                <m:Label text="Corrected Old Meter Rec KWH" class="statusColumn" tooltip="Corrected Old Meter Rec KWH"/>
                 <template>
                     <!-- <m:Text text="{CTPTModel>OLD_RECEIVED_READ_KWH_CORECTD}" textAlign="Center"/> -->
                     <m:Input id="idOLD_RECEIVED_READ_KWH_CORECTD" value="{CTPTModel>Old_Received_Read_KWH_Corectd}" maxLength="20"></m:Input>
@@ -278,7 +278,7 @@
             <Column id="idOldreceivedreadW" sortProperty="Old received read W" 
              
                     autoResizable="true" width="170px" hAlign="Center">
-                <m:Label text="Old received read W" />
+                <m:Label text="Old Meter Rec W" />
                 <template>
                     <m:Text text="{CTPTModel>old_recieved_reading_w}" textAlign="Center"/>
                 </template>
@@ -286,7 +286,7 @@
             <Column id="idOLDRECEIVEDREADKWCORECTD" sortProperty="OLD_RECEIVED_READ_KW_CORECTD" 
              
                     autoResizable="true" width="170px" hAlign="Center">
-                <m:Label text="OLD_RECEIVED_READ_KW_CORECTD" class="statusColumn" tooltip="Old Received Read KW Corrected"/>
+                <m:Label text="Corrected Old Meter Rec W" class="statusColumn" tooltip="Corrected Old Meter Rec W"/>
                 <template>
                     <!-- <m:Text text="{CTPTModel>OLD_RECEIVED_READ_KW_CORECTD}" textAlign="Center"/> -->
                     <m:Input id="idOLD_RECEIVED_READ_KW_CORECTD" value="{CTPTModel>Old_Received_Read_KW_Corectd}" maxLength="20"></m:Input>
@@ -295,7 +295,7 @@
             <Column id="idOLDRECEIVEDREADKVACORECTD" sortProperty="OLD_RECEIVED_READ_KVA_CORECTD" 
              
                     autoResizable="true" width="170px" hAlign="Center">
-                <m:Label text="OLD_RECEIVED_READ_KVA_CORECTD" class="statusColumn" tooltip="Old Received Read KVA Corrected"/>
+                <m:Label text="Corrected Old Meter Rec VA" class="statusColumn" tooltip="Corrected Old Meter Rec VA"/>
                 <template>
                     <!-- <m:Text text="{CTPTModel>OLD_RECEIVED_READ_KVA_CORECTD}" textAlign="Center"/> -->
                     <m:Input id="idOLD_RECEIVED_READ_KVA_CORECTD" value="{CTPTModel>Old_Received_Read_KVA_Corectd}" maxLength="20"></m:Input>
@@ -304,7 +304,7 @@
             <Column id="idNewdeliveredreadKWH" sortProperty="New delivered read KWH" 
              
                     autoResizable="true" width="170px" hAlign="Center">
-                <m:Label text="New delivered read KWH" />
+                <m:Label text="New Meter Del KWH" />
                 <template>
                     <m:Text text="{CTPTModel>new_delivered_reading_kwh}" textAlign="Center"/>
                 </template>
@@ -312,7 +312,7 @@
             <Column id="idNEWDELIVEREDREADKWHCORECTD" sortProperty="NEW_DELIVERED_READ_KWH_CORECTD" 
              
                     autoResizable="true" width="170px" hAlign="Center">
-                <m:Label text="NEW_DELIVERED_READ_KWH_CORECTD" class="statusColumn" tooltip="New Delivered Read KWH Corrected"/>
+                <m:Label text="Corrected New Meter KWH" class="statusColumn" tooltip="Corrected New Meter KWH"/>
                 <template>
                     <!-- <m:Text text="{CTPTModel>NEW_DELIVERED_READ_KWH_CORECTD}" textAlign="Center"/> -->
                     <m:Input id="idNEW_DELIVERED_READ_KWH_CORECTD" value="{CTPTModel>New_Delivered_Read_KWH_Corectd}" maxLength="20">
@@ -322,7 +322,7 @@
             <Column id="idNewdeliveredreadW" sortProperty="New delivered read W" 
              
                     autoResizable="true" width="170px" hAlign="Center">
-                <m:Label text="New delivered read W" />
+                <m:Label text="New Meter Del W" />
                 <template>
                     <m:Text text="{CTPTModel>new_delivered_reading_w}" textAlign="Center"/>
                 </template>
@@ -330,7 +330,7 @@
             <Column id="idNEWDELIVEREDREADKWCORECTD" sortProperty="NEW_DELIVERED_READ_KW_CORECTD" 
              
                     autoResizable="true" width="170px" hAlign="Center">
-                <m:Label text="NEW_DELIVERED_READ_KW_CORECTD" class="statusColumn" tooltip="New Delivered Read KW Corrected"/>
+                <m:Label text="Corrected New Meter Del W" class="statusColumn" tooltip="Corrected New Meter Del W"/>
                 <template>
                     <!-- <m:Text text="{CTPTModel>NEW_DELIVERED_READ_KW_CORECTD}" textAlign="Center"/> -->
                     <m:Input id="idNEW_DELIVERED_READ_KW_CORECTD" value="{CTPTModel>New_Delivered_Read_KW_Corectd}" maxLength="20"></m:Input>
@@ -339,7 +339,7 @@
             <Column id="idNewdeliveredreadVA" sortProperty="New delivered read VA" 
              
                     autoResizable="true" width="170px" hAlign="Center">
-                <m:Label text="New delivered read VA" />
+                <m:Label text="New Meter Del VA" />
                 <template>
                     <m:Text text="{CTPTModel>new_delivered_reading_va}" textAlign="Center"/>
                 </template>
@@ -347,7 +347,7 @@
             <Column id="idNEWDELIVEREDREADKVACORECTD" sortProperty="NEW_DELIVERED_READ_KVA_CORECTD" 
              
                     autoResizable="true" width="170px" hAlign="Center">
-                <m:Label text="NEW_DELIVERED_READ_KVA_CORECTD" class="statusColumn" tooltip="New Delivered Read KVA Corrected"/>
+                <m:Label text="Corrected New Meter Del VA" class="statusColumn" tooltip="Corrected New Meter Del VA"/>
                 <template>
                     <!-- <m:Text text="{CTPTModel>NEW_DELIVERED_READ_KVA_CORECTD}" textAlign="Center"/> -->
                     <m:Input id="idNEW_DELIVERED_READ_KVA_CORECTD" value="{CTPTModel>New_Delivered_Read_KVA_Corectd}" maxLength="20"></m:Input>
@@ -356,7 +356,7 @@
             <Column id="idNewreceivedreadKWH" sortProperty="New received read KWH" 
              
                     autoResizable="true" width="170px" hAlign="Center">
-                <m:Label text="New received read KWH" />
+                <m:Label text="New Meter Rec KHW" />
                 <template>
                     <m:Text text="{CTPTModel>new_recieved_reading_kwh}" textAlign="Center"/>
                 </template>
@@ -364,7 +364,7 @@
             <Column id="idNEWRECEIVEDREADKWHCORECTD" sortProperty="NEW_RECEIVED_READ_KWH_CORECTD" 
              
                     autoResizable="true" width="170px" hAlign="Center">
-                <m:Label text="NEW_RECEIVED_READ_KWH_CORECTD" class="statusColumn" tooltip="New Received Read KWH Corrected"/>
+                <m:Label text="Corrected New Meter Rec KHW" class="statusColumn" tooltip="Corrected New Meter Rec KHW"/>
                 <template>
                     <!-- <m:Text text="{CTPTModel>NEW_RECEIVED_READ_KWH_CORECTD}" textAlign="Center"/> -->
                     <m:Input id="idNEW_RECEIVED_READ_KWH_CORECTD" value="{CTPTModel>New_Received_Read_KWH_Corectd}" maxLength="20"></m:Input>
@@ -373,7 +373,7 @@
             <Column id="idNewrecievedreadW" sortProperty="New recieved read W" 
              
                     autoResizable="true" width="170px" hAlign="Center">
-                <m:Label text="New recieved read W" />
+                <m:Label text="New Meter Rec W" />
                 <template>
                     <m:Text text="{CTPTModel>new_recieved_reading_w}" textAlign="Center"/>
                 </template>
@@ -381,7 +381,7 @@
             <Column id="idNEWRECEIVEDREADKWCORECTD" sortProperty="NEW_RECEIVED_READ_KW_CORECTD" 
              
                     autoResizable="true" width="170px" hAlign="Center">
-                <m:Label text="NEW_RECEIVED_READ_KW_CORECTD" class="statusColumn" tooltip="New Received Read KW Corrected"/>
+                <m:Label text="Corrected New Meter Rec W" class="statusColumn" tooltip="Corrected New Meter Rec W"/>
                 <template>
                     <!-- <m:Text text="{CTPTModel>NEW_RECEIVED_READ_KW_CORECTD}" textAlign="Center"/> -->
                     <m:Input id="idNEW_RECEIVED_READ_KW_CORECTD" value="{CTPTModel>New_Received_Read_KW_Corectd}" maxLength="20"></m:Input>
@@ -390,7 +390,7 @@
             <Column id="idNewrecievedreadVA" sortProperty="New recieved read VA" 
              
                     autoResizable="true" width="170px" hAlign="Center">
-                <m:Label text="New recieved read VA" />
+                <m:Label text="New Meter Rec VA" />
                 <template>
                     <m:Text text="{CTPTModel>new_recieved_reading_va}" textAlign="Center"/>
                 </template>
@@ -398,7 +398,7 @@
             <Column id="idNEWRECEIVEDREADKVACORECTD" sortProperty="NEW_RECEIVED_READ_KVA_CORECTD" 
              
                     autoResizable="true" width="170px" hAlign="Center">
-                <m:Label text="NEW_RECEIVED_READ_KVA_CORECTD" class="statusColumn" tooltip="New Received Read KVA Corrected"/>
+                <m:Label text="Corrected New Meter Rec VA" class="statusColumn" tooltip="Corrected New Meter Rec VA"/>
                 <template>
                     <!-- <m:Text text="{CTPTModel>NEW_RECEIVED_READ_KVA_CORECTD}" textAlign="Center"/> -->
                     <m:Input id="idNEW_RECEIVED_READ_KVA_CORECTD" value="{CTPTModel>New_Received_Read_KVA_Corectd}" maxLength="20"></m:Input>
@@ -424,7 +424,7 @@
             <Column id="idOldCommAddress" sortProperty="Old Communication address" 
              
                     autoResizable="true" width="170px" hAlign="Center">
-                <m:Label text="Old Communication address" />
+                <m:Label text="Old Meter IP/PHONE NUM" />
                 <template>
                     <m:Text text="{CTPTModel>ex_comm_addr}" textAlign="Center"/>
                 </template>
@@ -438,7 +438,7 @@
                     <m:Input id="idOLD_COMM_ADDR_CORECTD" value="{CTPTModel>Old_Comm_Addr_Corectd}" maxLength="100"></m:Input>
                 </template>
             </Column>
-            <Column id="idReadOnlyPwd" sortProperty="Read only password" 
+            <!-- <Column id="idReadOnlyPwd" sortProperty="Read only password" 
              
                     autoResizable="true" width="170px" hAlign="Center">
                 <m:Label text="Read only password" />
@@ -453,7 +453,7 @@
                 <template>
                     <m:Text text="{CTPTModel>new_readonly_pwd}" textAlign="Center"/>
                 </template>
-            </Column>
+            </Column> -->
             <Column id="idNewCommEquipmentNo" sortProperty="New communication equipment number" 
              
                     autoResizable="true" width="170px" hAlign="Center">
@@ -474,7 +474,7 @@
             <Column id="idNewCommAddress" sortProperty="New Communication address" 
              
                     autoResizable="true" width="170px" hAlign="Center">
-                <m:Label text="New Communication address" />
+                <m:Label text="New Meter IP / PH Num" />
                 <template>
                     <m:Text text="{CTPTModel>new_comm_addr}" textAlign="Center"/>
                 </template>
@@ -482,20 +482,20 @@
             <Column id="idNEWCOMMADDRCORECTD" sortProperty="NEW_COMM_ADDR_CORECTD" 
              
                     autoResizable="true" width="170px" hAlign="Center">
-                <m:Label text="NEW_COMM_ADDR_CORECTD" class="statusColumn" tooltip="New Communication Address Corrected"/>
+                <m:Label text="Corrected New Meter IP / PH Num" class="statusColumn" tooltip="New Communication Address Corrected"/>
                 <template>
                     <!-- <m:Text text="{CTPTModel>NEW_COMM_ADDR_CORECTD}" textAlign="Center"/> -->
                     <m:Input id="idNEW_COMM_ADDR_CORECTD" value="{CTPTModel>New_Comm_Addr_Corectd}" maxLength="100"></m:Input>
                 </template>
             </Column>
-            <Column id="idNewBillingPwd" sortProperty="New billing password" 
+            <!-- <Column id="idNewBillingPwd" sortProperty="New billing password" 
              
                     autoResizable="true" width="170px" hAlign="Center">
                 <m:Label text="New billing password" />
                 <template>
                     <m:Text text="{CTPTModel>new_billing_pwd}" textAlign="Center"/>
                 </template>
-            </Column>
+            </Column> -->
             <Column id="idBillableFlagIndicator" sortProperty="Billable Flag Indicator" 
              
                     autoResizable="true" width="170px" hAlign="Center">
