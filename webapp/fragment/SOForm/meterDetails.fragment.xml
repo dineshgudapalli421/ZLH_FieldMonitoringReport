@@ -18,7 +18,7 @@
     enableExport="false"
     demandPopin="true"
     persistencyKey="SmartTableSoFormMeterDetails"
-    requestAtLeastFields="OrderID,Operation,Counter,additional_notes,additional_info,UtilitiesDevice,new_meter_num,Old_Meternum_Corectd,New_Meternum_Corectd,new_security_seal,corrected_tx,new_tx_num,Rev_Num,Row_Num,Eid,Manufserialnumber,old_delivered_reading_kwh,Old_Delivered_Read_KWH_Corectd,old_delivered_reading_w,Old_Delivered_Read_KW_Corectd,old_delivered_reading_va,Old_Delivered_Read_KVA_Corectd,old_recieved_reading_kwh,Old_Received_Read_KWH_Corectd,old_recieved_reading_w,Old_Received_Read_KW_Corectd,Old_Received_Read_KVA_Corectd,new_delivered_reading_kwh,New_Delivered_Read_KWH_Corectd,new_delivered_reading_w,New_Delivered_Read_KW_Corectd,new_delivered_reading_va,New_Delivered_Read_KVA_Corectd,new_recieved_reading_kwh,New_Received_Read_KWH_Corectd,new_recieved_reading_w,New_Received_Read_KW_Corectd,new_recieved_reading_va,New_Received_Read_KVA_Corectd,ex_comm_equip,Old_Comm_Equip_Corectd,ex_comm_addr,Old_Comm_Addr_Corectd,new_comm_equip,New_Comm_Equip_Corectd,new_comm_addr,New_Comm_Addr_Corectd,Billable,Complete_date,Main_Activity,Completed_Time,UtilsDeviceLocationLocation,COMPLETE_BY,VERBAL,UNIT_ID,TIME_SYNC_REQ,SET_MPASS,INSTALL_RF,INVESTIGATION_REQ,CONVERT_EL,INTERVAL_READY,IVP,OLD_METER_ACTION,MAN_HRS,TRUCK_HRS,OTHER_HRS,REMOVED,CHARGE_ACCT,FIELD_RETURN_REASON"
+    requestAtLeastFields="OrderID,Operation,Counter,additional_notes,additional_info,UtilitiesDevice,new_meter_num,Old_Meternum_Corectd,New_Meternum_Corectd,new_security_seal,corrected_tx,new_tx_num,Rev_Num,Row_Num,Eid,Manufserialnumber,old_delivered_reading_kwh,Old_Delivered_Read_KWH_Corectd,old_delivered_reading_w,Old_Delivered_Read_KW_Corectd,old_delivered_reading_va,Old_Delivered_Read_KVA_Corectd,old_recieved_reading_kwh,Old_Received_Read_KWH_Corectd,old_recieved_reading_w,Old_Received_Read_KW_Corectd,OLD_RECIEVED_READING_VA,Old_Received_Read_KVA_Corectd,new_delivered_reading_kwh,New_Delivered_Read_KWH_Corectd,new_delivered_reading_w,New_Delivered_Read_KW_Corectd,new_delivered_reading_va,New_Delivered_Read_KVA_Corectd,new_recieved_reading_kwh,New_Received_Read_KWH_Corectd,new_recieved_reading_w,New_Received_Read_KW_Corectd,new_recieved_reading_va,New_Received_Read_KVA_Corectd,ex_comm_equip,Old_Comm_Equip_Corectd,ex_comm_addr,Old_Comm_Addr_Corectd,new_comm_equip,New_Comm_Equip_Corectd,new_comm_addr,New_Comm_Addr_Corectd,Billable,Complete_date,Main_Activity,Completed_Time,UtilsDeviceLocationLocation,COMPLETE_BY,VERBAL,UNIT_ID,TIME_SYNC_REQ,SET_MPASS,INSTALL_RF,INVESTIGATION_REQ,CONVERT_EL,INTERVAL_READY,IVP,OLD_METER_ACTION,MAN_HRS,TRUCK_HRS,OTHER_HRS,REMOVED,CHARGE_ACCT,FIELD_RETURN_REASON"
 >
     <Table
         id="meterDetailsTable"
@@ -174,8 +174,8 @@
                 <template>
                     <m:Text text="{CTPTModel>old_meter_read_w}"  textAlign="Center"/>
                 </template>
-            </Column>
-            <Column id="idOldMeterreadVA" sortProperty="Old Meter read VA" 
+            </Column> -->
+            <!-- <Column id="idOldMeterreadVA" sortProperty="Old Meter read VA" 
              
                     autoResizable="true" width="170px" hAlign="Center">
                 <m:Label text="Old Meter read VA" />
@@ -290,6 +290,15 @@
                 <template>
                     <!-- <m:Text text="{CTPTModel>OLD_RECEIVED_READ_KW_CORECTD}" textAlign="Center"/> -->
                     <m:Input id="idOLD_RECEIVED_READ_KW_CORECTD" value="{CTPTModel>Old_Received_Read_KW_Corectd}" maxLength="20"></m:Input>
+                </template>
+            </Column>
+
+            <Column id="idOldreceivedreadVA" sortProperty="Old received read VA" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
+                <m:Label text="Old Meter Rec VA" />
+                <template>
+                    <m:Text text="{CTPTModel>OLD_RECIEVED_READING_VA}" textAlign="Center"/>
                 </template>
             </Column>
             <Column id="idOLDRECEIVEDREADKVACORECTD" sortProperty="OLD_RECEIVED_READ_KVA_CORECTD" 
