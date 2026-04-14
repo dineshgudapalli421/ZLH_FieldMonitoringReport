@@ -8,8 +8,15 @@ sap.ui.define([
     "sap/ui/model/json/JSONModel",
     "sap/m/Token",
     "sap/ui/core/format/DateFormat",
-    "sap/ushell/services/PersonalizationV2"
-], function (Controller, oDataModel, MessageToast, MessageBox, Filter, FilterOperator, JSONModel, Token, DateFormat, PersonalizationV2) {
+    "sap/ushell/services/PersonalizationV2",
+    'sap/ui/core/Fragment',
+    'sap/m/SearchField',
+    'sap/ui/table/Column',
+    'sap/m/Column',
+    'sap/m/Text',
+    'sap/m/Label',
+    'sap/ui/model/type/String'
+], function (Controller, oDataModel, MessageToast, MessageBox, Filter, FilterOperator, JSONModel, Token, DateFormat, PersonalizationV2, Fragment, SearchField, UIColumn, MColumn, Text, Label, TypeString) {
     "use strict";
     var oRouter, oController, oSelectionScreenModel, oFieldMonDataModel, oResourceBundle, UIComponent;
 
@@ -20,23 +27,25 @@ sap.ui.define([
             oFieldMonDataModel = oController.getOwnerComponent().getModel();
             oRouter = UIComponent.getRouter();
             oResourceBundle = oController.getOwnerComponent().getModel("i18n").getResourceBundle();
+            var oMultiInput = oController.byId("idServiceOrder");
+            oController._oMultiInput = oMultiInput;
 
-            // var oServiceOrderModel = new oDataModel("/sap/opu/odata/sap/ZWM_SS_ORDER_OEB_SRV/", {
-            //     json: true,
-            //     useBatch: false
-            // });
-            // var oServiceOrderJsonModel = new JSONModel();
-            // oServiceOrderModel.read("/Service_OrderSet", {
-            //     success: function (oData) {
-            //         var oResults = oData.results;
-            //         if (oResults.length) {
-            //             oServiceOrderJsonModel.setData(oResults);
-            //         } else {
-            //            oServiceOrderJsonModel.setData(oResults);
-            //         }
-            //     }                
-            // });
-            // oController.getView().setModel(oServiceOrderJsonModel, "ServiceOrderModel");
+            var oServiceOrderModel = new oDataModel("/sap/opu/odata/sap/ZWM_FIELD_COMP_WORK_SRV/", {
+                json: true,
+                useBatch: false
+            });
+            var oServiceOrderJsonModel = new JSONModel();
+            oServiceOrderModel.read("/ORDER_NumberSet", {
+                success: function (oData) {
+                    var oResults = oData.results;
+                    if (oResults.length) {
+                        oServiceOrderJsonModel.setData({ OrderCollection: oResults });
+                    } else {
+                        oServiceOrderJsonModel.setData(oResults);
+                    }
+                }
+            });
+            oController.getView().setModel(oServiceOrderJsonModel, "ServiceOrderModel");
 
             var oSelectionModel = new JSONModel({
                 bPageBusy: false,
@@ -89,8 +98,12 @@ sap.ui.define([
                 ],
                 OrderOperationStatus: [
                     { Key: "HOLD", description: "Hold" },
-                    { Key: "SRDE", description: "Site Readiness Date entered" },
-                    { Key: "RCC", description: "Ready for Customer Confirm" },
+                    // { Key: "SRDE", description: "Site Readiness Date entered" },
+                    // { Key: "RCC", description: "Ready for Customer Confirm" },
+                    { Key: "SRDE", description: "Trenching Site Rdy Date Entered" },
+                    { Key: "RCC", description: "Trenching Rdy for Cust Cnf" },
+                    { Key: "ISDE", description: "Install Site Readiness Date Entered" },
+                    { Key: "IRCC", description: "Install Ready for Customer Confirmation" },
                     { Key: "TRFD", description: "Trenching Ready for Dispatch" },
                     { Key: "ASSN", description: "Assigned" },
                     { Key: "DISP", description: "Dispatched" },
@@ -413,7 +426,7 @@ sap.ui.define([
         },
 
         onPressNext: function () {
-            // debugger;
+            debugger;
             var oModel = oController.getView().getModel("FieldMonSelModel");
             var oView = oController.getView();
             var aSerOrder = oController._getTokens(oView.byId("idServiceOrder"));
@@ -973,6 +986,179 @@ sap.ui.define([
             }
 
             oModel.setProperty("/oSelected/OrderType", aSelectedData);
+        },
+
+        // ***************************** New Logic For Service Orders *********************
+        handleValueHelp: function () {
+            debugger;
+            var oView = this.getView();
+
+            if (!oController._pValueHelpDialog) {
+                oController._pValueHelpDialog = Fragment.load({
+                    id: "idTableSelectDialog",
+                    name: "com.sap.lh.cs.zlhfieldmonitoring.fragment.valueHelp.valueHelpServiceOrder",
+                    controller: oController
+                }).then(function (oValueHelpDialog) {
+                    oView.addDependent(oValueHelpDialog);
+                    return oValueHelpDialog;
+                });
+            }
+            oController._pValueHelpDialog.then(function (oValueHelpDialog) {
+                //oController._configValueHelpDialog();
+                oValueHelpDialog.open();
+            }.bind(oController));
+        },
+
+        _configValueHelpDialog: function () {
+            debugger;
+            var sInputValue = oController.byId("idServiceOrder").getValue(),
+                oModel = oController.getView().getModel("mainService"),
+                aOrders = oModel.getProperty("/ORDER_NumberSet");
+
+            aOrders.forEach(function (oOrder) {
+                oOrder.selected = (oOrder.ORDER_ID === sInputValue);
+            });
+            oModel.setProperty("/ORDER_NumberSet", aOrders);
+        },
+        onServiceOrderVH: function () {
+            debugger;
+            oController._oBasicSearchField = new SearchField();
+            oController.loadFragment({
+                name: "com.sap.lh.cs.zlhfieldmonitoring.fragment.valueHelp.ValueHelpDialogFilterbar"
+            }).then(function (oDialog) {
+                var oFilterBar = oDialog.getFilterBar(), oColumnOrderID, oColumnDescription;
+                oController._oVHD = oDialog;
+
+                oController.getView().addDependent(oDialog);
+
+                // Set key fields for filtering in the Define Conditions Tab
+                oDialog.setRangeKeyFields([{
+                    label: "OrderID",
+                    key: "ORDER_ID",
+                    type: "string",
+                    typeInstance: new TypeString({}, {
+                        maxLength: 15
+                    })
+                }]);
+
+                // Set Basic Search for FilterBar
+                oFilterBar.setFilterBarExpanded(false);
+                oFilterBar.setBasicSearch(oController._oBasicSearchField);
+
+                // Trigger filter bar search when the basic search is fired
+                oController._oBasicSearchField.attachSearch(function () {
+                    oFilterBar.search();
+                });
+
+                oDialog.getTableAsync().then(function (oTable) {
+                    var oModel = oController.getView().getModel("ServiceOrderModel");
+                    oTable.setModel(oModel);
+
+                    // For Desktop and tabled the default table is sap.ui.table.Table
+                    if (oTable.bindRows) {
+                        // Bind rows to the ODataModel and add columns
+                        oTable.bindAggregation("rows", {
+                            path: "ServiceOrderModel>/OrderCollection",
+                            events: {
+                                dataReceived: function () {
+                                    oDialog.update();
+                                }
+                            }
+                        });
+                        oColumnOrderID = new UIColumn({ label: new Label({ text: "Order ID" }), template: new Text({ wrapping: false, text: "{ServiceOrderModel>ORDER_ID}" }) });
+                        oColumnOrderID.data({
+                            fieldName: "ORDER_ID"
+                        });
+                        oColumnDescription = new UIColumn({ label: new Label({ text: "Description" }), template: new Text({ wrapping: false, text: "{ServiceOrderModel>DESCRIPTION}" }) });
+                        oColumnDescription.data({
+                            fieldName: "DESCRIPTION"
+                        });
+                        oTable.addColumn(oColumnOrderID);
+                        oTable.addColumn(oColumnDescription);
+                    }
+
+                    // For Mobile the default table is sap.m.Table
+                    if (oTable.bindItems) {
+                        // Bind items to the ODataModel and add columns
+                        oTable.bindAggregation("items", {
+                            path: "ServiceOrderModel>/OrderCollection",
+                            template: new ColumnListItem({
+                                cells: [new Label({ text: "{ServiceOrderModel>ORDER_ID}" }), new Label({ text: "{ServiceOrderModel>DESCRIPTION}" })]
+                            }),
+                            events: {
+                                dataReceived: function () {
+                                    oDialog.update();
+                                }
+                            }
+                        });
+                        oTable.addColumn(new MColumn({ header: new Label({ text: "Order ID" }) }));
+                        oTable.addColumn(new MColumn({ header: new Label({ text: "Description" }) }));
+                    }
+                    oDialog.update();
+                }.bind(oController));
+
+                //oDialog.setTokens(oController._oMultiInput.getTokens());
+                oDialog.open();
+            }.bind(oController));
+        },
+        onValueHelpOkPress: function (oEvent) {
+            debugger;
+            var aTokens = oEvent.getParameter("tokens");
+            oController._oMultiInput.setTokens(aTokens);
+            oController._oVHD.close();
+        },
+
+        onValueHelpCancelPress: function () {
+            oController._oVHD.close();
+        },
+
+        onValueHelpAfterClose: function () {
+            oController._oVHD.destroy();
+        },
+        onFilterBarSearch: function (oEvent) {
+            var sSearchQuery = oController._oBasicSearchField.getValue(),
+                aSelectionSet = oEvent.getParameter("selectionSet");
+
+            var aFilters = aSelectionSet.reduce(function (aResult, oControl) {
+                if (oControl.getValue()) {
+                    aResult.push(new Filter({
+                        path: oControl.getName(),
+                        operator: FilterOperator.Contains,
+                        value1: oControl.getValue()
+                    }));
+                }
+
+                return aResult;
+            }, []);
+
+            aFilters.push(new Filter({
+                filters: [
+                    new Filter({ path: "ORDER_ID", operator: FilterOperator.Contains, value1: sSearchQuery }),
+                    new Filter({ path: "DESCRIPTION", operator: FilterOperator.Contains, value1: sSearchQuery })
+                ],
+                and: false
+            }));
+
+            oController._filterTable(new Filter({
+                filters: aFilters,
+                and: true
+            }));
+        },
+        _filterTable: function (oFilter) {
+            var oVHD = oController._oVHD;
+
+            oVHD.getTableAsync().then(function (oTable) {
+                if (oTable.bindRows) {
+                    oTable.getBinding("rows").filter(oFilter);
+                }
+                if (oTable.bindItems) {
+                    oTable.getBinding("items").filter(oFilter);
+                }
+
+                // This method must be called after binding update of the table.
+                oVHD.update();
+            });
         }
+
     });
 });

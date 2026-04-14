@@ -25,39 +25,35 @@
     >
         <f:content>
             <Label text="Service Order" />
-            <MultiInput
+            <!-- <MultiInput
                 id="idServiceOrder"
                 width="60%"
-                showValueHelp="false"
-                tokenUpdate=".onOrderNoTokenUpdate"
-                submit="onSubmitOrderNumber"
-                valueHelpRequest=".onValueHelp"
-                maxTokens="1600"
-                suggestionItemSelected=".onOrderSuggestionItemPress" 
-                suggestionRows="{
-				path: 'OEBmainService>/Service_OrderSet'
-			}"
-            >
-                <suggestionColumns>
-                    <Column>
-                        <Label text="Order ID" />
-                    </Column>
-                    <Column>
-                        <Label text="Order Type" />
-                    </Column>
-                    <Column>
-                        <Label text="Description" />
-                    </Column>
-                </suggestionColumns>
-                <suggestionRows>
-                    <ColumnListItem>
-                        <Label text="{OEBmainService>OrderId}" />
-                        <Label text="{OEBmainService>OrderType}" />
-                        <Label text="{OEBmainService>Description}" />
-                    </ColumnListItem>
-                </suggestionRows>               
-            </MultiInput>
-
+                showValueHelp="true"
+			    valueHelpRequest="handleValueHelp"
+            >              
+            </MultiInput> -->
+    <MultiInput
+			id="idServiceOrder"
+			width="60%"
+			valueHelpRequest=".onServiceOrderVH"
+			suggestionRows="{
+				path: 'mainService>/ORDER_NumberSet'
+			}">
+			<suggestionColumns>
+				<Column>
+					<Label text="Order ID"/>
+				</Column>
+				<Column>
+					<Label text="Description"/>
+				</Column>
+			</suggestionColumns>
+			<suggestionRows>
+				<ColumnListItem>
+					<Label text="{ORDER_ID}" />
+					<Label text="{DESCRIPTION}" />
+				</ColumnListItem>
+			</suggestionRows>
+		</MultiInput>
 
             <Label text="Order Type" />
             <MultiInput
