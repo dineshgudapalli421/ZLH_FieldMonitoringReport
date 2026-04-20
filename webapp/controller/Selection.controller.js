@@ -989,13 +989,44 @@ sap.ui.define([
         },
 
         // ***************************** New Logic For Service Orders *********************
-        handleValueHelp: function () {
+        onValueHelpRequest: function (oEvent) {
             debugger;
-            var oView = this.getView();
+            var oMultiInput = oEvent.getSource();
 
+            // 1. Create the Value Help Dialog
+            var oValueHelpDialog = new sap.ui.comp.valuehelpdialog.ValueHelpDialog({
+                title: "Select Orders",
+                supportMultiselect: true,
+                key: "ORDER_ID",          // Unique ID from your data
+                descriptionKey: "DESCRIPTION",    // Text shown on the token
+
+                // 2. Handle 'OK' button press
+                ok: function (oControlEvent) {
+                    var aTokens = oControlEvent.getParameter("tokens");
+                    oMultiInput.setTokens(aTokens); // Set tokens in the MultiInput field
+                    oValueHelpDialog.close();
+                },
+
+                // 3. Handle 'Cancel' button press
+                cancel: function () {
+                    oValueHelpDialog.close();
+                }
+            });
+            var oModel = oController.getView().getModel("ServiceOrderModel");
+            // 4. (Optional) Bind data to the dialog's internal table
+            oValueHelpDialog.getTable().setModel(oModel);
+            oValueHelpDialog.getTable().bindRows("/OrderCollection");
+            oValueHelpDialog.open();
+        },
+        handleValueHelp: function (oEvent) {
+            debugger;
+            var sInputValue = oEvent.getSource().getValue(),
+                oView = oController.getView();
+
+            // create value help dialog
             if (!oController._pValueHelpDialog) {
                 oController._pValueHelpDialog = Fragment.load({
-                    id: "idTableSelectDialog",
+                    id: oView.getId(),
                     name: "com.sap.lh.cs.zlhfieldmonitoring.fragment.valueHelp.valueHelpServiceOrder",
                     controller: oController
                 }).then(function (oValueHelpDialog) {
@@ -1003,12 +1034,39 @@ sap.ui.define([
                     return oValueHelpDialog;
                 });
             }
-            oController._pValueHelpDialog.then(function (oValueHelpDialog) {
-                //oController._configValueHelpDialog();
-                oValueHelpDialog.open();
-            }.bind(oController));
-        },
 
+            oController._pValueHelpDialog.then(function (oValueHelpDialog) {
+                // create a filter for the binding
+                oValueHelpDialog.getBinding("items").filter([new Filter(
+                    "ORDER_ID",
+                    FilterOperator.Contains,
+                    sInputValue
+                )]);
+                // open value help dialog filtered by the input value
+                oValueHelpDialog.open(sInputValue);
+            });
+        },
+        _handleValueHelpClose: function (evt) {
+            var aSelectedItems = evt.getParameter("selectedItems"),
+                oMultiInput = oController.byId("idServiceOrder");
+
+            if (aSelectedItems && aSelectedItems.length > 0) {
+                aSelectedItems.forEach(function (oItem) {
+                    oMultiInput.addToken(new Token({
+                        text: oItem.getTitle()
+                    }));
+                });
+            }
+        },
+        _handleValueHelpSearch: function (evt) {
+			var sValue = evt.getParameter("value");
+			var oFilter = new Filter(
+				"ORDER_ID",
+				FilterOperator.Contains,
+				sValue
+			);
+			evt.getSource().getBinding("items").filter([oFilter]);
+		},
         _configValueHelpDialog: function () {
             debugger;
             var sInputValue = oController.byId("idServiceOrder").getValue(),

@@ -29,6 +29,18 @@
                 id="idServiceOrder"
                 width="60%"
                 showValueHelp="true"
+			    valueHelpRequest=".handleValueHelp"
+                suggestionItems="{
+				path: 'ServiceOrderModel>/OrderCollection',
+				sorter: { path: 'ORDER_ID' }
+			}"
+            >    
+            <core:Item key="{ORDER_ID}" text="{DESCRIPTION}" />
+            </MultiInput> -->
+            <!-- <MultiInput
+                id="idServiceOrder"
+                width="60%"
+                showValueHelp="true"
 			    valueHelpRequest="handleValueHelp"
             >              
             </MultiInput> -->
