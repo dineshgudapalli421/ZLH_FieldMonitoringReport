@@ -94,7 +94,8 @@ sap.ui.define([
                 OrderStatus: [
                     { Key: 'DISP', description: 'Dispatched' },
                     { Key: 'ASSN', description: 'Assigned' },
-                    { Key: 'TECO', description: 'Technically Completed' }
+                    { Key: 'TECO', description: 'Technically Completed' },
+                    { Key: "RVWC", description: "Review Complete" }
                 ],
                 OrderOperationStatus: [
                     { Key: "HOLD", description: "Hold" },
