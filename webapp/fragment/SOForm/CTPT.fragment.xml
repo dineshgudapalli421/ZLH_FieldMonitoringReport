@@ -187,7 +187,7 @@
                 width="6rem"
                 hAlign="Center"
             >
-                <m:Label text="New Tx Demominator" />
+                <m:Label text="New Tx Denominator" />
                 <template>
                     <m:Text text="{CTPTModel>newtxwindenom}" textAlign="Center"/>
                 </template>
@@ -196,7 +196,7 @@
                 width="15rem"
                 hAlign="Center" 
             >
-                <m:Label text="Corrected New Tx Demoninator" class="statusColumn" tooltip="Denominator Corrected"/>
+                <m:Label text="Corrected New Tx Denominator" class="statusColumn" tooltip="Denominator Corrected"/>
                 <template>
                     <!-- <m:Text text="{CTPTModel>DENOMINATOR_CORECTD}" /> -->
                     <m:Input id="idDENOMINATOR_CORECTD" value="{CTPTModel>Denominator_Corectd}" maxLength="20"></m:Input>
