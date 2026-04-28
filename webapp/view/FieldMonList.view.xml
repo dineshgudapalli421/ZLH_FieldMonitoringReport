@@ -44,7 +44,8 @@
         <m:content>
             <Table
                 id="idFieldMonTable"
-                rowMode="Auto"                 
+                rowMode="Auto"    
+                fixedColumnCount="1"             
                 sort="onSort" columnResize="onColumnResize" columnMove="onColumnMove"
                 sap.ui.fl:flexibility="sap/m/flexibility/EngineFlex"
                 rows="{FieldMonitorModel>/aFieldMonList}"
@@ -95,6 +96,18 @@
                 </columnmenu:Menu>
                 </dependents>               
                 <columns>
+                <Column id="Order_col" hAlign="Center" class="sapUiContentPadding"
+                    sortProperty="{i18n>label.order}" headerMenu="menu"  
+                    autoResizable="true" resizable="true"  width="5rem">
+                        <m:Label text="{i18n>label.order}" />
+                        <template>
+                            <m:Link
+				text="{FieldMonitorModel>ORDER_NO}"
+				subtle="true"
+				press="handleLinkPress" emphasized="true" textAlign="Center"/>
+                            <!-- <m:Label text="{FieldMonitorModel>ORDER_NO}"/> -->
+                        </template>
+                    </Column>
                     <Column id="Status_col" hAlign="Center" 
                     autoResizable="true" resizable="true"  width="11rem"
                     sortProperty="{i18n>label.status}" headerMenu="menu"
@@ -146,18 +159,7 @@
                             <m:Label text="{FieldMonitorModel>ACTIVITY_TYPE}" textAlign="Center" />
                         </template>
                     </Column>
-                    <Column id="Order_col" hAlign="Center" class="sapUiContentPadding"
-                    sortProperty="{i18n>label.order}" headerMenu="menu"  
-                    autoResizable="true" resizable="true"  width="5rem">
-                        <m:Label text="{i18n>label.order}" />
-                        <template>
-                            <m:Link
-				text="{FieldMonitorModel>ORDER_NO}"
-				subtle="true"
-				press="handleLinkPress" emphasized="true" textAlign="Center"/>
-                            <!-- <m:Label text="{FieldMonitorModel>ORDER_NO}"/> -->
-                        </template>
-                    </Column>
+                    
                      <Column id="opDescription_col" hAlign="Center" 
                     sortProperty="{i18n>label.opDescription}" headerMenu="menu"  
                     autoResizable="true" resizable="true"  width="8rem">

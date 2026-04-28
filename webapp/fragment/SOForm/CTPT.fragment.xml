@@ -24,6 +24,7 @@
         id="idTableCTPT"
         selectionMode="None"
         rows="{path: 'CTPTModel>/CTPT'}"
+        fixedColumnCount="1"
     >
         <columns>
             <!-- <Column

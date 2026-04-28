@@ -25,7 +25,7 @@ sap.ui.define(
     var oRouter, oController, oSelectionScreenModel, oOEBoDataModel, oResourceBundle, UIComponent, oSelectionFilter;
     return Controller.extend("com.sap.lh.cs.zlhfieldmonitoring.controller.FieldMonList", {
       onInit: function () {
-       //debugger;
+        //debugger;
         oController = this;
         UIComponent = oController.getOwnerComponent();
         oOEBoDataModel = oController.getOwnerComponent().getModel();
@@ -39,7 +39,7 @@ sap.ui.define(
         oController._registerForP13n();
       },
       _initializeVariantManagement: function () {
-       //debugger;
+        //debugger;
         var oView = this.getView();
         var oVariantManagement = oView.byId("idVManagement");
         sap.ushell.Container.getServiceAsync("Personalization").then(function (oPersonalizationService) {
@@ -65,7 +65,7 @@ sap.ui.define(
       },
 
       _loadVariants: function (oVariantSet) {
-       //debugger;
+        //debugger;
         var oVM = oController.getView().byId("idVManagement");
         oVariantSet.variants.forEach(function (oVariant) {
           oVM.addVariantItem({
@@ -78,7 +78,7 @@ sap.ui.define(
         //oController.getView().getModel("FieldMonSelModel").setProperty("/Variants", aVariants);
       },
       _applyVariant: function (sVariantKey, sName) {
-       //debugger;
+        //debugger;
         var oTable = oController.getView().byId("idFieldMonTable");
         var oVariantSet = this._oContainer.getItemValue("variantSet") || { "variants": [] };
         var oDefaultVariant = oVariantSet.defaultVariant;
@@ -118,7 +118,7 @@ sap.ui.define(
         });
       },
       onSelectVariant: function (oEvent) {
-       //debugger;
+        //debugger;
         var oTable = oController.getView().byId("idFieldMonTable");
         var sVariantKey = oEvent.getParameter("key");
         var objVariant = {}, objVariantItems = [], oName = '';
@@ -146,7 +146,7 @@ sap.ui.define(
 
       },
       onSaveVariant: function (oEvent) {
-       //debugger;
+        //debugger;
         var oParameters = oEvent.getParameters();
         var sVariantKey = oParameters.key || Date.now().toString();
         var sVariantText = oParameters.name;
@@ -185,7 +185,7 @@ sap.ui.define(
 
       },
       onManageVariant: function (oEvent) {
-       //debugger;
+        //debugger;
         var objVariant = {}, objVariantItems = [], oName = '';
         objVariant = oEvent.getSource().oContext.getModel().getData();
         objVariantItems = objVariant["FieldMonList--idVManagement"].variants;
@@ -196,7 +196,7 @@ sap.ui.define(
         var oVariantSet = this._oContainer.getItemValue("variantSet") || { variants: [] };
         if (aDeleted !== undefined) {
           oParameters.deleted.forEach(function (sKey) {
-           //debugger;
+            //debugger;
             for (var i = 0; i < objVariantItems.length; i++) {
               if (sKey !== objVariantItems[i].key) {
                 oName = objVariantItems[i].title;
@@ -257,9 +257,14 @@ sap.ui.define(
         }
       },
       _registerForP13n: function () {
-       //debugger;
+        //debugger;
         const oTable = oController.getView().byId("idFieldMonTable");
         oController.oMetadataHelper = new MetadataHelper([{
+          key: "Order_col",
+          label: "Order",
+          path: "ORDER_NO"
+        },
+        {
           key: "Status_col",
           label: "Status",
           path: "Status"
@@ -278,11 +283,6 @@ sap.ui.define(
           key: "ActivityType_col",
           label: "Activity Type",
           path: "ACTIVITY_TYPE"
-        },
-        {
-          key: "Order_col",
-          label: "Order",
-          path: "ORDER_NO"
         },
         {
           key: "Opcode_col",
@@ -609,7 +609,7 @@ sap.ui.define(
         }
       },
       handleStateChange: function (oEvent) {
-       //debugger;
+        //debugger;
         var oTable = oController.getView().byId("idFieldMonTable");
         var oState = oEvent.getParameter("state");
 
@@ -704,7 +704,7 @@ sap.ui.define(
         });
       },
       onColumnResize: function (oEvent) {
-       //debugger;
+        //debugger;
         var oColumn = oEvent.getParameter("column");
         var sWidth = oEvent.getParameter("width");
         var oTable = oController.getView().byId("idFieldMonTable");
@@ -767,7 +767,7 @@ sap.ui.define(
       }
       ,
       onRefreshSoResults: function () {
-       //debugger;
+        //debugger;
         var oGlobalModel = oController.getOwnerComponent().getModel("GlobalFieldMonModel");
         var oList = oGlobalModel ? oGlobalModel.getProperty("/FiledMonList") : [];
         var oModel = new JSONModel({
@@ -798,7 +798,7 @@ sap.ui.define(
         oController.getView().byId("idFieldMonTable").getModel().refresh(true);
       },
       onPressSoResults: function () {
-       //debugger;
+        //debugger;
         var oTable = oController.getView().byId("idFieldMonTable");
         var aSelectedIndices = oTable.getSelectedIndices();
         var aSelectedRows = aSelectedIndices.map(iIndex => oTable.getContextByIndex(iIndex).getObject());
@@ -979,7 +979,7 @@ sap.ui.define(
       // var oTable = oController.getView().byId("idFieldMonTable");
       // oBinding = oTable.getBinding("rows");
       _FilterValuecollect: function () {
-       //debugger;
+        //debugger;
         var oTable = oController.getView().byId("idFieldMonTable");
         var oBinding = oTable.getBinding("rows");
         var aStatusValues = oBinding.getCurrentContexts().map(function (oContext) {
@@ -1043,14 +1043,14 @@ sap.ui.define(
             success: function (oData, oRes) {
               oController.getView().getModel("FieldMonitorModel").setProperty("/BPEMList", oData.results)
             }, error: function (oError) {
-             //debugger;
+              //debugger;
             }
           })
         }
       },
       onPressCaseId: function (oEvent) {
         var oSource = oEvent.getSource();
-       //debugger;
+        //debugger;
         var navigationService = sap.ushell.Container.getService("CrossApplicationNavigation");
         var hash = (navigationService && navigationService.hrefForExternal({
           target: { semanticObject: "UtilitiesClarificationCase", action: "displayClarificationCase" },
@@ -1070,7 +1070,7 @@ sap.ui.define(
         // navigationService.navigate(target, oController.getOwnerComponent());
       },
       handleLinkPress: function (oEvent) {
-       //debugger;
+        //debugger;
         var oSource = oEvent.getSource();
         let oOrderNo = oSource.getText();
         if (oOrderNo) {
@@ -1103,7 +1103,7 @@ sap.ui.define(
           // }
           // oCrossAppNav.navigate(oTarget, oController.getOwnerComponent());
         }
-       // console.log(oData);
+        // console.log(oData);
       },
       _closeDialog: function () {
         oController.oDialog.close();

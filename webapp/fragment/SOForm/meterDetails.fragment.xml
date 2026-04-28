@@ -26,6 +26,7 @@
         selectionMode="None"
         showNoData="true"
         rows="{path: 'CTPTModel>/SoForm'}"
+        fixedColumnCount="1"
     >
           
         <columns>
