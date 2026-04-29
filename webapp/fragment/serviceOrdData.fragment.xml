@@ -48,27 +48,45 @@
 			id="idServiceOrder"
 			width="60%"
 			valueHelpRequest=".onServiceOrderVH"
-			suggestionRows="{
-				path: 'mainService>/ORDER_NumberSet'
+            showSuggestion="true"
+            suggestionItemSelected=".onOrderSuggestionItemPress"
+			suggestionItems="{
+				path: '/ORDER_NumberSet'
 			}">
-			<suggestionColumns>
-				<Column>
-					<Label text="Order ID"/>
-				</Column>
-				<Column>
-					<Label text="Description"/>
-				</Column>
-			</suggestionColumns>
-			<suggestionRows>
-				<ColumnListItem>
-					<Label text="{ORDER_ID}" />
-					<Label text="{DESCRIPTION}" />
-				</ColumnListItem>
-			</suggestionRows>
+			<suggestionItems>
+				<core:ListItem
+					key="{ORDER_ID}"
+					text="{
+						path : 'ORDER_ID'
+                    }"
+					additionalText="{
+						path : 'DESCRIPTION'
+					}"/>
+			</suggestionItems>
 		</MultiInput>
 
             <Label text="Order Type" />
             <MultiInput
+			id="idOrderType"
+			width="60%"
+			valueHelpRequest=".onOrderTypeVH"
+            showSuggestion="true"
+            suggestionItemSelected=".onOrderTypeSuggestionItemPress"
+			suggestionItems="{
+				path: 'OrderTypeModel>/OrderTypeCollection'
+			}">
+			<suggestionItems>
+				<core:ListItem
+					key="{OrderTypeModel>OrderType}"
+					text="{
+						path : 'OrderTypeModel>OrderType'
+                    }"
+					additionalText="{
+						path : 'OrderTypeModel>OrderDesc'
+					}"/>
+			</suggestionItems>
+		</MultiInput>
+            <!-- <MultiInput
                 id="idOrderType"
                 width="60%"
                 showValueHelp="false"
@@ -93,7 +111,7 @@
                         <Label text="{OEBmainService>Description}" />
                     </ColumnListItem>
                 </suggestionRows>               
-            </MultiInput>
+            </MultiInput> -->
 
              <Label text="Meter Action" />
             <MultiComboBox

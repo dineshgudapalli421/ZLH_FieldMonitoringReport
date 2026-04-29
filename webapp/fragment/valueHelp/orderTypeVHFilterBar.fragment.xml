@@ -1,0 +1,39 @@
+<core:FragmentDefinition
+	xmlns="sap.ui.comp.valuehelpdialog"
+	xmlns:m="sap.m"
+	xmlns:fb="sap.ui.comp.filterbar"
+	xmlns:core="sap.ui.core">
+	<ValueHelpDialog
+		title="Order Type"
+		ok=".onOrderTypeVHOkPress"
+		cancel=".onOrderTypeVHCancelPress"
+		afterClose=".onOrderTypeVHAfterClose"
+		supportRanges="false"
+		key="OrderType"
+		descriptionKey="">
+		<filterBar>
+			<fb:FilterBar advancedMode="true" search=".onOrderTypeFilterBarSearch" isRunningInValueHelpDialog="true">
+				<fb:filterGroupItems>
+					<fb:FilterGroupItem
+						groupName="__$ORDERTYPE$"
+						name="OrderType"
+						label="Order Type"
+						visibleInFilterBar="true">
+						<fb:control>
+							<m:Input name="OrderType" />
+						</fb:control>
+					</fb:FilterGroupItem>
+					<fb:FilterGroupItem
+						groupName="__$ORDERTYPE$"
+						name="OrderDescription"
+						label="Order Description"
+						visibleInFilterBar="true">
+						<fb:control>
+							<m:Input name="OrderDesc" />
+						</fb:control>
+					</fb:FilterGroupItem>
+				</fb:filterGroupItems>
+			</fb:FilterBar>
+		</filterBar>
+	</ValueHelpDialog>
+</core:FragmentDefinition>
