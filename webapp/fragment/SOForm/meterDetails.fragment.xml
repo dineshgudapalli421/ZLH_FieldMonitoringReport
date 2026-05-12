@@ -18,7 +18,7 @@
     enableExport="false"
     demandPopin="true"
     persistencyKey="SmartTableSoFormMeterDetails"
-    requestAtLeastFields="OrderID,Operation,Counter,additional_notes,additional_info,UtilitiesDevice,new_meter_num,Old_Meternum_Corectd,New_Meternum_Corectd,new_security_seal,corrected_tx,new_tx_num,Rev_Num,Row_Num,Eid,Manufserialnumber,old_delivered_reading_kwh,Old_Delivered_Read_KWH_Corectd,old_delivered_reading_w,Old_Delivered_Read_KW_Corectd,old_delivered_reading_va,Old_Delivered_Read_KVA_Corectd,old_recieved_reading_kwh,Old_Received_Read_KWH_Corectd,old_recieved_reading_w,Old_Received_Read_KW_Corectd,OLD_RECIEVED_READING_VA,Old_Received_Read_KVA_Corectd,new_delivered_reading_kwh,New_Delivered_Read_KWH_Corectd,new_delivered_reading_w,New_Delivered_Read_KW_Corectd,new_delivered_reading_va,New_Delivered_Read_KVA_Corectd,new_recieved_reading_kwh,New_Received_Read_KWH_Corectd,new_recieved_reading_w,New_Received_Read_KW_Corectd,new_recieved_reading_va,New_Received_Read_KVA_Corectd,ex_comm_equip,Old_Comm_Equip_Corectd,ex_comm_addr,Old_Comm_Addr_Corectd,new_comm_equip,New_Comm_Equip_Corectd,new_comm_addr,New_Comm_Addr_Corectd,Billable,Complete_date,Main_Activity,Completed_Time,UtilsDeviceLocationLocation,COMPLETE_BY,VERBAL,UNIT_ID,TIME_SYNC_REQ,SET_MPASS,INSTALL_RF,INVESTIGATION_REQ,CONVERT_EL,INTERVAL_READY,IVP,OLD_METER_ACTION,MAN_HRS,TRUCK_HRS,OTHER_HRS,REMOVED,CHARGE_ACCT,FIELD_RETURN_REASON"
+    requestAtLeastFields="OrderID,Operation,Counter,additional_notes,additional_info,ADDRESS,UtilitiesDevice,new_meter_num,Old_Meternum_Corectd,New_Meternum_Corectd,new_security_seal,corrected_tx,new_tx_num,Rev_Num,Row_Num,Eid,Manufserialnumber,old_delivered_reading_kwh,Old_Delivered_Read_KWH_Corectd,old_delivered_reading_w,Old_Delivered_Read_KW_Corectd,old_delivered_reading_va,Old_Delivered_Read_KVA_Corectd,old_recieved_reading_kwh,Old_Received_Read_KWH_Corectd,old_recieved_reading_w,Old_Received_Read_KW_Corectd,OLD_RECIEVED_READING_VA,Old_Received_Read_KVA_Corectd,new_delivered_reading_kwh,New_Delivered_Read_KWH_Corectd,new_delivered_reading_w,New_Delivered_Read_KW_Corectd,new_delivered_reading_va,New_Delivered_Read_KVA_Corectd,new_recieved_reading_kwh,New_Received_Read_KWH_Corectd,new_recieved_reading_w,New_Received_Read_KW_Corectd,new_recieved_reading_va,New_Received_Read_KVA_Corectd,ex_comm_equip,Old_Comm_Equip_Corectd,ex_comm_addr,Old_Comm_Addr_Corectd,new_comm_equip,New_Comm_Equip_Corectd,new_comm_addr,New_Comm_Addr_Corectd,Billable,Complete_date,Main_Activity,Completed_Time,UtilsDeviceLocationLocation,COMPLETE_BY,VERBAL,UNIT_ID,TIME_SYNC_REQ,SET_MPASS,INSTALL_RF,INVESTIGATION_REQ,CONVERT_EL,INTERVAL_READY,IVP,OLD_METER_ACTION,MAN_HRS,TRUCK_HRS,OTHER_HRS,REMOVED,CHARGE_ACCT,FIELD_RETURN_REASON"
 >
     <Table
         id="meterDetailsTable"
@@ -68,6 +68,14 @@
                 <m:Label text="Additional Info" />
                 <template>
                     <m:Text text="{CTPTModel>additional_info}" textAlign="Center"/>
+                </template>
+            </Column>
+            <Column id="idAddress" sortProperty="ADDRESS" 
+             
+                    autoResizable="true" width="170px" hAlign="Center">
+                <m:Label text="Address" />
+                <template>
+                    <m:Text text="{CTPTModel>ADDRESS}" textAlign="Center"/>
                 </template>
             </Column>
             <Column id="idMeterNo" sortProperty="Meter Number" 

@@ -18,7 +18,7 @@
     enableExport="false"
     demandPopin="true"
     persistencyKey="SmartTableSoFormCTPT"
-    requestAtLeastFields="OrderID,Rev_Num,Row_Num,Eid,Serialnumber,OldSerialnumber_Corectd,Manufserialnumber,Devicecategory,Deviceremoval,Deviceremoval_Corected,Newserialnumber,NewSerialnumber_Corectd,Newmanufserialnumber,Newdevicecategory,newfuncclass,newtxwindenom,Denominator_Corectd,Newtxwindnumber,Numerator_Corectd"
+    requestAtLeastFields="OrderID,Rev_Num,Row_Num,Eid,ADDRESS,Serialnumber,OldSerialnumber_Corectd,Manufserialnumber,Devicecategory,Deviceremoval,Deviceremoval_Corected,Newserialnumber,NewSerialnumber_Corectd,Newmanufserialnumber,Newdevicecategory,newfuncclass,Newtxwindnumber,newtxwindenom,Numerator_Corectd,Denominator_Corectd"
 >
 <Table
         id="idTableCTPT"
@@ -71,6 +71,15 @@
                 <m:Label text="Eid" />
                 <template>
                     <m:Text text="{CTPTModel>Eid}"  textAlign="Center"/>
+                </template>
+            </Column>
+            <Column
+                width="12rem"
+                hAlign="Center"
+            >
+                <m:Label text="Address" />
+                <template>
+                    <m:Text text="{CTPTModel>ADDRESS}" textAlign="Center"/>
                 </template>
             </Column>
             <Column
@@ -185,12 +194,31 @@
                 </template>
             </Column>
             <Column
+                width="9rem"
+                hAlign="Center"
+            >
+                <m:Label text="New Tx Numerator" />
+                <template>
+                    <m:Text text="{CTPTModel>Newtxwindnumber}"  textAlign="Center"/>
+                </template>
+            </Column>
+            <Column
                 width="6rem"
                 hAlign="Center"
             >
                 <m:Label text="New Tx Denominator" />
                 <template>
                     <m:Text text="{CTPTModel>newtxwindenom}" textAlign="Center"/>
+                </template>
+            </Column>            
+           <Column
+                width="15rem"
+                hAlign="Center"
+            >
+                <m:Label text="Corrected New Tx Numerator" class="statusColumn" tooltip="Numerator Corrected"/>
+                <template>
+                    <!-- <m:Text text="{CTPTModel>NUMERATOR_CORECTD}" /> -->
+                    <m:Input id="idNUMERATOR_CORECTD" value="{CTPTModel>Numerator_Corectd}" maxLength="20"></m:Input>
                 </template>
             </Column>
             <Column
@@ -203,26 +231,7 @@
                     <m:Input id="idDENOMINATOR_CORECTD" value="{CTPTModel>Denominator_Corectd}" maxLength="20"></m:Input>
                 </template>
             </Column>
-            <Column
-                width="9rem"
-                hAlign="Center"
-            >
-                <m:Label text="New Tx Numerator" />
-                <template>
-                    <m:Text text="{CTPTModel>Newtxwindnumber}"  textAlign="Center"/>
-                </template>
-            </Column>
-           <Column
-                width="15rem"
-                hAlign="Center"
-            >
-                <m:Label text="Corrected New Tx Numerator" class="statusColumn" tooltip="Numerator Corrected"/>
-                <template>
-                    <!-- <m:Text text="{CTPTModel>NUMERATOR_CORECTD}" /> -->
-                    <m:Input id="idNUMERATOR_CORECTD" value="{CTPTModel>Numerator_Corectd}" maxLength="20"></m:Input>
-                </template>
-            </Column>
-        </columns>
+            </columns>
     </Table>
 </smarttable:SmartTable>
     
