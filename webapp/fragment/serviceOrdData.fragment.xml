@@ -49,19 +49,14 @@
 			width="60%"
 			valueHelpRequest=".onServiceOrderVH"
             showSuggestion="true"
+            suggest=".onSuggestServiceOrder"
             suggestionItemSelected=".onOrderSuggestionItemPress"
-			suggestionItems="{
-				path: '/ORDER_NumberSet'
-			}">
+			suggestionItems="{suggestionModel>/FilteredItems}">
 			<suggestionItems>
 				<core:ListItem
-					key="{ORDER_ID}"
-					text="{
-						path : 'ORDER_ID'
-                    }"
-					additionalText="{
-						path : 'DESCRIPTION'
-					}"/>
+					key="{suggestionModel>ORDER_ID}"
+					text="{suggestionModel>ORDER_ID}"
+					additionalText="{suggestionModel>DESCRIPTION}"/>
 			</suggestionItems>
 		</MultiInput>
 

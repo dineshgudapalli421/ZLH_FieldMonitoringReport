@@ -28,6 +28,10 @@ sap.ui.define([
             oOrderTypeModel = oController.getOwnerComponent().getModel("OEBmainService");
             oRouter = UIComponent.getRouter();
             oResourceBundle = oController.getOwnerComponent().getModel("i18n").getResourceBundle();
+            
+            var oSuggestionModel = new JSONModel({ FilteredItems: [] });
+            this.getView().setModel(oSuggestionModel, "suggestionModel");
+
             var oMultiInput = oController.byId("idServiceOrder");
             oController._oMultiInput = oMultiInput;
             oController._oMultiInput.addValidator(oController._onMultiInputValidate);
@@ -156,7 +160,7 @@ sap.ui.define([
             oController.getView().setModel(oSelectionModel, "FieldMonSelModel");
             oController.getOwnerComponent().setModel(new JSONModel({}), "GlobalFieldMonModel");
             var oMultiComboBox = oController.getView().byId("idMeterAction");
-            var aSelectedKeys = ["EXCHANGE", "INSTALL", "REMOVE"];
+            var aSelectedKeys = ["EXCHANGE","FIX", "INSTALL", "REMOVE"];
             oMultiComboBox.setSelectedKeys(aSelectedKeys);
             this._initPersonalizationService();
         },
@@ -1128,7 +1132,7 @@ sap.ui.define([
                     key: "ORDER_ID",
                     type: "string",
                     typeInstance: new TypeString({}, {
-                        maxLength: 15
+                        maxLength: 20
                     })
                 }]);
 
@@ -1253,11 +1257,12 @@ sap.ui.define([
         _onMultiInputValidate: function (oArgs) {
 
             if (oArgs.suggestionObject) {
-                var oObject = oArgs.suggestionObject.getBindingContext().getObject(),
+                //var oObject = oArgs.suggestionObject.getBindingContext().getObject(),
+                var ORDER_ID = oArgs.suggestionObject.getText(),
                     oToken = new Token();
 
-                oToken.setKey(oObject.ORDER_ID);
-                oToken.setText(oObject.ORDER_ID);
+                oToken.setKey(ORDER_ID);
+                oToken.setText(ORDER_ID);
                 return oToken;
             }
             return null;
@@ -1403,7 +1408,7 @@ sap.ui.define([
                 oVHOrderType.update();
             });
         },
-        
+
         _onMultiInputOrderTypeValidate: function (oArgs) {
 
             if (oArgs.suggestionObject) {
@@ -1415,6 +1420,29 @@ sap.ui.define([
                 return oTokenOrderType;
             }
             return null;
+        },
+        onSuggestServiceOrder: function (oEvent) {
+            debugger;
+            var sValue = oEvent.getParameter("suggestValue");
+            var oSuggestionModel = oController.getView().getModel("suggestionModel");
+            var oMasterModel = oController.getView().getModel("ServiceOrderModel"); 
+            var aAllItems = oMasterModel.getProperty("/OrderCollection") || [];
+            if (sValue) {
+                // 2. Filter the array client-side based on what the user typed
+                var aFilteredItems = aAllItems.filter(function (oItem) {
+                    // return oItem.ORDER_ID.includes(sValue);
+                    return oItem.ORDER_ID.startsWith(sValue);
+                });
+
+                // 3. CRUCIAL STEP: Slice the array to keep EXACTLY 10 records
+                var aTop10Items = aFilteredItems.slice(0, 10);
+
+                // 4. Update the suggestion model to refresh the UI dropdown
+                oSuggestionModel.setProperty("/FilteredItems", aTop10Items);
+            } else {
+                // Clear the suggestions if the input field is empty
+                oSuggestionModel.setProperty("/FilteredItems", []);
+            }
         }
     });
 });
